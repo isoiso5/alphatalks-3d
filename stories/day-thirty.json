@@ -1,0 +1,205 @@
+{
+ "title": "Day 30 \u2014 Alphatalks3000",
+ "ttsRate": "+3%",
+ "characters": {
+  "nia": {
+   "skin": "#8a5a3c",
+   "shirt": "#e9b949",
+   "pants": "#1d2230",
+   "hair": "afro",
+   "hairColor": "#1a110b",
+   "sleeves": true
+  }
+ },
+ "scenes": [
+  {
+   "env": "room",
+   "durationSec": 3,
+   "caption": "Day one. Two in the morning. Nia can't sleep, can't focus, and can't remember the last time she felt proud of herself.",
+   "camera": "top",
+   "cast": [
+    {
+     "who": "nia",
+     "action": "lie",
+     "pos": [
+      -2,
+      -2
+     ],
+     "y": 0.45,
+     "face": 180
+    }
+   ],
+   "lead": 0.05,
+   "tail": 0.35,
+   "time": "night",
+   "fade": false,
+   "zoom": 0.75,
+   "hook": "She changed 3 things for 30 days"
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 3,
+   "caption": "So she made three rules. One. No food until noon.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "nia",
+     "action": "seated",
+     "pos": [
+      0,
+      0.55
+     ],
+     "face": 180
+    }
+   ],
+   "lead": 0.15,
+   "tail": 0.35,
+   "time": "dawn",
+   "punch": "FAST.",
+   "punchAt": 1.6
+  },
+  {
+   "env": "gym",
+   "durationSec": 3,
+   "caption": "Two. Move your body every single day. Even when you don't feel like it.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "nia",
+     "action": "pushups",
+     "pos": [
+      -0.8,
+      0.5
+     ],
+     "face": 90
+    }
+   ],
+   "lead": 0.15,
+   "tail": 0.35,
+   "zoom": 0.6,
+   "camAngle": 60,
+   "punch": "TRAIN.",
+   "punchAt": 1.8
+  },
+  {
+   "env": "city",
+   "durationSec": 3,
+   "caption": "Three. Stop the harm. The midnight scrolling. The people who drag you down. The voice that calls you weak.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "nia",
+     "action": "walkslow",
+     "pos": [
+      0,
+      6
+     ],
+     "to": [
+      0,
+      1
+     ]
+    }
+   ],
+   "lead": 0.15,
+   "tail": 0.35,
+   "time": "night",
+   "punch": "PROTECT.",
+   "punchAt": 3.2
+  },
+  {
+   "env": "road",
+   "durationSec": 3,
+   "caption": "Week one hurt. Week two got quiet. By week three, she was running before the sun came up.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "nia",
+     "action": "run",
+     "pos": [
+      -5,
+      1
+     ],
+     "to": [
+      5,
+      1
+     ]
+    }
+   ],
+   "lead": 0.15,
+   "tail": 0.35,
+   "time": "dawn"
+  },
+  {
+   "env": "void",
+   "durationSec": 3,
+   "caption": "Food tasted like food again. Her head felt clean. Her mornings finally belonged to her.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "nia",
+     "action": "meditate",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "lead": 0.15,
+   "tail": 0.35,
+   "pillars": 3
+  },
+  {
+   "env": "summit",
+   "durationSec": 3,
+   "caption": "Day thirty. Same girl. Different life.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "nia",
+     "action": "cheer",
+     "pos": [
+      0,
+      0
+     ],
+     "face": 180
+    }
+   ],
+   "lead": 0.15,
+   "tail": 1.4,
+   "time": "dawn",
+   "punch": "Same girl. Different life.",
+   "punchAt": 0.9
+  },
+  {
+   "env": "void",
+   "durationSec": 5,
+   "caption": "Your day one is tomorrow. Follow Alpha Talks 3000 for the system.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "nia",
+     "action": "idle",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "lead": 0.3,
+   "tail": 0.8,
+   "pillars": 3,
+   "titleCard": {
+    "title": "Fast. Train. Protect.",
+    "subtitle": "Alphatalks3000"
+   }
+  }
+ ],
+ "thumbnail": {
+  "text": "DAY 30",
+  "sub": "Same girl. Different life.",
+  "scene": 6,
+  "at": 1.5
+ }
+}
