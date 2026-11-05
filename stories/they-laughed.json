@@ -1,0 +1,293 @@
+{
+ "title": "They Laughed \u2014 Alphatalks3000",
+ "ttsRate": "+4%",
+ "characters": {
+  "theo": {
+   "skin": "#c68e6a",
+   "shirt": "#2b2f3a",
+   "pants": "#15171d",
+   "hair": "short",
+   "hairColor": "#1b120c",
+   "sleeves": true,
+   "height": 1.02
+  },
+  "jay": {
+   "skin": "#6e452c",
+   "shirt": "#b23a3a",
+   "pants": "#22252e",
+   "hair": "cap",
+   "hairColor": "#111111"
+  },
+  "max": {
+   "skin": "#e2b48f",
+   "shirt": "#3f6fb0",
+   "pants": "#22252e",
+   "hair": "short",
+   "hairColor": "#6b4a2b"
+  }
+ },
+ "scenes": [
+  {
+   "env": "gym",
+   "durationSec": 3,
+   "caption": "They laughed when Theo walked into the gym. Out of breath in five minutes. Gone in ten.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "walktired",
+     "pos": [
+      0,
+      3
+     ],
+     "to": [
+      0,
+      0.5
+     ]
+    },
+    {
+     "who": "jay",
+     "action": "cheer",
+     "pos": [
+      -2.2,
+      -1.2
+     ],
+     "face": 40
+    },
+    {
+     "who": "max",
+     "action": "idle2",
+     "pos": [
+      2.2,
+      -1.2
+     ],
+     "face": -40
+    }
+   ],
+   "lead": 0.05,
+   "tail": 0.35,
+   "fade": false,
+   "zoom": 0.8,
+   "tone": "cold",
+   "mood": "dark",
+   "hook": "They laughed at him"
+  },
+  {
+   "env": "room",
+   "durationSec": 3,
+   "caption": "That night, he made three rules. And he promised himself he would not break them.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "sitfloor",
+     "pos": [
+      0,
+      0.5
+     ],
+     "face": 180
+    }
+   ],
+   "lead": 0.15,
+   "tail": 0.35,
+   "time": "night",
+   "tone": "cold",
+   "zoom": 0.8
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 3,
+   "caption": "One. Eat in an eight hour window. Fast the rest.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "cook",
+     "pos": [
+      0,
+      0.4
+     ],
+     "face": 180
+    }
+   ],
+   "lead": 0.15,
+   "tail": 0.35,
+   "time": "dawn",
+   "punch": "FAST.",
+   "punchAt": 1.3,
+   "mood": "hope"
+  },
+  {
+   "env": "gym",
+   "durationSec": 3,
+   "caption": "Two. Show up every single day. Especially the days nobody is watching.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "punch",
+     "pos": [
+      0,
+      0.5
+     ],
+     "face": 90,
+     "gloves": "#c9a227"
+    }
+   ],
+   "lead": 0.15,
+   "tail": 0.35,
+   "zoom": 0.75,
+   "punch": "TRAIN.",
+   "punchAt": 1.5
+  },
+  {
+   "env": "city",
+   "durationSec": 3,
+   "caption": "Three. Cut the harm. The late night junk. The friends who mocked him. The voice that said quit.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "walk",
+     "pos": [
+      0,
+      6
+     ],
+     "to": [
+      0,
+      1
+     ]
+    }
+   ],
+   "lead": 0.15,
+   "tail": 0.35,
+   "time": "night",
+   "punch": "PROTECT.",
+   "punchAt": 3.4
+  },
+  {
+   "env": "road",
+   "durationSec": 3,
+   "caption": "Month two, he was running past the gym before it even opened.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "run",
+     "pos": [
+      -5,
+      1
+     ],
+     "to": [
+      5,
+      1
+     ]
+    }
+   ],
+   "lead": 0.15,
+   "tail": 0.35,
+   "time": "dawn",
+   "tone": "warm",
+   "mood": "rise"
+  },
+  {
+   "env": "gym",
+   "durationSec": 3,
+   "caption": "Month six, the heavy bag started to fear him.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "kick",
+     "pos": [
+      0,
+      0.5
+     ],
+     "face": 90,
+     "gloves": "#c9a227"
+    }
+   ],
+   "lead": 0.15,
+   "tail": 0.35,
+   "zoom": 0.75,
+   "tone": "warm"
+  },
+  {
+   "env": "gym",
+   "durationSec": 3,
+   "caption": "One year later, the same guys who laughed came up to him and asked for his routine.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "idle",
+     "pos": [
+      0,
+      0.3
+     ],
+     "face": 180
+    },
+    {
+     "who": "jay",
+     "action": "walkslow",
+     "pos": [
+      -3,
+      2.5
+     ],
+     "to": [
+      -1.3,
+      1.2
+     ]
+    },
+    {
+     "who": "max",
+     "action": "walkslow",
+     "pos": [
+      3,
+      2.5
+     ],
+     "to": [
+      1.3,
+      1.2
+     ]
+    }
+   ],
+   "lead": 0.15,
+   "tail": 1.2,
+   "tone": "warm",
+   "punch": "Same gym. Different man.",
+   "punchAt": 4.2
+  },
+  {
+   "env": "void",
+   "durationSec": 5,
+   "caption": "This is the routine. Start it tonight. Follow Alpha Talks 3000 for the full system.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "guard",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180,
+     "gloves": "#c9a227"
+    }
+   ],
+   "lead": 0.3,
+   "tail": 0.8,
+   "pillars": 3,
+   "titleCard": {
+    "title": "Fast. Train. Protect.",
+    "subtitle": "Alphatalks3000"
+   }
+  }
+ ],
+ "thumbnail": {
+  "text": "THEY LAUGHED",
+  "sub": "One year later...",
+  "scene": 7,
+  "at": 2.0
+ }
+}
