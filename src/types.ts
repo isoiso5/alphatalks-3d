@@ -72,11 +72,16 @@ export type Scene = {
   shotAt?: number; // seconds into the scene
   piano?: boolean; // piano on stage
   fade?: boolean; // fade from black at the start
+  hook?: string; // big text at the top of the frame (Shorts hook)
+  punchAt?: number; // seconds into the scene when the punch line lands
+  zoom?: number; // camera distance multiplier override
+  lead?: number; // seconds of silence before narration (overrides default)
 };
 
 export type StoryProps = {
   title: string;
   characters: Record<string, CharacterSpec>;
   scenes: Scene[];
+  ttsRate?: string; // e.g. "+4%" (Shorts read a little faster)
   thumbnail?: { text: string; sub?: string; scene: number; at?: number };
 };
