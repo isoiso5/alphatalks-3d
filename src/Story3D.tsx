@@ -103,6 +103,7 @@ const EXPOSURE: Record<string, number> = {
   city: 2.3,
   gym: 1.6,
   summit: 1.35,
+  shore: 1.75,
   void: 1.7,
 };
 
@@ -155,9 +156,15 @@ const getGrain = () => {
   return grainUrl;
 };
 
-const Grade: React.FC<{ frame: number; portrait: boolean; bars: boolean }> = ({ frame, portrait, bars }) => (
+const TONES: Record<string, string> = {
+  neutral: 'linear-gradient(180deg, rgba(0,60,80,0.18), rgba(255,150,60,0.12))',
+  cold: 'linear-gradient(180deg, rgba(20,70,120,0.42), rgba(40,90,130,0.30))',
+  warm: 'linear-gradient(180deg, rgba(255,170,70,0.30), rgba(255,120,40,0.22))',
+};
+
+const Grade: React.FC<{ frame: number; portrait: boolean; bars: boolean; tone?: string }> = ({ frame, portrait, bars, tone }) => (
   <>
-    <AbsoluteFill style={{ background: 'linear-gradient(180deg, rgba(0,60,80,0.18), rgba(255,150,60,0.12))', mixBlendMode: 'soft-light' }} />
+    <AbsoluteFill style={{ background: TONES[tone ?? 'neutral'] ?? TONES.neutral, mixBlendMode: 'soft-light' }} />
     <AbsoluteFill style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55) 100%)' }} />
     <AbsoluteFill
       style={{
@@ -343,6 +350,17 @@ const Progress: React.FC<{ k: number }> = ({ k }) => (
   <div style={{ position: 'absolute', top: 0, left: 0, height: 10, width: `${k * 100}%`, background: 'linear-gradient(90deg, #b8862b, #fff3c4)', boxShadow: '0 0 14px #f5c451' }} />
 );
 
+const Lightning: React.FC<{ t: number; seed: number }> = ({ t, seed }) => {
+  // two deterministic flashes per scene
+  const at = [1.4 + (seed % 3) * 0.7, 4.8 + (seed % 5) * 0.5];
+  let o = 0;
+  at.forEach((a) => {
+    const d = t - a;
+    if (d >= 0 && d < 0.5) o = Math.max(o, d < 0.06 ? 0.55 : d < 0.12 ? 0.1 : d < 0.18 ? 0.4 : 0.4 * (1 - (d - 0.18) / 0.32));
+  });
+  return o > 0 ? <AbsoluteFill style={{ background: '#dfe8ff', opacity: o, mixBlendMode: 'screen' }} /> : null;
+};
+
 /* ---------------- main composition ---------------- */
 
 export const locateScene = (props: StoryProps, frame: number) => {
@@ -375,12 +393,13 @@ export const Story3D: React.FC<StoryProps> = (props) => {
 
   return (
     <AbsoluteFill style={{ backgroundColor: '#000' }}>
-      <AbsoluteFill style={{ filter: 'contrast(1.08) saturate(1.12)' }}>
+      <AbsoluteFill style={{ filter: scene.tone === 'cold' ? 'contrast(1.1) saturate(0.7)' : scene.tone === 'warm' ? 'contrast(1.08) saturate(1.25)' : 'contrast(1.08) saturate(1.12)' }}>
         {lib && (
           <SceneView scene={scene} t={t} lib={lib} characters={props.characters} width={width} height={height} sceneKey={`s${index}`} />
         )}
       </AbsoluteFill>
-      <Grade frame={frame} portrait={portrait} bars />
+      <Grade frame={frame} portrait={portrait} bars tone={scene.tone} />
+      {scene.time === 'storm' && <Lightning t={t} seed={index} />}
       {scene.titleCard && <TitleCard title={scene.titleCard.title} subtitle={scene.titleCard.subtitle} t={t} dur={dur} portrait={portrait} />}
       {scene.chapterTitle && <ChapterTitle label={scene.chapterLabel} title={scene.chapterTitle} t={t} portrait={portrait} />}
       {scene.punch && <Punch text={scene.punch} t={t} dur={dur} fps={fps} portrait={portrait} at={scene.punchAt} />}
