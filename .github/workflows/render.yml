@@ -1,0 +1,77 @@
+name: Render 3D video
+
+on:
+  workflow_dispatch:
+    inputs:
+      job_id:
+        description: "Unique job id (becomes the release tag)"
+        required: true
+      composition:
+        description: "Story3D (16:9) or Story3DShort (9:16)"
+        required: true
+        default: "Story3D"
+      props:
+        description: "JSON props: { title, scenes: [...] }"
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install system libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends ffmpeg libnss3 libgbm-dev fonts-dejavu fonts-liberation
+          sudo apt-get install -y --no-install-recommends libasound2t64 || sudo apt-get install -y --no-install-recommends libasound2
+
+      - name: Install dependencies
+        run: |
+          npm install --no-audit --no-fund
+          pip install edge-tts
+          npx remotion browser ensure
+
+      - name: Validate and save props
+        env:
+          PROPS: ${{ github.event.inputs.props }}
+          COMPOSITION: ${{ github.event.inputs.composition }}
+        run: |
+          case "$COMPOSITION" in Story3D|Story3DShort) ;; *) echo "Bad composition"; exit 1;; esac
+          printf '%s' "$PROPS" > props.json
+          node -e "const p=JSON.parse(require('fs').readFileSync('props.json','utf8')); if(!Array.isArray(p.scenes)||!p.scenes.length) throw new Error('props.scenes required')"
+
+      - name: Generate voiceover (Azure neural voice via edge-tts)
+        run: python scripts/tts.py
+
+      - name: Render video
+        env:
+          COMPOSITION: ${{ github.event.inputs.composition }}
+        run: |
+          mkdir -p out
+          npx remotion render src/index.ts "$COMPOSITION" out/video.mp4 \
+            --props=props.json --gl=swangle --concurrency=4 --timeout=120000
+
+      - name: Publish video as release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_ID: ${{ github.event.inputs.job_id }}
+        run: |
+          gh release create "$JOB_ID" out/video.mp4 \
+            --title "Render $JOB_ID" --notes "Rendered by GitHub Actions" --latest=false
