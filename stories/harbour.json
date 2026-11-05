@@ -1,0 +1,1522 @@
+{
+ "title": "The Harbour \u2014 Alphatalks3000",
+ "mood": "calm",
+ "characters": {
+  "kai": {
+   "skin": "#c68e64",
+   "shirt": "#2b4a6b",
+   "pants": "#1d232c",
+   "hair": "short",
+   "hairColor": "#1a120c",
+   "sleeves": true
+  },
+  "tomas": {
+   "skin": "#a8774f",
+   "shirt": "#c9b07a",
+   "pants": "#3b3226",
+   "hair": "beanie",
+   "hairColor": "#7a2d24",
+   "height": 0.94,
+   "sleeves": true
+  },
+  "finn": {
+   "skin": "#f0c9a6",
+   "shirt": "#e2b13c",
+   "pants": "#2f4460",
+   "hair": "cap",
+   "hairColor": "#3a6aa8",
+   "height": 0.68
+  },
+  "rosa": {
+   "skin": "#8a5a3c",
+   "shirt": "#5fa7a0",
+   "pants": "#26303a",
+   "hair": "bun",
+   "hairColor": "#1d130c"
+  },
+  "dex": {
+   "skin": "#e7c2a0",
+   "shirt": "#5a2f2f",
+   "pants": "#222",
+   "hair": "short",
+   "hairColor": "#8a6a3a",
+   "sleeves": true
+  }
+ },
+ "scenes": [
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "The storm came in faster than anyone expected. Waves taller than houses. And somewhere out there, a little boy was holding on to an overturned boat.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "idle2",
+     "pos": [
+      0,
+      1.5
+     ],
+     "face": 180
+    }
+   ],
+   "time": "storm",
+   "weather": "rain",
+   "tone": "cold",
+   "mood": "dark",
+   "fade": true
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Every man on that beach froze. Every man except one. The one the whole town had given up on.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "run",
+     "pos": [
+      0,
+      2.5
+     ],
+     "to": [
+      0,
+      -2.5
+     ]
+    }
+   ],
+   "time": "storm",
+   "weather": "rain",
+   "tone": "cold",
+   "punch": "Everyone froze. Except one."
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "But to understand why he ran into that storm, we have to go back. Back to the year he stopped swimming.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "idle",
+     "pos": [
+      0,
+      1.2
+     ],
+     "face": 180
+    }
+   ],
+   "time": "storm",
+   "weather": "rain",
+   "tone": "cold"
+  },
+  {
+   "env": "void",
+   "durationSec": 7,
+   "caption": "",
+   "camera": "wide",
+   "titleCard": {
+    "title": "The Harbour",
+    "subtitle": "Alphatalks3000 presents"
+   },
+   "mood": "calm"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Welcome to Alpha Talks 3000. Tonight is a story about the sea, about rhythm, and about a man who learned that discipline is not a punishment. It is a tide.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "idle",
+     "pos": [
+      0,
+      1.2
+     ],
+     "face": 200
+    }
+   ],
+   "time": "dusk"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Kai grew up in this harbour town. By sixteen, he could outswim every fisherman's son on the coast. By twenty, he was a national champion.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "sprint",
+     "pos": [
+      -4,
+      2
+     ],
+     "to": [
+      4,
+      2
+     ]
+    }
+   ],
+   "time": "day",
+   "chapterLabel": "Chapter I",
+   "chapterTitle": "The Dry Years",
+   "color": "#8fa6b8"
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "Then came the one race that mattered. He lost by a hundredth of a second. And something inside him simply turned off.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "idle2",
+     "pos": [
+      0,
+      0
+     ],
+     "face": 0
+    }
+   ],
+   "tone": "cold",
+   "punch": "One hundredth of a second."
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "He came home and never went back to the water. Days became nights. Nights became bottles.",
+   "camera": "top",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "lie",
+     "pos": [
+      -2,
+      -2
+     ],
+     "y": 0.45,
+     "face": 90
+    }
+   ],
+   "time": "night",
+   "tone": "cold"
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "His old friend Dex was always there with another drink, another excuse, another reason to stay exactly the same.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "dex",
+     "action": "wave",
+     "pos": [
+      1.2,
+      0.5
+     ],
+     "face": -60
+    },
+    {
+     "who": "kai",
+     "action": "walktired",
+     "pos": [
+      -1.0,
+      0.8
+     ],
+     "face": 60
+    }
+   ],
+   "tone": "cold",
+   "focus": 1
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "He ate whenever he was bored. Chips at noon. Takeaway at midnight. His body, once built like a dolphin, grew slow and heavy.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "seated",
+     "pos": [
+      0,
+      0.55
+     ],
+     "face": 180
+    }
+   ],
+   "time": "night",
+   "tone": "cold"
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "And when his sister Rosa tried to help, he pushed her away. Words he could never take back.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "punch",
+     "pos": [
+      -0.6,
+      0.4
+     ],
+     "face": 90
+    },
+    {
+     "who": "rosa",
+     "action": "backoff",
+     "pos": [
+      1.0,
+      0.4
+     ],
+     "to": [
+      2.4,
+      1.2
+     ],
+     "face": -90
+    }
+   ],
+   "time": "night",
+   "tone": "cold",
+   "focus": 0,
+   "punch": "Harm always spreads."
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "A champion swimmer, slowly drowning on dry land. And the worst part? He told himself he was fine.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "walktired",
+     "pos": [
+      -3,
+      2
+     ],
+     "to": [
+      2,
+      2
+     ]
+    }
+   ],
+   "time": "dusk",
+   "tone": "cold",
+   "punch": "Drowning on dry land."
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Every morning at five, an old fisherman named Tomas walked past Kai's window, down to the pier, rain or shine. For forty years. Never once late.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "tomas",
+     "action": "walkslow",
+     "pos": [
+      2,
+      3
+     ],
+     "to": [
+      5,
+      -3
+     ]
+    }
+   ],
+   "time": "dawn",
+   "chapterLabel": "Chapter II",
+   "chapterTitle": "The Fisherman",
+   "color": "#c9b07a",
+   "mood": "hope"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "One morning, Kai was still awake from the night before, sitting on the sand with a bottle in his hand. Tomas stopped.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "sitfloor",
+     "pos": [
+      -0.8,
+      1.2
+     ],
+     "face": 30
+    },
+    {
+     "who": "tomas",
+     "action": "idle",
+     "pos": [
+      1.0,
+      1.0
+     ],
+     "face": -60
+    }
+   ],
+   "time": "dawn",
+   "focus": 0
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "You know what the sea taught me, he said. It does not care how you feel. It only rewards rhythm.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "tomas",
+     "action": "interact",
+     "pos": [
+      1.0,
+      1.0
+     ],
+     "face": -60
+    },
+    {
+     "who": "kai",
+     "action": "meditate",
+     "pos": [
+      -0.8,
+      1.2
+     ],
+     "face": 30
+    }
+   ],
+   "time": "dawn",
+   "focus": 0,
+   "punch": "The sea rewards rhythm."
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "The tide goes out. The tide comes in. Every single day. It never skips a day because it is tired. And that is why it can move mountains of sand.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "tomas",
+     "action": "idle2",
+     "pos": [
+      1.0,
+      1.0
+     ],
+     "face": -60
+    },
+    {
+     "who": "kai",
+     "action": "meditate",
+     "pos": [
+      -0.8,
+      1.2
+     ],
+     "face": 30
+    }
+   ],
+   "time": "dawn",
+   "focus": 0
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Kai laughed at him. Tomas did not laugh back. He just said: be at the pier tomorrow at five. Without the bottle.",
+   "camera": "pull",
+   "cast": [
+    {
+     "who": "tomas",
+     "action": "walkslow",
+     "pos": [
+      1.0,
+      1.0
+     ],
+     "to": [
+      5,
+      -3
+     ]
+    },
+    {
+     "who": "kai",
+     "action": "meditate",
+     "pos": [
+      -0.8,
+      1.2
+     ],
+     "face": 30
+    }
+   ],
+   "time": "dawn",
+   "focus": 1
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "That night, Kai stared at the ceiling for hours. And for the first time in two years, he set an alarm.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "lie",
+     "pos": [
+      -2,
+      -2
+     ],
+     "y": 0.45,
+     "face": 90
+    }
+   ],
+   "time": "night"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Five o'clock. Tomas handed him nothing. No coffee. No breakfast. We eat when the work is done, he said. Not before.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "tomas",
+     "action": "idle",
+     "pos": [
+      5,
+      -5
+     ],
+     "y": 0.41,
+     "face": -30
+    },
+    {
+     "who": "kai",
+     "action": "idle2",
+     "pos": [
+      4.2,
+      -3.5
+     ],
+     "y": 0.41,
+     "face": 150
+    }
+   ],
+   "time": "dawn",
+   "chapterLabel": "Chapter III",
+   "chapterTitle": "Low Tide",
+   "color": "#7fb7d6"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "The first mornings were brutal. Kai's stomach screamed. His head pounded. His hands shook as he pulled the nets.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "work",
+     "pos": [
+      4.5,
+      -6
+     ],
+     "y": 0.41,
+     "face": 90
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Tomas smiled. That is low tide, he said. When the water pulls back, you see everything that was hiding underneath. Your hunger is not your enemy. It is the cleaning.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "tomas",
+     "action": "interact",
+     "pos": [
+      5.4,
+      -7
+     ],
+     "y": 0.41,
+     "face": -90
+    },
+    {
+     "who": "kai",
+     "action": "work",
+     "pos": [
+      4.6,
+      -6
+     ],
+     "y": 0.41,
+     "face": 90
+    }
+   ],
+   "time": "dawn",
+   "focus": 0,
+   "punch": "Hunger is the cleaning."
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "At noon they ate together. Grilled fish, bread, lemon, salt. Kai ate slowly. It was the best meal he could remember.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "seated",
+     "pos": [
+      0,
+      0.55
+     ],
+     "face": 180
+    }
+   ],
+   "time": "day",
+   "tone": "warm"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "By the second week, something changed. The hunger in the morning became quiet. And in its place came a strange, sharp energy.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "work",
+     "pos": [
+      4.5,
+      -6
+     ],
+     "y": 0.41,
+     "face": 90
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "That is the first pillar. Consistent fasting. Not starving. Rhythm. Hours where your body stops digesting and starts repairing. Low tide, every single day.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "idle",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "pillars": 1,
+   "punch": "Pillar one. The fast."
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Then Tomas took away the boat's motor. From now on, he said, we row.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "tomas",
+     "action": "hammer",
+     "pos": [
+      -4.4,
+      -3.6
+     ],
+     "face": -120
+    },
+    {
+     "who": "kai",
+     "action": "idle2",
+     "pos": [
+      -2.8,
+      -2.8
+     ],
+     "face": -120
+    }
+   ],
+   "time": "dawn",
+   "chapterLabel": "Chapter IV",
+   "chapterTitle": "The Row",
+   "color": "#f2994a",
+   "mood": "rise"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Every morning, two kilometres out. Two kilometres back. Kai's arms burned. His lungs, ruined by years of smoke and wine, begged him to stop.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "work",
+     "pos": [
+      -6,
+      -10
+     ],
+     "y": 0.66,
+     "face": 90
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "road",
+   "durationSec": 4,
+   "caption": "After rowing, they walked the coast road. Then Kai started jogging it. Then running it.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "run",
+     "pos": [
+      0,
+      6
+     ],
+     "to": [
+      0,
+      -10
+     ]
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "In the evenings, instead of the bar, Kai found an old gym above the harbour. Push ups. Pull ups. Squats. Nothing fancy. Just every day.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "pushups",
+     "pos": [
+      0,
+      0
+     ],
+     "face": 90
+    }
+   ],
+   "time": "dusk"
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "Dex came looking for him one night. Come on, one drink. Kai looked at his old friend, and for the first time, he said no.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "dex",
+     "action": "idle2",
+     "pos": [
+      1.6,
+      0.6
+     ],
+     "face": -70
+    },
+    {
+     "who": "kai",
+     "action": "idle",
+     "pos": [
+      -0.6,
+      0.4
+     ],
+     "face": 70
+    }
+   ],
+   "time": "dusk",
+   "focus": 1,
+   "punch": "For the first time, no."
+  },
+  {
+   "env": "road",
+   "durationSec": 4,
+   "caption": "Week five. Kai ran the whole coast road without stopping. At the top of the cliff, he looked down at the sea he used to own.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "cheer",
+     "pos": [
+      0,
+      0
+     ],
+     "face": 0
+    }
+   ],
+   "time": "dawn",
+   "tone": "warm"
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Pillar two. Consistent workouts. Not one heroic day. Every day. The rowing, the running, the push ups. The tide that never skips.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "pushups",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 90
+    }
+   ],
+   "pillars": 2,
+   "punch": "Pillar two. The work."
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "One evening, Tomas showed Kai the old harbour wall. Two hundred years old, still standing, while every storm smashed against it.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "tomas",
+     "action": "idle",
+     "pos": [
+      0.9,
+      1.2
+     ],
+     "face": -40
+    },
+    {
+     "who": "kai",
+     "action": "idle",
+     "pos": [
+      -0.7,
+      1.4
+     ],
+     "face": 40
+    }
+   ],
+   "time": "dusk",
+   "chapterLabel": "Chapter V",
+   "chapterTitle": "The Harbour Wall",
+   "color": "#c94f4f",
+   "mood": "calm"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "A harbour, he said, is not a place without storms. It is a place where the storms cannot get in. You need a wall too, Kai.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "tomas",
+     "action": "interact",
+     "pos": [
+      0.9,
+      1.2
+     ],
+     "face": -40
+    },
+    {
+     "who": "kai",
+     "action": "idle2",
+     "pos": [
+      -0.7,
+      1.4
+     ],
+     "face": 40
+    }
+   ],
+   "time": "dusk",
+   "focus": 0,
+   "punch": "Build your harbour wall."
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "So Kai built one. The bottles went into the bin. The late night phone went into a drawer. The old crowd stopped getting his time.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "pickup",
+     "pos": [
+      1.5,
+      -1.5
+     ],
+     "face": 180
+    }
+   ],
+   "time": "night"
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "But the hardest stone was the voice in his own head. The one that said, you lost, you are nothing, you will always be the man who lost by a hundredth.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "crouch",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "tone": "cold",
+   "mood": "dark"
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Tomas taught him to answer it. Not with anger. With facts. I rowed today. I ran today. I kept my word today. That voice was a liar.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "rise",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "mood": "hope",
+   "punch": "That voice was a liar."
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "And then Kai did the bravest thing of all. He knocked on his sister's door.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "walkslow",
+     "pos": [
+      -3,
+      2
+     ],
+     "to": [
+      0,
+      0.5
+     ]
+    }
+   ],
+   "time": "dusk"
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "He did not make excuses. He just said, I am sorry, Rosa. I was drowning, and I pulled you down with me. She held him for a long, long time.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "rosa",
+     "action": "idle2",
+     "pos": [
+      0.6,
+      0.4
+     ],
+     "face": -80
+    },
+    {
+     "who": "kai",
+     "action": "idle",
+     "pos": [
+      -0.6,
+      0.4
+     ],
+     "face": 80
+    }
+   ],
+   "time": "dusk",
+   "tone": "warm",
+   "focus": 1,
+   "punch": "I am sorry."
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Pillar three. Stay away from harm. The harm you drink, the harm you say, the harm you think about yourself. Protect your harbour. Protect the people in it.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "meditate",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "pillars": 3,
+   "punch": "Pillar three. The shield."
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Day sixty. Before sunrise, Kai walked to the end of the pier. He had not been in the water for two years.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "walk",
+     "pos": [
+      5,
+      -5
+     ],
+     "to": [
+      5,
+      -20
+     ],
+     "y": 0.41
+    }
+   ],
+   "time": "dawn",
+   "chapterLabel": "Chapter VI",
+   "chapterTitle": "The Return",
+   "color": "#5fb0d6",
+   "mood": "rise"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Tomas did not say a word. He just nodded. And Kai dived in.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "jump",
+     "pos": [
+      5,
+      -20
+     ],
+     "y": 0.41,
+     "face": 180
+    },
+    {
+     "who": "tomas",
+     "action": "idle",
+     "pos": [
+      5.4,
+      -15
+     ],
+     "y": 0.41,
+     "face": 180
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "The cold hit him like a thousand needles. And then, something incredible. His body remembered. Stroke, breath, stroke, breath. Rhythm.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "tomas",
+     "action": "cheer",
+     "pos": [
+      5.4,
+      -15
+     ],
+     "y": 0.41,
+     "face": 180
+    }
+   ],
+   "time": "dawn",
+   "tone": "warm",
+   "punch": "His body remembered."
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "He swam to the buoy and back. Not fast. Not like a champion. But clean. Clear. Alive.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "walk",
+     "pos": [
+      4.6,
+      -9
+     ],
+     "to": [
+      4.6,
+      -6
+     ],
+     "y": 0.41
+    },
+    {
+     "who": "tomas",
+     "action": "idle",
+     "pos": [
+      5.4,
+      -6.5
+     ],
+     "y": 0.41,
+     "face": -30
+    }
+   ],
+   "time": "dawn",
+   "tone": "warm"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Every morning after that, the town saw him out there. Fasted, strong, steady. The fishermen started calling him the tide.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "run",
+     "pos": [
+      -5,
+      2.5
+     ],
+     "to": [
+      5,
+      2.5
+     ]
+    }
+   ],
+   "time": "day",
+   "tone": "warm"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "And that brings us back to that night. The storm. The overturned boat. The little boy holding on. His name was Finn. Tomas's grandson.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "tomas",
+     "action": "idle2",
+     "pos": [
+      0.9,
+      1.5
+     ],
+     "face": 180
+    },
+    {
+     "who": "kai",
+     "action": "idle",
+     "pos": [
+      -0.7,
+      1.5
+     ],
+     "face": 180
+    }
+   ],
+   "time": "storm",
+   "weather": "rain",
+   "chapterLabel": "Chapter VII",
+   "chapterTitle": "The Storm",
+   "color": "#9fb8ff",
+   "mood": "dark"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "The lifeboat was an hour away. The waves were too high for any boat in the harbour. Tomas fell to his knees on the sand.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "tomas",
+     "action": "crouch",
+     "pos": [
+      0.9,
+      1.5
+     ],
+     "face": 180
+    },
+    {
+     "who": "kai",
+     "action": "idle2",
+     "pos": [
+      -0.7,
+      1.5
+     ],
+     "face": 180
+    }
+   ],
+   "time": "storm",
+   "weather": "rain",
+   "focus": 0
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Two years earlier, Kai would have been in a bar, too drunk to stand. Too slow. Too foggy. Too far gone.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "idle",
+     "pos": [
+      0,
+      1.5
+     ],
+     "face": 180
+    }
+   ],
+   "time": "storm",
+   "weather": "rain",
+   "tone": "cold",
+   "punch": "Two years earlier..."
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "But tonight, he was clear. Sixty mornings of rowing. Sixty mornings of hunger. Sixty days without poison. He kicked off his shoes and ran into the sea.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "sprint",
+     "pos": [
+      0,
+      2.5
+     ],
+     "to": [
+      0,
+      -3.5
+     ]
+    }
+   ],
+   "time": "storm",
+   "weather": "rain",
+   "mood": "rise"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "The first wave threw him back. The second one buried him. But he found the rhythm. Stroke, breath, stroke, breath.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "tomas",
+     "action": "idle2",
+     "pos": [
+      0,
+      2
+     ],
+     "face": 180
+    }
+   ],
+   "time": "storm",
+   "weather": "rain",
+   "punch": "Stroke. Breath. Rhythm."
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Three hundred metres out, he reached the boat. Finn was ice cold and terrified. Kai held him and said: Breathe with me. We swim on the rhythm.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "hold",
+     "pos": [
+      -6.2,
+      -10
+     ],
+     "y": 0.66,
+     "face": 0
+    },
+    {
+     "who": "finn",
+     "action": "idle2",
+     "pos": [
+      -5.7,
+      -10.6
+     ],
+     "y": 0.66,
+     "face": -40
+    }
+   ],
+   "time": "storm",
+   "weather": "rain",
+   "focus": 0
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "It took them twenty minutes to reach the shore. The longest twenty minutes of Kai's life.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "walktired",
+     "pos": [
+      -1,
+      -3
+     ],
+     "to": [
+      0,
+      1.5
+     ]
+    },
+    {
+     "who": "finn",
+     "action": "walktired",
+     "pos": [
+      -0.4,
+      -3
+     ],
+     "to": [
+      0.6,
+      1.6
+     ]
+    }
+   ],
+   "time": "storm",
+   "weather": "rain"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "When their feet touched the sand, Tomas ran into the water and lifted his grandson into his arms. Finn was alive.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "tomas",
+     "action": "hold",
+     "pos": [
+      0.6,
+      1.6
+     ],
+     "face": 0
+    },
+    {
+     "who": "finn",
+     "action": "idle",
+     "pos": [
+      0.6,
+      2.1
+     ],
+     "face": 180
+    },
+    {
+     "who": "kai",
+     "action": "collapse",
+     "pos": [
+      -1,
+      1.5
+     ],
+     "face": 180
+    }
+   ],
+   "time": "storm",
+   "weather": "rain",
+   "tone": "warm",
+   "mood": "hope",
+   "punch": "Finn was alive.",
+   "focus": 0
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "The next morning, the sea was flat as glass. The whole town came down to the harbour. Kai was sitting at the end of the pier, just watching the sunrise.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "meditate",
+     "pos": [
+      5,
+      -18
+     ],
+     "y": 0.41,
+     "face": 180
+    }
+   ],
+   "time": "dawn",
+   "tone": "warm",
+   "chapterLabel": "Chapter VIII",
+   "chapterTitle": "The Calm",
+   "color": "#ffcf6b"
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Tomas sat down next to him. You know, he said, the sea did not save that boy. Your rhythm did. Sixty days of keeping your word.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "tomas",
+     "action": "sitfloor",
+     "pos": [
+      5.6,
+      -17.6
+     ],
+     "y": 0.41,
+     "face": 180
+    },
+    {
+     "who": "kai",
+     "action": "meditate",
+     "pos": [
+      4.6,
+      -18
+     ],
+     "y": 0.41,
+     "face": 180
+    }
+   ],
+   "time": "dawn",
+   "tone": "warm",
+   "punch": "Your rhythm saved him."
+  },
+  {
+   "env": "shore",
+   "durationSec": 4,
+   "caption": "Kai never became a champion again. He became something better. The man the town could count on, every single morning.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "walk",
+     "pos": [
+      -4,
+      2.5
+     ],
+     "to": [
+      3,
+      2.5
+     ]
+    },
+    {
+     "who": "finn",
+     "action": "run",
+     "pos": [
+      -5,
+      3
+     ],
+     "to": [
+      2.4,
+      3
+     ]
+    }
+   ],
+   "time": "day",
+   "tone": "warm"
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "So here is the lesson of the harbour. Discipline is not a punishment. It is a tide. Out and in. Every single day.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "idle",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "pillars": 3,
+   "mood": "rise"
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Fast, so you see what is hiding under the water. Train, so your body is ready when the storm comes. Protect, so the storm can never get inside.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "idle2",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    },
+    {
+     "who": "tomas",
+     "action": "idle",
+     "pos": [
+      -2,
+      2.8
+     ],
+     "face": 30
+    },
+    {
+     "who": "rosa",
+     "action": "idle",
+     "pos": [
+      2,
+      2.8
+     ],
+     "face": -30
+    }
+   ],
+   "pillars": 3,
+   "punch": "Fast. Train. Protect."
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Because one day, someone you love will need you to be strong and clear. And on that day, you want to be ready.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "idle",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    },
+    {
+     "who": "finn",
+     "action": "idle2",
+     "pos": [
+      1.1,
+      2.6
+     ],
+     "face": -20
+    }
+   ],
+   "pillars": 3,
+   "punch": "Be ready."
+  },
+  {
+   "env": "void",
+   "durationSec": 10,
+   "caption": "This is Alpha Talks 3000. Find your rhythm. Build your harbour. And never stop showing up.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "kai",
+     "action": "idle",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    },
+    {
+     "who": "tomas",
+     "action": "idle2",
+     "pos": [
+      -1.8,
+      2.8
+     ],
+     "face": 30
+    }
+   ],
+   "pillars": 3,
+   "titleCard": {
+    "title": "Fast. Train. Protect.",
+    "subtitle": "Alphatalks3000"
+   }
+  }
+ ],
+ "thumbnail": {
+  "text": "HE RAN INTO THE STORM",
+  "sub": "60 days changed everything",
+  "scene": 1,
+  "at": 2.2
+ }
+}
