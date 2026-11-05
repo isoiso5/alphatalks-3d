@@ -25,11 +25,11 @@ def read_audio(path):
     return np.frombuffer(raw, dtype=np.float32).copy()
 
 
-async def tts(text, path):
+async def tts(text, path, rate=None):
     last = None
     for attempt in range(6):
         try:
-            return await asyncio.wait_for(tts_once(text, path), timeout=90)
+            return await asyncio.wait_for(tts_once(text, path, rate or RATE), timeout=90)
         except Exception as e:  # network hiccups / NoAudioReceived
             last = e
             print(f"  tts retry {attempt + 1}: {e}", flush=True)
@@ -37,12 +37,12 @@ async def tts(text, path):
     raise last
 
 
-async def tts_once(text, path):
+async def tts_once(text, path, rate=RATE):
     words = []
     try:
-        com = edge_tts.Communicate(text, VOICE, rate=RATE, boundary="WordBoundary")
+        com = edge_tts.Communicate(text, VOICE, rate=rate, boundary="WordBoundary")
     except TypeError:
-        com = edge_tts.Communicate(text, VOICE, rate=RATE)
+        com = edge_tts.Communicate(text, VOICE, rate=rate)
     with open(path, "wb") as f:
         async for chunk in com.stream():
             if chunk["type"] == "audio":
@@ -183,19 +183,21 @@ async def main():
     vo_tracks = []
     for i, sc in enumerate(scenes):
         text = (sc.get("caption") or "").strip()
-        lead = TITLE_LEAD if (sc.get("chapterTitle") or sc.get("titleCard")) else VO_LEAD
+        lead = sc.get("lead")
+        if lead is None:
+            lead = TITLE_LEAD if (sc.get("chapterTitle") or sc.get("titleCard")) else VO_LEAD
         sc["voLead"] = lead
         if not text:
             vo_tracks.append(None)
             continue
         mp3 = f"vo/scene-{i}.mp3"
-        words = await tts(text, mp3)
+        words = await tts(text, mp3, props.get("ttsRate"))
         audio = read_audio(mp3)
         d = len(audio) / SR
         sc["voSec"] = round(d, 3)
         if words:
             sc["words"] = attach_punctuation(text, words)
-        need = max(float(sc.get("durationSec") or 0), lead + d + 1.1)
+        need = max(float(sc.get("durationSec") or 0), lead + d + float(sc.get("tail", 1.1)))
         sc["durationSec"] = round(math.ceil(need * FPS) / FPS, 6)
         vo_tracks.append(audio)
         print(f"scene {i:02d}: {d:5.1f}s narration -> {sc['durationSec']:.1f}s", flush=True)
@@ -220,7 +222,7 @@ async def main():
         if sc.get("chapterTitle") or sc.get("titleCard"):
             add(sfx, boom(), st + 0.2, 0.55)
         if sc.get("punch"):
-            punch_at = max(1.2, sc["durationSec"] * 0.5)
+            punch_at = sc.get("punchAt", max(1.2, sc["durationSec"] * 0.5))
             add(sfx, impact(), st + punch_at, 0.45)
         start += frames[i]
     music = make_piano(len(voice) / SR)
