@@ -9,9 +9,10 @@ export type EnvName =
   | 'room'
   | 'kitchen'
   | 'summit'
+  | 'shore'
   | 'void';
 
-export type TimeOfDay = 'dawn' | 'day' | 'dusk' | 'night';
+export type TimeOfDay = 'dawn' | 'day' | 'dusk' | 'night' | 'storm';
 
 export type CamMode =
   | 'wide'
@@ -76,6 +77,9 @@ export type Scene = {
   punchAt?: number; // seconds into the scene when the punch line lands
   zoom?: number; // camera distance multiplier override
   lead?: number; // seconds of silence before narration (overrides default)
+  weather?: 'rain' | 'snow'; // falling rain / snow particles
+  tone?: 'cold' | 'warm'; // colour grade: cold = the old life, warm = the new life
+  mood?: 'calm' | 'dark' | 'hope' | 'rise'; // soundtrack mood from this scene on
 };
 
 export type StoryProps = {
