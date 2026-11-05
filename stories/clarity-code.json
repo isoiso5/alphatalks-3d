@@ -1,0 +1,1563 @@
+{
+ "title": "The Clarity Code \u2014 Alphatalks3000",
+ "characters": {
+  "noah": {
+   "skin": "#c68a64",
+   "shirt": "#2b3445",
+   "pants": "#1c1f26",
+   "hair": "short",
+   "hairColor": "#1a120c",
+   "sleeves": true
+  },
+  "coach": {
+   "skin": "#8d5a3b",
+   "shirt": "#5a4632",
+   "pants": "#2a2a2e",
+   "hair": "short",
+   "hairColor": "#cfcfcf",
+   "sleeves": true,
+   "height": 0.97
+  },
+  "mara": {
+   "skin": "#e2b48f",
+   "shirt": "#c9b79a",
+   "pants": "#3b4a63",
+   "hair": "bun",
+   "hairColor": "#5a2e1a"
+  },
+  "jalen": {
+   "skin": "#5e3a26",
+   "shirt": "#d63a2f",
+   "pants": "#111318",
+   "hair": "bald",
+   "height": 1.04
+  },
+  "theo": {
+   "skin": "#f0cfb0",
+   "shirt": "#101114",
+   "pants": "#101114",
+   "hair": "short",
+   "hairColor": "#c49a5a",
+   "sleeves": true
+  },
+  "dee": {
+   "skin": "#7a4a30",
+   "shirt": "#f2a524",
+   "pants": "#1b2a52",
+   "hair": "afro",
+   "hairColor": "#120c08",
+   "height": 1.06
+  },
+  "kenji": {
+   "skin": "#d9a77e",
+   "shirt": "#1d1d22",
+   "pants": "#a32323",
+   "hair": "short",
+   "hairColor": "#0d0d0d"
+  }
+ },
+ "scenes": [
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "Three in the morning. The phone is still glowing. Noah has watched a hundred people live their dreams tonight, and he has not moved an inch toward his own.",
+   "camera": "top",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "lie",
+     "pos": [
+      -2,
+      -2
+     ],
+     "y": 0.42,
+     "face": 180
+    }
+   ],
+   "time": "night",
+   "fade": true
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "He is not lazy. He is not broken. He is something quieter and more dangerous. He is unclear.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "lie",
+     "pos": [
+      -2,
+      -2
+     ],
+     "y": 0.42,
+     "face": 180
+    }
+   ],
+   "time": "night",
+   "punch": "Not lazy. Unclear."
+  },
+  {
+   "env": "void",
+   "durationSec": 7,
+   "caption": "",
+   "camera": "wide",
+   "titleCard": {
+    "title": "The Clarity Code",
+    "subtitle": "Alphatalks3000 presents"
+   }
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "Welcome to Alpha Talks 3000. Tonight's story is about clarity, and about the five people who taught one young man how to find it.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "wakeup",
+     "pos": [
+      -2,
+      -1.6
+     ],
+     "y": 0.42
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "Because clarity is not something you think your way into. It is something you build, one honest day at a time.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "idle",
+     "pos": [
+      0,
+      0
+     ]
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "road",
+   "durationSec": 4,
+   "caption": "That morning, Noah went for a walk he did not want to take. Twenty minutes in, an old man fell into step beside him.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "walk",
+     "pos": [
+      0.8,
+      6
+     ],
+     "to": [
+      0.8,
+      -6
+     ]
+    },
+    {
+     "who": "coach",
+     "action": "walk",
+     "pos": [
+      -0.6,
+      6.3
+     ],
+     "to": [
+      -0.6,
+      -5.7
+     ]
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "road",
+   "durationSec": 4,
+   "caption": "The old man had coached champions for forty years. He looked at Noah and said one sentence that changed everything.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "coach",
+     "action": "idle",
+     "pos": [
+      -0.6,
+      0
+     ],
+     "face": 40
+    },
+    {
+     "who": "noah",
+     "action": "idle2",
+     "pos": [
+      0.8,
+      0.2
+     ],
+     "face": -50
+    }
+   ],
+   "time": "dawn",
+   "focus": 0
+  },
+  {
+   "env": "road",
+   "durationSec": 4,
+   "caption": "You do not need more motivation. You need a clear picture. Let me show you five people who found theirs.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "coach",
+     "action": "interact",
+     "pos": [
+      -0.6,
+      0
+     ],
+     "face": 40
+    },
+    {
+     "who": "noah",
+     "action": "idle",
+     "pos": [
+      0.8,
+      0.2
+     ],
+     "face": -50
+    }
+   ],
+   "time": "dawn",
+   "punch": "You need a clear picture."
+  },
+  {
+   "env": "studio",
+   "durationSec": 4,
+   "caption": "The first was Mara. A painter. For seven years she started a new canvas every week, and she never finished a single one.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "mara",
+     "action": "idle",
+     "pos": [
+      0,
+      0
+     ],
+     "face": 200
+    }
+   ],
+   "chapterLabel": "Chapter I",
+   "chapterTitle": "The Painter",
+   "color": "#f5b942",
+   "paint": [
+    0.05,
+    0.08
+   ]
+  },
+  {
+   "env": "studio",
+   "durationSec": 4,
+   "caption": "She had talent. Everyone told her so. But talent without direction is just noise with a beautiful voice.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "mara",
+     "action": "paint",
+     "pos": [
+      0.2,
+      -0.1
+     ],
+     "face": 200
+    }
+   ],
+   "paint": [
+    0.08,
+    0.12
+   ]
+  },
+  {
+   "env": "studio",
+   "durationSec": 4,
+   "caption": "One winter she made a decision so simple it scared her. One painting. No new ideas until it was done.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "mara",
+     "action": "idle2",
+     "pos": [
+      -0.5,
+      0.6
+     ],
+     "face": 180
+    }
+   ],
+   "paint": [
+    0.12,
+    0.14
+   ],
+   "punch": "One painting. Nothing else."
+  },
+  {
+   "env": "studio",
+   "durationSec": 4,
+   "caption": "She stopped eating late at night, when her mind was foggy and her hands were restless. She painted in the morning, on an empty stomach, sharp and awake.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "mara",
+     "action": "paint",
+     "pos": [
+      0.2,
+      -0.1
+     ],
+     "face": 200
+    }
+   ],
+   "time": "dawn",
+   "paint": [
+    0.14,
+    0.3
+   ]
+  },
+  {
+   "env": "studio",
+   "durationSec": 4,
+   "caption": "Every afternoon she walked for an hour. Not for fitness, but to let the painting speak to her when she was not looking at it.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "mara",
+     "action": "walk",
+     "pos": [
+      -4,
+      1.5
+     ],
+     "to": [
+      3,
+      1.5
+     ]
+    }
+   ],
+   "paint": [
+    0.3,
+    0.35
+   ]
+  },
+  {
+   "env": "studio",
+   "durationSec": 4,
+   "caption": "And she cut out the voices that hurt her. The friend who mocked her work. Her own inner critic at midnight. She simply stopped feeding them.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "mara",
+     "action": "backoff",
+     "pos": [
+      0,
+      0
+     ],
+     "to": [
+      0,
+      2.5
+     ],
+     "face": 0
+    }
+   ],
+   "paint": [
+    0.35,
+    0.45
+   ]
+  },
+  {
+   "env": "studio",
+   "durationSec": 4,
+   "caption": "Six weeks later, Mara finished her first painting in seven years. It was not perfect. It was clear. And clear beats perfect every single time.",
+   "camera": "pull",
+   "cast": [
+    {
+     "who": "mara",
+     "action": "cheer",
+     "pos": [
+      -0.8,
+      0.8
+     ],
+     "face": 160
+    }
+   ],
+   "paint": [
+    0.45,
+    1.0
+   ],
+   "punch": "Clear beats perfect."
+  },
+  {
+   "env": "road",
+   "durationSec": 4,
+   "caption": "The coach looked at Noah. Mara did not find clarity by thinking harder. She found it by removing everything that was not the painting.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "coach",
+     "action": "walkslow",
+     "pos": [
+      -0.6,
+      4
+     ],
+     "to": [
+      -0.6,
+      -2
+     ]
+    },
+    {
+     "who": "noah",
+     "action": "walkslow",
+     "pos": [
+      0.8,
+      4.3
+     ],
+     "to": [
+      0.8,
+      -1.7
+     ]
+    }
+   ],
+   "time": "day"
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "The second was Jalen. A sprinter who was fast enough to win, and lost every final he ever ran.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "jalen",
+     "action": "idle",
+     "pos": [
+      0,
+      15
+     ],
+     "face": 90
+    }
+   ],
+   "chapterLabel": "Chapter II",
+   "chapterTitle": "The Sprinter",
+   "color": "#ff5a3c",
+   "focus": 0
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "His problem was not his legs. His problem was the hundred thoughts screaming in his head at the starting line.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "jalen",
+     "action": "crouch",
+     "pos": [
+      0,
+      15
+     ],
+     "face": 90
+    }
+   ],
+   "focus": 0,
+   "punch": "A hundred thoughts. Zero focus."
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "So his coach gave him a strange assignment. Before every training day, write down one thing. Only one thing to improve.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "jalen",
+     "action": "idle2",
+     "pos": [
+      0,
+      15
+     ],
+     "face": 90
+    }
+   ],
+   "focus": 0
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "Monday: the first three steps. Tuesday: the arms. Wednesday: breathing. Never everything. Always one.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "jalen",
+     "action": "run",
+     "pos": [
+      -8,
+      15
+     ],
+     "to": [
+      8,
+      15
+     ]
+    }
+   ],
+   "focus": 0
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "He trained at sunrise, before breakfast, when the track was empty and his body felt light. His mind went quiet when his stomach did.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "jalen",
+     "action": "sprint",
+     "pos": [
+      -9,
+      14.6
+     ],
+     "to": [
+      9,
+      14.6
+     ]
+    }
+   ],
+   "time": "dawn",
+   "focus": 0
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "And he made a promise. No more partying the night before a race. No more poison he called fun. He protected his body like it belonged to someone he loved.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "jalen",
+     "action": "pushups",
+     "pos": [
+      0,
+      15
+     ],
+     "face": 90
+    }
+   ],
+   "focus": 0,
+   "punch": "Protect it like you love it."
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "On the day of the championship final, there was only one thought in Jalen's head. The first three steps.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "jalen",
+     "action": "crouch",
+     "pos": [
+      -6,
+      15
+     ],
+     "face": 90
+    }
+   ],
+   "focus": 0
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "He crossed the line first. Not because he wanted it more than the others. Because he saw it more clearly than they did.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "jalen",
+     "action": "sprint",
+     "pos": [
+      -8,
+      15
+     ],
+     "to": [
+      6,
+      15
+     ]
+    }
+   ],
+   "focus": 0
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "jalen",
+     "action": "cheer",
+     "pos": [
+      6,
+      15
+     ],
+     "face": 0
+    }
+   ],
+   "focus": 0,
+   "punch": "One thought wins races."
+  },
+  {
+   "env": "stage",
+   "durationSec": 4,
+   "caption": "The third was Theo. A pianist who practiced eight hours a day, and was getting worse.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "seated",
+     "pos": [
+      0,
+      0.5
+     ],
+     "face": 180
+    }
+   ],
+   "chapterLabel": "Chapter III",
+   "chapterTitle": "The Pianist",
+   "color": "#9fb8ff"
+  },
+  {
+   "env": "stage",
+   "durationSec": 4,
+   "caption": "He played tired. He played angry. He played late into the night until his fingers remembered his frustration better than the music.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "work",
+     "pos": [
+      0,
+      0.75
+     ],
+     "face": 180
+    }
+   ],
+   "camAngle": 150
+  },
+  {
+   "env": "stage",
+   "durationSec": 4,
+   "caption": "An old teacher listened to him for two minutes, closed the piano, and said: you are practicing confusion. Stop.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "idle2",
+     "pos": [
+      1.4,
+      0.8
+     ],
+     "face": -90
+    },
+    {
+     "who": "coach",
+     "action": "idle",
+     "pos": [
+      -1.6,
+      0.8
+     ],
+     "face": 90
+    }
+   ],
+   "focus": 0,
+   "punch": "You are practicing confusion."
+  },
+  {
+   "env": "stage",
+   "durationSec": 4,
+   "caption": "Theo cut his practice from eight hours to three. Three focused hours, in the morning, before he ate a single bite.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "work",
+     "pos": [
+      0,
+      0.75
+     ],
+     "face": 180
+    }
+   ],
+   "time": "dawn",
+   "camAngle": 180
+  },
+  {
+   "env": "stage",
+   "durationSec": 4,
+   "caption": "In the afternoon he trained his body. Push ups, long walks, deep breathing. A strong body gave his music a steady pulse.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "pushups",
+     "pos": [
+      2.2,
+      1.6
+     ],
+     "face": 90
+    }
+   ]
+  },
+  {
+   "env": "stage",
+   "durationSec": 4,
+   "caption": "And he stopped tearing himself apart after every mistake. He learned that cruelty toward yourself is still cruelty. It just has no witness.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "meditate",
+     "pos": [
+      0,
+      2
+     ],
+     "face": 0
+    }
+   ],
+   "punch": "Cruelty toward yourself is still cruelty."
+  },
+  {
+   "env": "stage",
+   "durationSec": 4,
+   "caption": "A year later, Theo played a concert hall. The same music he used to fight with. This time, it sounded like freedom.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "theo",
+     "action": "work",
+     "pos": [
+      0,
+      0.75
+     ],
+     "face": 180
+    }
+   ],
+   "camAngle": 200
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "That night Noah walked through the city alone. He saw the pattern now, but he did not want to see it.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "walkslow",
+     "pos": [
+      0,
+      2
+     ],
+     "to": [
+      0,
+      -10
+     ]
+    }
+   ],
+   "time": "night"
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "Because every story said the same thing. Clarity does not come from the outside. It comes from what you stop doing.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "idle2",
+     "pos": [
+      0,
+      -2
+     ],
+     "face": 0
+    }
+   ],
+   "time": "night",
+   "punch": "Clarity is what remains."
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "He went home and looked at his phone. Four hours of scrolling every single day. Midnight snacks. No movement. And quiet words he said to himself that he would never say to a friend.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "seated",
+     "pos": [
+      1.5,
+      0.5
+     ],
+     "face": 200
+    }
+   ],
+   "time": "night"
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "For the first time, he did not feel shame. He felt something better. He felt clear.",
+   "camera": "pull",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "rise",
+     "pos": [
+      1.5,
+      0.5
+     ],
+     "face": 0
+    }
+   ],
+   "time": "night"
+  },
+  {
+   "env": "court",
+   "durationSec": 4,
+   "caption": "The fourth was Dee. A basketball player with a beautiful game and no discipline at all.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "dee",
+     "action": "idle",
+     "pos": [
+      0,
+      1.5
+     ],
+     "face": 180,
+     "ball": true
+    }
+   ],
+   "chapterLabel": "Chapter IV",
+   "chapterTitle": "The Player",
+   "color": "#f2a524",
+   "focus": 0
+  },
+  {
+   "env": "court",
+   "durationSec": 4,
+   "caption": "She ate whatever, whenever. She trained when she felt like it. And she missed the shots that mattered most.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "dee",
+     "action": "shoot",
+     "pos": [
+      0.2,
+      1.8
+     ],
+     "face": 180
+    }
+   ],
+   "focus": 0,
+   "shot": "miss",
+   "shotAt": 0.9
+  },
+  {
+   "env": "court",
+   "durationSec": 4,
+   "caption": "After a season on the bench, she built what she called her non negotiables. Three rules. No exceptions.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "dee",
+     "action": "idle2",
+     "pos": [
+      0,
+      1.5
+     ],
+     "face": 0
+    }
+   ],
+   "focus": 0,
+   "punch": "Three rules. No exceptions."
+  },
+  {
+   "env": "court",
+   "durationSec": 4,
+   "caption": "Rule one. She ate in an eight hour window and fasted the rest. Her energy stopped crashing. Her focus stopped drifting.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "dee",
+     "action": "run",
+     "pos": [
+      -5,
+      3
+     ],
+     "to": [
+      5,
+      3
+     ]
+    }
+   ],
+   "focus": 0
+  },
+  {
+   "env": "court",
+   "durationSec": 4,
+   "caption": "Rule two. Five hundred shots every day before anyone else arrived. Not when she felt like it. Every day.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "dee",
+     "action": "shootloop",
+     "pos": [
+      0.3,
+      1.6
+     ],
+     "face": 180,
+     "speed": 0.9
+    }
+   ],
+   "focus": 0
+  },
+  {
+   "env": "court",
+   "durationSec": 4,
+   "caption": "Rule three. No trash talk that crossed the line. No harm to her teammates, her opponents, or herself. She played hard and she played clean.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "dee",
+     "action": "guard",
+     "pos": [
+      0,
+      2
+     ],
+     "face": 180
+    },
+    {
+     "who": "jalen",
+     "action": "idle",
+     "pos": [
+      0.9,
+      0.8
+     ],
+     "face": 0
+    }
+   ],
+   "focus": 0
+  },
+  {
+   "env": "court",
+   "durationSec": 4,
+   "caption": "In the final seconds of the championship game, the ball found Dee. She did not hope. She did not pray. She had already made this shot ten thousand times.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "dee",
+     "action": "shoot",
+     "pos": [
+      0,
+      2.4
+     ],
+     "face": 180
+    }
+   ],
+   "focus": 0,
+   "shot": "make",
+   "shotAt": 2.6
+  },
+  {
+   "env": "court",
+   "durationSec": 4,
+   "caption": "",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "dee",
+     "action": "cheer",
+     "pos": [
+      0,
+      2.4
+     ],
+     "face": 0
+    }
+   ],
+   "focus": 0,
+   "punch": "Discipline is clarity in motion."
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "The fifth was Kenji. A fighter. And his story was the hardest one to tell.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "kenji",
+     "action": "guard",
+     "pos": [
+      0,
+      0
+     ],
+     "face": 180,
+     "gloves": "#b8332e"
+    }
+   ],
+   "chapterLabel": "Chapter V",
+   "chapterTitle": "The Fighter",
+   "color": "#b8332e"
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "Kenji was strong, but his anger was stronger. He fought in the ring, and then he fought outside it, where there were no rules and no winners.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "kenji",
+     "action": "punch",
+     "pos": [
+      0,
+      0
+     ],
+     "face": 180,
+     "gloves": "#b8332e"
+    }
+   ]
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "One night, he hurt someone who did not deserve it. And in that moment, he lost everything he had trained for.",
+   "camera": "top",
+   "cast": [
+    {
+     "who": "kenji",
+     "action": "collapse",
+     "pos": [
+      0,
+      0
+     ],
+     "face": 180,
+     "gloves": "#b8332e"
+    }
+   ],
+   "time": "night",
+   "punch": "Strength without control is harm."
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "He spent a long time on the floor of his own life. Then he made a choice. His strength would only ever protect, never destroy.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "kenji",
+     "action": "getup",
+     "pos": [
+      0,
+      0
+     ],
+     "face": 180,
+     "gloves": "#b8332e"
+    }
+   ]
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "He fasted every morning to train his patience. When you can say no to hunger, you can say no to rage.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "kenji",
+     "action": "meditate",
+     "pos": [
+      0,
+      0
+     ],
+     "face": 180
+    }
+   ],
+   "time": "dawn",
+   "punch": "Say no to hunger. Say no to rage."
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "He trained twice a day, until his body was too calm for anger to live in.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "kenji",
+     "action": "kick",
+     "pos": [
+      -1,
+      0
+     ],
+     "face": 90,
+     "gloves": "#b8332e"
+    },
+    {
+     "who": "noah",
+     "action": "block",
+     "pos": [
+      1,
+      0
+     ],
+     "face": -90,
+     "gloves": "#2f4d7a"
+    }
+   ]
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "Today Kenji teaches kids from his old neighbourhood. He does not teach them to fight. He teaches them to stay in control.",
+   "camera": "pull",
+   "cast": [
+    {
+     "who": "kenji",
+     "action": "guard",
+     "pos": [
+      0,
+      -1
+     ],
+     "face": 0,
+     "gloves": "#b8332e"
+    },
+    {
+     "who": "noah",
+     "action": "guard",
+     "pos": [
+      -1.2,
+      1.2
+     ],
+     "face": 180,
+     "gloves": "#2f4d7a"
+    },
+    {
+     "who": "dee",
+     "action": "guard",
+     "pos": [
+      1.2,
+      1.2
+     ],
+     "face": 180,
+     "gloves": "#f2a524"
+    }
+   ]
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "The coach brought Noah back to where it all started, and showed him what all five stories had in common.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "coach",
+     "action": "idle",
+     "pos": [
+      -1,
+      1.5
+     ],
+     "face": 30
+    },
+    {
+     "who": "noah",
+     "action": "idle2",
+     "pos": [
+      1,
+      1.5
+     ],
+     "face": -30
+    }
+   ],
+   "chapterLabel": "Chapter VI",
+   "chapterTitle": "The Clarity Code",
+   "color": "#f5c451",
+   "pillars": 0
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Pillar one. Consistent fasting. Every one of them learned that an empty stomach can make a full mind. Discipline over appetite is the first victory of the day.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "idle",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "pillars": 1,
+   "punch": "Pillar one. The fast."
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Pillar two. Consistent workouts. A body that moves every day gives the mind a rhythm to follow. Motion creates clarity.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "pushups",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 90
+    }
+   ],
+   "pillars": 2,
+   "punch": "Pillar two. The work."
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Pillar three. Stay away from harm. Harm against others, and harm against yourself. The poison you consume, the words you speak, the habits that quietly destroy you.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "meditate",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "pillars": 3,
+   "punch": "Pillar three. The shield."
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Fast. Train. Protect. Not once. Not when you feel like it. Consistently. That is the whole code.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "idle",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    },
+    {
+     "who": "coach",
+     "action": "idle2",
+     "pos": [
+      -2,
+      3
+     ],
+     "face": 40
+    }
+   ],
+   "pillars": 3,
+   "punch": "Fast. Train. Protect."
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "So Noah began. Day one. No breakfast. Just water, silence, and one clear goal written on paper.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "seated",
+     "pos": [
+      0,
+      0.55
+     ],
+     "face": 180
+    }
+   ],
+   "time": "dawn",
+   "chapterLabel": "Chapter VII",
+   "chapterTitle": "Day One"
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "Day seven. The phone stayed in another room at night. He slept. For the first time in months, he really slept.",
+   "camera": "top",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "liedown",
+     "pos": [
+      -2,
+      -1.8
+     ],
+     "y": 0.42,
+     "face": 180
+    }
+   ],
+   "time": "night"
+  },
+  {
+   "env": "road",
+   "durationSec": 4,
+   "caption": "Day thirty. He was running now. Slow, but every single morning.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "run",
+     "pos": [
+      0,
+      8
+     ],
+     "to": [
+      0,
+      -8
+     ]
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "Day sixty. The words he said to himself changed. He stopped calling himself a failure, and started calling himself a beginner.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "pushups",
+     "pos": [
+      0,
+      0
+     ],
+     "face": 90
+    }
+   ],
+   "punch": "Not a failure. A beginner."
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "Day ninety. Kenji put gloves on him and taught him that control is the highest form of strength.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "punch",
+     "pos": [
+      1,
+      0
+     ],
+     "face": -90,
+     "gloves": "#2f4d7a"
+    },
+    {
+     "who": "kenji",
+     "action": "block",
+     "pos": [
+      -1,
+      0
+     ],
+     "face": 90,
+     "gloves": "#b8332e"
+    }
+   ],
+   "focus": 0
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "Day one hundred. Noah walked the same city streets that once felt empty. Now they felt like possibility.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "walk",
+     "pos": [
+      0,
+      2
+     ],
+     "to": [
+      0,
+      -10
+     ]
+    }
+   ],
+   "time": "dusk"
+  },
+  {
+   "env": "summit",
+   "durationSec": 4,
+   "caption": "On day one hundred and eighty, Noah reached the top of a mountain he had once been too tired to even look at.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "walktired",
+     "pos": [
+      0,
+      3
+     ],
+     "to": [
+      0,
+      0.5
+     ]
+    }
+   ],
+   "time": "dawn",
+   "chapterLabel": "Chapter VIII",
+   "chapterTitle": "The Summit",
+   "color": "#ffcf6b"
+  },
+  {
+   "env": "summit",
+   "durationSec": 4,
+   "caption": "He was not a champion. He was not famous. But he knew exactly who he was, where he was going, and what he would never do again.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "idle",
+     "pos": [
+      0,
+      0.5
+     ],
+     "face": 180
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "summit",
+   "durationSec": 4,
+   "caption": "That is clarity. Not knowing everything. Knowing what matters, and having the discipline to protect it.",
+   "camera": "pull",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "cheer",
+     "pos": [
+      0,
+      0.5
+     ],
+     "face": 0
+    }
+   ],
+   "time": "dawn",
+   "punch": "Know what matters. Protect it."
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Mara found it in a painting. Jalen in three steps. Theo in silence. Dee in five hundred shots. Kenji in control. And Noah, in one honest day after another.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "mara",
+     "action": "idle",
+     "pos": [
+      -3,
+      1
+     ],
+     "face": 20
+    },
+    {
+     "who": "jalen",
+     "action": "idle2",
+     "pos": [
+      -1.5,
+      2
+     ],
+     "face": 10
+    },
+    {
+     "who": "theo",
+     "action": "idle",
+     "pos": [
+      0,
+      2.4
+     ]
+    },
+    {
+     "who": "dee",
+     "action": "idle2",
+     "pos": [
+      1.5,
+      2
+     ],
+     "face": -10
+    },
+    {
+     "who": "kenji",
+     "action": "idle",
+     "pos": [
+      3,
+      1
+     ],
+     "face": -20
+    }
+   ],
+   "pillars": 3,
+   "focus": 2
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Your story starts the same way. Tomorrow morning. One fast. One workout. One harmful habit you finally put down.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "idle",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "pillars": 3,
+   "punch": "Tomorrow. One step."
+  },
+  {
+   "env": "void",
+   "durationSec": 10,
+   "caption": "This is Alpha Talks 3000. Fast. Train. Protect. And the clarity will come to you.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "noah",
+     "action": "idle",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    },
+    {
+     "who": "coach",
+     "action": "idle2",
+     "pos": [
+      -1.8,
+      2.8
+     ],
+     "face": 30
+    }
+   ],
+   "pillars": 3,
+   "titleCard": {
+    "title": "Fast. Train. Protect.",
+    "subtitle": "Alphatalks3000"
+   }
+  }
+ ],
+ "thumbnail": {
+  "text": "THE CLARITY CODE",
+  "sub": "5 stories. 3 pillars.",
+  "scene": 64,
+  "at": 3
+ }
+}
