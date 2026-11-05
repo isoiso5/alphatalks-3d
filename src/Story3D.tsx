@@ -1,275 +1,241 @@
-import React from 'react';
-import {
-  AbsoluteFill,
-  Audio,
-  Sequence,
-  staticFile,
-  interpolate,
-  spring,
-  useCurrentFrame,
-  useVideoConfig,
-} from 'remotion';
+import React, { useLayoutEffect, useMemo } from 'react';
+import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig, Easing } from 'remotion';
 import { ThreeCanvas } from '@remotion/three';
+import { useThree } from '@react-three/fiber';
 import * as THREE from 'three';
+import { loadFont as loadCinzel } from '@remotion/google-fonts/Cinzel';
+import { loadFont as loadMontserrat } from '@remotion/google-fonts/Montserrat';
+import { Actor, actorPosition } from './Actor';
+import { Environment } from './Environment';
+import { Library, useLibrary } from './models';
+import { CamMode, Scene, StoryProps } from './types';
 
-export type SceneType = 'sunrise' | 'workout' | 'shield' | 'orbit' | 'path' | 'lighthouse';
+const { fontFamily: SERIF } = loadCinzel('normal', { weights: ['600', '700'], subsets: ['latin'] });
+const { fontFamily: SANS } = loadMontserrat('normal', { weights: ['600', '800'], subsets: ['latin'] });
 
-export type Scene = {
-  type: SceneType;
-  durationSec: number;
-  chapterTitle?: string; // gold chapter title (optional)
-  caption: string; // narration text shown as captions
-  voiceoverUrl?: string; // mp3/wav URL for this scene
-  voiceoverFile?: string; // file in /public (set by the GitHub Action TTS step)
-  color?: string; // main accent color
+export const FPS = 30;
+export const VO_LEAD = 0.5; // seconds of silence before narration starts in each scene
+const GOLD = 'linear-gradient(180deg, #fff3c4 0%, #f5c451 45%, #b8862b 100%)';
+
+export const sceneFrames = (s: Scene) => Math.max(1, Math.round(s.durationSec * FPS));
+export const totalFrames = (p: StoryProps) => p.scenes.reduce((a, s) => a + sceneFrames(s), 0);
+
+const ease = (k: number) => Easing.inOut(Easing.cubic)(THREE.MathUtils.clamp(k, 0, 1));
+
+/* ---------------- camera ---------------- */
+
+const CameraRig: React.FC<{ scene: Scene; t: number; aspect: number }> = ({ scene, t, aspect }) => {
+  const { camera } = useThree();
+  useLayoutEffect(() => {
+    const dur = Math.max(1, scene.durationSec);
+    const k = ease(t / dur);
+    const cast = scene.cast ?? [];
+    const fm = cast[scene.focus ?? 0];
+    const [fx, fy, fz] = fm ? actorPosition(fm, t, dur) : [0, 0, 0];
+    const F = new THREE.Vector3(fx, fy + 1.05, fz);
+    const mode: CamMode = scene.camera ?? 'wide';
+    const portrait = aspect < 1;
+    const zoom = portrait ? 1.55 : 1;
+    let off = new THREE.Vector3(0, 2, 8);
+    let look = F.clone();
+    switch (mode) {
+      case 'wide':
+        off.set(-1 + 2 * k, 2.4, 10);
+        break;
+      case 'push':
+        off.set(0.6, 1.7 - 0.2 * k, 8.5 - 4.5 * k);
+        break;
+      case 'pull':
+        off.set(0.4, 1.4 + 2.4 * k, 3.6 + 6 * k);
+        break;
+      case 'close':
+        off.set(0.7 - 0.3 * k, 0.55, 2.8 - 0.4 * k);
+        look = F.clone().add(new THREE.Vector3(0, 0.45, 0));
+        break;
+      case 'low':
+        off.set(1.6 - 0.8 * k, -0.6, 4.6 - 0.6 * k);
+        look = F.clone().add(new THREE.Vector3(0, 0.5, 0));
+        break;
+      case 'crane':
+        off.set(0, -0.2 + 5.5 * k, 5 + 3 * k);
+        break;
+      case 'side':
+        off.set(6.5, 0.6, 0.5 - k);
+        break;
+      case 'orbit': {
+        const a = -0.6 + 1.2 * k;
+        off.set(Math.sin(a) * 6, 1.3, Math.cos(a) * 6);
+        break;
+      }
+      case 'track':
+        off.set(-2.8, 0.8, 4.8);
+        break;
+      case 'top':
+        off.set(0, 9 - 2 * k, 3.5);
+        break;
+    }
+    off.multiplyScalar(zoom);
+    if (scene.camAngle) off.applyAxisAngle(new THREE.Vector3(0, 1, 0), (scene.camAngle * Math.PI) / 180);
+    // subtle handheld breathing
+    const bx = Math.sin(t * 0.7) * 0.04;
+    const by = Math.sin(t * 0.9 + 1) * 0.03;
+    camera.position.set(F.x + off.x + bx, Math.max(0.25, F.y + off.y + by), F.z + off.z);
+    camera.lookAt(look);
+    const pc = camera as THREE.PerspectiveCamera;
+    pc.fov = mode === 'close' ? 30 : 38;
+    pc.near = 0.05;
+    pc.far = 400;
+    pc.updateProjectionMatrix();
+  });
+  return null;
 };
 
-export type StoryProps = {
-  title: string;
-  scenes: Scene[];
-  musicUrl?: string;
-  musicVolume?: number;
+/* ---------------- 3D scene ---------------- */
+
+const EXPOSURE: Record<string, number> = {
+  studio: 0.85,
+  kitchen: 1.0,
+  court: 1.25,
+  room: 1.6,
+  road: 1.45,
+  stadium: 1.35,
+  stage: 1.5,
+  city: 2.3,
+  gym: 1.6,
+  summit: 1.35,
+  void: 1.7,
 };
 
-export const defaultStory: StoryProps = {
-  title: 'Alpha Talks 3000',
-  musicVolume: 0.15,
-  scenes: [
-    {
-      type: 'sunrise',
-      durationSec: 5,
-      chapterTitle: 'Chapter 1 — The Fast',
-      caption: 'Every morning he chose discipline before breakfast.',
-      color: '#f5b942',
-    },
-    {
-      type: 'workout',
-      durationSec: 5,
-      chapterTitle: 'Chapter 2 — The Grind',
-      caption: 'One rep at a time, the body learns what the mind decides.',
-      color: '#4fa3ff',
-    },
-    {
-      type: 'shield',
-      durationSec: 5,
-      chapterTitle: 'Chapter 3 — The Shield',
-      caption: 'Protect yourself. Protect others. That is real strength.',
-      color: '#7cffb2',
-    },
-  ],
+export const SceneView: React.FC<{ scene: Scene; t: number; lib: Library; characters: StoryProps['characters']; width: number; height: number; sceneKey: string }> = ({
+  scene,
+  t,
+  lib,
+  characters,
+  width,
+  height,
+  sceneKey,
+}) => (
+  <ThreeCanvas
+    width={width}
+    height={height}
+    shadows
+    gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: EXPOSURE[scene.env] ?? 1.4, preserveDrawingBuffer: true }}
+    camera={{ fov: 38, position: [0, 2, 8] }}
+  >
+    <CameraRig scene={scene} t={t} aspect={width / height} />
+    <group key={sceneKey}>
+      <Environment scene={scene} t={t} />
+      {(scene.cast ?? []).map((m, i) => {
+        const spec = characters[m.who];
+        if (!spec) return null;
+        return <Actor key={`${sceneKey}-${i}`} lib={lib} spec={spec} member={m} t={t} sceneDur={scene.durationSec} />;
+      })}
+    </group>
+  </ThreeCanvas>
+);
+
+/* ---------------- overlays ---------------- */
+
+let grainUrl = '';
+const getGrain = () => {
+  if (grainUrl) return grainUrl;
+  const c = document.createElement('canvas');
+  c.width = c.height = 256;
+  const g = c.getContext('2d')!;
+  const img = g.createImageData(256, 256);
+  let s = 1234567;
+  for (let i = 0; i < img.data.length; i += 4) {
+    s = (s * 16807) % 2147483647;
+    const v = s % 255;
+    img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+    img.data[i + 3] = 22;
+  }
+  g.putImageData(img, 0, 0);
+  grainUrl = c.toDataURL();
+  return grainUrl;
 };
 
-/* ---------------- 3D scenes ---------------- */
-
-const Lights: React.FC<{ color: string }> = ({ color }) => (
+const Grade: React.FC<{ frame: number; portrait: boolean; bars: boolean }> = ({ frame, portrait, bars }) => (
   <>
-    <ambientLight intensity={0.35} />
-    <directionalLight position={[5, 8, 5]} intensity={1.4} castShadow />
-    <pointLight position={[-4, 2, 3]} intensity={30} color={color} />
+    <AbsoluteFill style={{ background: 'linear-gradient(180deg, rgba(0,60,80,0.18), rgba(255,150,60,0.12))', mixBlendMode: 'soft-light' }} />
+    <AbsoluteFill style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55) 100%)' }} />
+    <AbsoluteFill
+      style={{
+        backgroundImage: `url(${getGrain()})`,
+        backgroundPosition: `${(frame * 37) % 256}px ${(frame * 53) % 256}px`,
+        opacity: 0.55,
+        mixBlendMode: 'overlay',
+      }}
+    />
+    {bars && !portrait && (
+      <>
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 92, background: '#000' }} />
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 92, background: '#000' }} />
+      </>
+    )}
   </>
 );
 
-const Ground: React.FC = () => (
-  <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.5, 0]} receiveShadow>
-    <circleGeometry args={[12, 64]} />
-    <meshStandardMaterial color="#14161c" roughness={0.9} />
-  </mesh>
-);
-
-const SunriseScene: React.FC<{ f: number; color: string }> = ({ f, color }) => {
-  const y = interpolate(f, [0, 120], [-2.5, 1.8], { extrapolateRight: 'clamp' });
-  return (
-    <>
-      <mesh position={[0, y, -6]}>
-        <sphereGeometry args={[1.6, 64, 64]} />
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={1.2} />
-      </mesh>
-      {Array.from({ length: 14 }).map((_, i) => (
-        <mesh key={i} position={[(i - 7) * 1.4, -1.2 + Math.sin(i * 1.7) * 0.4, -3 - (i % 3)]}>
-          <coneGeometry args={[0.9, 2 + (i % 4) * 0.5, 4]} />
-          <meshStandardMaterial color="#222634" flatShading />
-        </mesh>
-      ))}
-    </>
-  );
+const goldText: React.CSSProperties = {
+  backgroundImage: GOLD,
+  WebkitBackgroundClip: 'text',
+  backgroundClip: 'text',
+  color: 'transparent',
+  filter: 'drop-shadow(0 4px 18px rgba(0,0,0,0.85))',
 };
 
-const WorkoutScene: React.FC<{ f: number; color: string }> = ({ f, color }) => {
-  const lift = Math.abs(Math.sin(f / 12)) * 1.4;
+const ChapterTitle: React.FC<{ label?: string; title: string; t: number; portrait: boolean }> = ({ label, title, t, portrait }) => {
+  const o = interpolate(t, [0.2, 1.0, 3.6, 4.4], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const ls = interpolate(t, [0.2, 4.4], [18, 6], { extrapolateRight: 'clamp' });
+  const line = interpolate(t, [0.4, 1.6], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
-    <group rotation={[0, f / 90, 0]}>
-      {/* Stylized figure: body + head (no hands, by style rule) */}
-      <mesh position={[0, -0.3, 0]} castShadow>
-        <capsuleGeometry args={[0.45, 1.1, 8, 16]} />
-        <meshStandardMaterial color="#d9dde6" roughness={0.4} />
-      </mesh>
-      <mesh position={[0, 0.85, 0]} castShadow>
-        <sphereGeometry args={[0.35, 32, 32]} />
-        <meshStandardMaterial color="#d9dde6" roughness={0.4} />
-      </mesh>
-      {/* Barbell */}
-      <group position={[0, 0.3 + lift, 0]}>
-        <mesh rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.05, 0.05, 3, 16]} />
-          <meshStandardMaterial color="#999" metalness={0.9} roughness={0.2} />
-        </mesh>
-        {[-1.4, 1.4].map((x) => (
-          <mesh key={x} position={[x, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
-            <cylinderGeometry args={[0.45, 0.45, 0.2, 32]} />
-            <meshStandardMaterial color={color} metalness={0.5} roughness={0.3} />
-          </mesh>
-        ))}
-      </group>
-    </group>
-  );
-};
-
-const ShieldScene: React.FC<{ f: number; color: string }> = ({ f, color }) => {
-  const s = interpolate(f, [0, 40], [0.2, 1], { extrapolateRight: 'clamp' });
-  return (
-    <group scale={s} rotation={[0, Math.sin(f / 40) * 0.6, 0]}>
-      <mesh>
-        <icosahedronGeometry args={[1.5, 1]} />
-        <meshStandardMaterial color={color} wireframe />
-      </mesh>
-      <mesh>
-        <icosahedronGeometry args={[1.1, 0]} />
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.4} flatShading />
-      </mesh>
-      {Array.from({ length: 24 }).map((_, i) => {
-        const a = (i / 24) * Math.PI * 2 + f / 60;
-        return (
-          <mesh key={i} position={[Math.cos(a) * 3, Math.sin(a * 2) * 0.5, Math.sin(a) * 3]}>
-            <sphereGeometry args={[0.08, 12, 12]} />
-            <meshStandardMaterial color="#fff" emissive="#fff" emissiveIntensity={1} />
-          </mesh>
-        );
-      })}
-    </group>
-  );
-};
-
-const OrbitScene: React.FC<{ f: number; color: string }> = ({ f, color }) => (
-  <group rotation={[0.3, f / 50, 0]}>
-    <mesh>
-      <torusKnotGeometry args={[1, 0.3, 160, 24]} />
-      <meshStandardMaterial color={color} metalness={0.7} roughness={0.2} />
-    </mesh>
-  </group>
-);
-
-const PathScene: React.FC<{ f: number; color: string }> = ({ f, color }) => (
-  <group position={[0, 0, (f / 30) % 2]}>
-    {Array.from({ length: 20 }).map((_, i) => (
-      <mesh key={i} position={[0, -1.4, -i * 2]}>
-        <boxGeometry args={[1.2, 0.1, 1.6]} />
-        <meshStandardMaterial color={i % 2 ? color : '#333'} />
-      </mesh>
-    ))}
-  </group>
-);
-
-const LighthouseScene: React.FC<{ f: number; color: string }> = ({ f, color }) => {
-  const a = f / 25;
-  return (
-    <group rotation={[0, Math.sin(f / 200) * 0.4, 0]}>
-      <mesh position={[0, 0.4, -1]} castShadow>
-        <cylinderGeometry args={[0.35, 0.6, 3.6, 24]} />
-        <meshStandardMaterial color="#e9e4da" roughness={0.6} />
-      </mesh>
-      <mesh position={[0, 2.4, -1]}>
-        <sphereGeometry args={[0.35, 24, 24]} />
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={2} />
-      </mesh>
-      <mesh position={[Math.cos(a) * 2.5, 2.4, -1 + Math.sin(a) * 2.5]} rotation={[0, -a, Math.PI / 2]}>
-        <coneGeometry args={[0.6, 5, 24, 1, true]} />
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.6} transparent opacity={0.25} />
-      </mesh>
-      {Array.from({ length: 10 }).map((_, i) => (
-        <mesh key={i} position={[(i - 5) * 1.5, -1.35 + Math.sin(f / 15 + i) * 0.08, 1 + (i % 2)]} rotation={[-Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[1.6, 0.6]} />
-          <meshStandardMaterial color="#1e3a5f" metalness={0.6} roughness={0.2} />
-        </mesh>
-      ))}
-    </group>
-  );
-};
-
-const Scene3D: React.FC<{ scene: Scene }> = ({ scene }) => {
-  const f = useCurrentFrame();
-  const { width, height } = useVideoConfig();
-  const color = scene.color ?? '#f5b942';
-  const camZ = interpolate(f, [0, scene.durationSec * 30], [8, 6.5]);
-  const map: Record<SceneType, React.ReactNode> = {
-    sunrise: <SunriseScene f={f} color={color} />,
-    workout: <WorkoutScene f={f} color={color} />,
-    shield: <ShieldScene f={f} color={color} />,
-    orbit: <OrbitScene f={f} color={color} />,
-    path: <PathScene f={f} color={color} />,
-    lighthouse: <LighthouseScene f={f} color={color} />,
-  };
-  return (
-    <ThreeCanvas
-      width={width}
-      height={height}
-      camera={{ fov: 45, position: [0, 0.8, camZ] }}
-      gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping }}
-      style={{ background: 'radial-gradient(#1d2333, #07080c)' }}
-    >
-      <Lights color={color} />
-      <Ground />
-      {map[scene.type] ?? map.orbit}
-    </ThreeCanvas>
-  );
-};
-
-/* ---------------- Captions & titles ---------------- */
-
-const Captions: React.FC<{ text: string; durationSec: number }> = ({ text, durationSec }) => {
-  const f = useCurrentFrame();
-  const { fps, width, height } = useVideoConfig();
-  const words = text.split(/\s+/).filter(Boolean);
-  const chunkSize = 4;
-  const chunks: string[] = [];
-  for (let i = 0; i < words.length; i += chunkSize) chunks.push(words.slice(i, i + chunkSize).join(' '));
-  const per = (durationSec * fps) / Math.max(1, chunks.length);
-  const idx = Math.min(chunks.length - 1, Math.floor(f / per));
-  const local = f - idx * per;
-  const pop = spring({ frame: local, fps, config: { damping: 12 } });
-  const vertical = height > width;
-  return (
-    <AbsoluteFill style={{ justifyContent: 'flex-end', alignItems: 'center', paddingBottom: vertical ? 420 : 110 }}>
-      <div
-        style={{
-          transform: `scale(${0.85 + pop * 0.15})`,
-          fontFamily: 'Arial Black, Arial, sans-serif',
-          fontSize: vertical ? 78 : 64,
-          color: 'white',
-          textAlign: 'center',
-          maxWidth: '85%',
-          textShadow: '0 4px 18px rgba(0,0,0,0.9), 0 0 2px #000',
-          WebkitTextStroke: '2px black',
-        }}
-      >
-        {chunks[idx]}
-      </div>
+    <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center', opacity: o, background: `rgba(0,0,0,${0.35 * o})` }}>
+      {label && (
+        <div style={{ fontFamily: SANS, fontWeight: 600, color: '#e8d6a6', fontSize: portrait ? 34 : 30, letterSpacing: ls, marginBottom: 18, textTransform: 'uppercase' }}>
+          {label}
+        </div>
+      )}
+      <div style={{ ...goldText, fontFamily: SERIF, fontWeight: 700, fontSize: portrait ? 92 : 110, textAlign: 'center', padding: '0 60px', lineHeight: 1.1 }}>{title}</div>
+      <div style={{ width: 420 * line, height: 2, marginTop: 26, background: 'linear-gradient(90deg, transparent, #f5c451, transparent)' }} />
     </AbsoluteFill>
   );
 };
 
-const ChapterTitle: React.FC<{ text: string }> = ({ text }) => {
-  const f = useCurrentFrame();
-  const opacity = interpolate(f, [0, 15, 60, 80], [0, 1, 1, 0], { extrapolateRight: 'clamp' });
+const TitleCard: React.FC<{ title: string; subtitle?: string; t: number; dur: number; portrait: boolean }> = ({ title, subtitle, t, dur, portrait }) => {
+  const o = interpolate(t, [0.3, 1.6, dur - 1.2, dur - 0.2], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const sc = interpolate(t, [0, dur], [1.08, 1.0]);
   return (
-    <AbsoluteFill style={{ justifyContent: 'flex-start', alignItems: 'center', paddingTop: 90 }}>
+    <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center', opacity: o, background: `rgba(0,0,0,${0.45 * o})` }}>
+      <div style={{ ...goldText, transform: `scale(${sc})`, fontFamily: SERIF, fontWeight: 700, fontSize: portrait ? 110 : 150, textAlign: 'center', lineHeight: 1.05, padding: '0 60px' }}>
+        {title}
+      </div>
+      {subtitle && (
+        <div style={{ fontFamily: SANS, fontWeight: 600, color: '#f1e6c8', fontSize: portrait ? 34 : 34, letterSpacing: 8, marginTop: 28, textTransform: 'uppercase', textAlign: 'center' }}>
+          {subtitle}
+        </div>
+      )}
+    </AbsoluteFill>
+  );
+};
+
+const Punch: React.FC<{ text: string; t: number; dur: number; fps: number; portrait: boolean }> = ({ text, t, dur, fps, portrait }) => {
+  const start = Math.max(1.2, dur * 0.5);
+  if (t < start) return null;
+  const s = spring({ frame: Math.round((t - start) * fps), fps, config: { damping: 14, mass: 0.8 } });
+  const o = interpolate(t, [start, start + 0.3, dur - 0.5, dur - 0.1], [0, 1, 1, 0], { extrapolateRight: 'clamp' });
+  return (
+    <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center', opacity: o }}>
       <div
         style={{
-          opacity,
-          fontFamily: 'Georgia, serif',
-          fontSize: 60,
-          letterSpacing: 4,
-          color: '#e8c15a',
-          textShadow: '0 0 24px rgba(232,193,90,0.6)',
+          ...goldText,
+          transform: `scale(${0.7 + 0.3 * s})`,
+          fontFamily: SERIF,
+          fontWeight: 700,
+          fontSize: portrait ? 84 : 96,
+          textAlign: 'center',
+          padding: '0 120px',
+          lineHeight: 1.15,
+          marginTop: portrait ? -300 : -160,
         }}
       >
         {text}
@@ -278,33 +244,160 @@ const ChapterTitle: React.FC<{ text: string }> = ({ text }) => {
   );
 };
 
-/* ---------------- Main composition ---------------- */
+type Word = { w: string; s: number; e: number };
 
-export const Story3D: React.FC<StoryProps> = ({ scenes, musicUrl, musicVolume = 0.15 }) => {
-  const { fps } = useVideoConfig();
-  let from = 0;
+const buildWords = (scene: Scene): Word[] => {
+  const ext = (scene as Scene & { words?: Word[] }).words;
+  if (ext && ext.length) return ext;
+  const text = (scene.caption ?? '').trim();
+  if (!text) return [];
+  const words = text.split(/\s+/);
+  const span = scene.voSec ?? Math.max(1, scene.durationSec - 1.2);
+  const weights = words.map((w) => 0.6 + w.length * 0.12 + (/[.,!?;:—]$/.test(w) ? 0.6 : 0));
+  const total = weights.reduce((a, b) => a + b, 0);
+  let acc = 0;
+  return words.map((w, i) => {
+    const s = (acc / total) * span;
+    acc += weights[i];
+    return { w, s, e: (acc / total) * span };
+  });
+};
+
+const Captions: React.FC<{ scene: Scene; t: number; portrait: boolean }> = ({ scene, t, portrait }) => {
+  const words = useMemo(() => buildWords(scene), [scene]);
+  if (!words.length) return null;
+  const vt = t - ((scene as Scene & { voLead?: number }).voLead ?? (scene.chapterTitle || scene.titleCard ? 4.6 : VO_LEAD));
+  // group into chunks of up to 6 words, break on punctuation
+  const chunks: Word[][] = [];
+  let cur: Word[] = [];
+  words.forEach((w) => {
+    cur.push(w);
+    if (cur.length >= (portrait ? 4 : 6) || /[.,!?;:—]$/.test(w.w)) {
+      chunks.push(cur);
+      cur = [];
+    }
+  });
+  if (cur.length) chunks.push(cur);
+  const chunk = chunks.find((c) => vt >= c[0].s - 0.05 && vt < c[c.length - 1].e + 0.35) ?? null;
+  if (!chunk) return null;
   return (
-    <AbsoluteFill style={{ backgroundColor: '#07080c' }}>
-      {musicUrl ? <Audio src={musicUrl} volume={musicVolume} loop /> : null}
-      {scenes.map((sc, i) => {
-        const dur = Math.round(sc.durationSec * fps);
-        const start = from;
-        from += dur;
-        return (
-          <Sequence key={i} from={start} durationInFrames={dur}>
-            <Scene3D scene={sc} />
-            {sc.chapterTitle ? <ChapterTitle text={sc.chapterTitle} /> : null}
-            <Captions text={sc.caption} durationSec={sc.durationSec} />
-            {sc.voiceoverFile ? (
-              <Audio src={staticFile(sc.voiceoverFile)} />
-            ) : sc.voiceoverUrl ? (
-              <Audio src={sc.voiceoverUrl} />
-            ) : null}
-          </Sequence>
-        );
-      })}
-      {/* Cinematic vignette */}
-      <AbsoluteFill style={{ background: 'radial-gradient(transparent 55%, rgba(0,0,0,0.65))' }} />
+    <AbsoluteFill style={{ justifyContent: 'flex-end', alignItems: 'center', paddingBottom: portrait ? 420 : 128 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0 16px', maxWidth: portrait ? 900 : 1500, padding: '0 40px' }}>
+        {chunk.map((w, i) => {
+          const active = vt >= w.s && vt < w.e + 0.05;
+          const done = vt >= w.e;
+          return (
+            <span
+              key={i}
+              style={{
+                fontFamily: SANS,
+                fontWeight: 800,
+                fontSize: portrait ? 64 : 54,
+                color: active ? '#ffd45e' : done ? '#ffffff' : 'rgba(255,255,255,0.78)',
+                transform: active ? 'scale(1.08)' : 'scale(1)',
+                textShadow: '0 3px 12px rgba(0,0,0,0.95), 0 0 2px #000',
+                display: 'inline-block',
+              }}
+            >
+              {w.w}
+            </span>
+          );
+        })}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const Watermark: React.FC<{ portrait: boolean }> = ({ portrait }) => (
+  <div
+    style={{
+      position: 'absolute',
+      top: portrait ? 90 : 112,
+      right: portrait ? 50 : 64,
+      fontFamily: SERIF,
+      fontWeight: 700,
+      fontSize: 24,
+      letterSpacing: 4,
+      color: 'rgba(245,196,81,0.75)',
+      textShadow: '0 2px 8px rgba(0,0,0,0.9)',
+    }}
+  >
+    ALPHATALKS3000
+  </div>
+);
+
+/* ---------------- main composition ---------------- */
+
+export const locateScene = (props: StoryProps, frame: number) => {
+  let start = 0;
+  for (let i = 0; i < props.scenes.length; i++) {
+    const n = sceneFrames(props.scenes[i]);
+    if (frame < start + n || i === props.scenes.length - 1) return { index: i, start, frames: n };
+    start += n;
+  }
+  return { index: 0, start: 0, frames: 1 };
+};
+
+export const Story3D: React.FC<StoryProps> = (props) => {
+  const frame = useCurrentFrame();
+  const { fps, width, height } = useVideoConfig();
+  const lib = useLibrary();
+  const portrait = height > width;
+  const { index, start, frames } = locateScene(props, frame);
+  const scene = props.scenes[index];
+  const local = frame - start;
+  const t = local / fps;
+  const dur = frames / fps;
+
+  // fade through black between scenes
+  const fadeIn = scene.fade || index === 0 ? 24 : 8;
+  const black = Math.max(
+    interpolate(local, [0, fadeIn], [1, 0], { extrapolateRight: 'clamp' }),
+    interpolate(local, [frames - 8, frames], [0, 1], { extrapolateLeft: 'clamp' }) * (index === props.scenes.length - 1 ? 1 : 0.85),
+  );
+
+  return (
+    <AbsoluteFill style={{ backgroundColor: '#000' }}>
+      <AbsoluteFill style={{ filter: 'contrast(1.08) saturate(1.12)' }}>
+        {lib && (
+          <SceneView scene={scene} t={t} lib={lib} characters={props.characters} width={width} height={height} sceneKey={`s${index}`} />
+        )}
+      </AbsoluteFill>
+      <Grade frame={frame} portrait={portrait} bars />
+      {scene.titleCard && <TitleCard title={scene.titleCard.title} subtitle={scene.titleCard.subtitle} t={t} dur={dur} portrait={portrait} />}
+      {scene.chapterTitle && <ChapterTitle label={scene.chapterLabel} title={scene.chapterTitle} t={t} portrait={portrait} />}
+      {scene.punch && <Punch text={scene.punch} t={t} dur={dur} fps={fps} portrait={portrait} />}
+      <Captions scene={scene} t={t} portrait={portrait} />
+      <Watermark portrait={portrait} />
+      <AbsoluteFill style={{ backgroundColor: '#000', opacity: black }} />
+    </AbsoluteFill>
+  );
+};
+
+/* ---------------- thumbnail ---------------- */
+
+export const Thumbnail: React.FC<StoryProps> = (props) => {
+  const { width, height } = useVideoConfig();
+  const lib = useLibrary();
+  const th = props.thumbnail ?? { text: props.title, scene: 0, at: 2 };
+  const scene = props.scenes[Math.min(th.scene, props.scenes.length - 1)];
+  return (
+    <AbsoluteFill style={{ backgroundColor: '#000' }}>
+      <AbsoluteFill style={{ filter: 'contrast(1.15) saturate(1.25) brightness(1.05)' }}>
+        {lib && <SceneView scene={scene} t={th.at ?? 2} lib={lib} characters={props.characters} width={width} height={height} sceneKey="thumb" />}
+      </AbsoluteFill>
+      <AbsoluteFill style={{ background: 'linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0) 100%)' }} />
+      <AbsoluteFill style={{ justifyContent: 'center', paddingLeft: 70, width: '62%' }}>
+        <div style={{ ...goldText, fontFamily: SERIF, fontWeight: 700, fontSize: 118, lineHeight: 1.0 }}>{th.text}</div>
+        {th.sub && (
+          <div style={{ fontFamily: SANS, fontWeight: 800, color: '#fff', fontSize: 44, marginTop: 22, textShadow: '0 3px 10px #000', textTransform: 'uppercase', letterSpacing: 2 }}>
+            {th.sub}
+          </div>
+        )}
+      </AbsoluteFill>
+      <div style={{ position: 'absolute', bottom: 34, left: 70, fontFamily: SERIF, fontWeight: 700, fontSize: 30, letterSpacing: 5, color: '#f5c451' }}>
+        ALPHATALKS3000
+      </div>
     </AbsoluteFill>
   );
 };
