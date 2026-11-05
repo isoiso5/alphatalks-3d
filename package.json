@@ -10,6 +10,7 @@
     "@react-three/fiber": "9.8.2",
     "@remotion/bundler": "4.0.541",
     "@remotion/cli": "4.0.541",
+    "@remotion/google-fonts": "^4.0.541",
     "@remotion/renderer": "4.0.541",
     "@remotion/three": "4.0.541",
     "react": "19.2.0",
