@@ -35,7 +35,7 @@ const CameraRig: React.FC<{ scene: Scene; t: number; aspect: number }> = ({ scen
     const F = new THREE.Vector3(fx, fy + 1.05, fz);
     const mode: CamMode = scene.camera ?? 'wide';
     const portrait = aspect < 1;
-    const zoom = portrait ? 1.55 : 1;
+    const zoom = scene.zoom ?? (portrait ? (cast.length > 1 ? 1.4 : 0.95) : 1);
     let off = new THREE.Vector3(0, 2, 8);
     let look = F.clone();
     switch (mode) {
@@ -218,8 +218,8 @@ const TitleCard: React.FC<{ title: string; subtitle?: string; t: number; dur: nu
   );
 };
 
-const Punch: React.FC<{ text: string; t: number; dur: number; fps: number; portrait: boolean }> = ({ text, t, dur, fps, portrait }) => {
-  const start = Math.max(1.2, dur * 0.5);
+const Punch: React.FC<{ text: string; t: number; dur: number; fps: number; portrait: boolean; at?: number }> = ({ text, t, dur, fps, portrait, at }) => {
+  const start = at ?? Math.max(1.2, dur * 0.5);
   if (t < start) return null;
   const s = spring({ frame: Math.round((t - start) * fps), fps, config: { damping: 14, mass: 0.8 } });
   const o = interpolate(t, [start, start + 0.3, dur - 0.5, dur - 0.1], [0, 1, 1, 0], { extrapolateRight: 'clamp' });
@@ -231,11 +231,11 @@ const Punch: React.FC<{ text: string; t: number; dur: number; fps: number; portr
           transform: `scale(${0.7 + 0.3 * s})`,
           fontFamily: SERIF,
           fontWeight: 700,
-          fontSize: portrait ? 84 : 96,
+          fontSize: portrait ? 104 : 96,
           textAlign: 'center',
-          padding: '0 120px',
-          lineHeight: 1.15,
-          marginTop: portrait ? -300 : -160,
+          padding: portrait ? '0 70px' : '0 120px',
+          lineHeight: 1.1,
+          marginTop: portrait ? -520 : -160,
         }}
       >
         {text}
@@ -272,7 +272,7 @@ const Captions: React.FC<{ scene: Scene; t: number; portrait: boolean }> = ({ sc
   let cur: Word[] = [];
   words.forEach((w) => {
     cur.push(w);
-    if (cur.length >= (portrait ? 4 : 6) || /[.,!?;:—]$/.test(w.w)) {
+    if (cur.length >= (portrait ? 3 : 6) || /[.,!?;:—]$/.test(w.w)) {
       chunks.push(cur);
       cur = [];
     }
@@ -281,8 +281,8 @@ const Captions: React.FC<{ scene: Scene; t: number; portrait: boolean }> = ({ sc
   const chunk = chunks.find((c) => vt >= c[0].s - 0.05 && vt < c[c.length - 1].e + 0.35) ?? null;
   if (!chunk) return null;
   return (
-    <AbsoluteFill style={{ justifyContent: 'flex-end', alignItems: 'center', paddingBottom: portrait ? 420 : 128 }}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0 16px', maxWidth: portrait ? 900 : 1500, padding: '0 40px' }}>
+    <AbsoluteFill style={{ justifyContent: 'flex-end', alignItems: 'center', paddingBottom: portrait ? 640 : 128 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0 18px', maxWidth: portrait ? 880 : 1500, padding: portrait ? '0 60px' : '0 40px' }}>
         {chunk.map((w, i) => {
           const active = vt >= w.s && vt < w.e + 0.05;
           const done = vt >= w.e;
@@ -292,9 +292,11 @@ const Captions: React.FC<{ scene: Scene; t: number; portrait: boolean }> = ({ sc
               style={{
                 fontFamily: SANS,
                 fontWeight: 800,
-                fontSize: portrait ? 64 : 54,
+                fontSize: portrait ? 80 : 54,
+                textTransform: portrait ? 'uppercase' : 'none',
+                WebkitTextStroke: portrait ? '2px #000' : undefined,
                 color: active ? '#ffd45e' : done ? '#ffffff' : 'rgba(255,255,255,0.78)',
-                transform: active ? 'scale(1.08)' : 'scale(1)',
+                transform: active ? (portrait ? 'scale(1.15) rotate(-2deg)' : 'scale(1.08)') : 'scale(1)',
                 textShadow: '0 3px 12px rgba(0,0,0,0.95), 0 0 2px #000',
                 display: 'inline-block',
               }}
@@ -312,8 +314,8 @@ const Watermark: React.FC<{ portrait: boolean }> = ({ portrait }) => (
   <div
     style={{
       position: 'absolute',
-      top: portrait ? 90 : 112,
-      right: portrait ? 50 : 64,
+      top: portrait ? 120 : 112,
+      right: portrait ? 60 : 64,
       fontFamily: SERIF,
       fontWeight: 700,
       fontSize: 24,
@@ -324,6 +326,21 @@ const Watermark: React.FC<{ portrait: boolean }> = ({ portrait }) => (
   >
     ALPHATALKS3000
   </div>
+);
+
+const Hook: React.FC<{ text: string; t: number; fps: number }> = ({ text, t, fps }) => {
+  const s = spring({ frame: Math.round(t * fps), fps, config: { damping: 12, mass: 0.6 } });
+  return (
+    <AbsoluteFill style={{ justifyContent: 'flex-start', alignItems: 'center', paddingTop: 230 }}>
+      <div style={{ transform: `scale(${0.6 + 0.4 * s})`, background: 'rgba(0,0,0,0.55)', border: '3px solid #f5c451', borderRadius: 18, padding: '18px 34px', maxWidth: 900 }}>
+        <div style={{ fontFamily: SANS, fontWeight: 800, color: '#fff', fontSize: 62, lineHeight: 1.1, textAlign: 'center', textTransform: 'uppercase' }}>{text}</div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const Progress: React.FC<{ k: number }> = ({ k }) => (
+  <div style={{ position: 'absolute', top: 0, left: 0, height: 10, width: `${k * 100}%`, background: 'linear-gradient(90deg, #b8862b, #fff3c4)', boxShadow: '0 0 14px #f5c451' }} />
 );
 
 /* ---------------- main composition ---------------- */
@@ -366,9 +383,11 @@ export const Story3D: React.FC<StoryProps> = (props) => {
       <Grade frame={frame} portrait={portrait} bars />
       {scene.titleCard && <TitleCard title={scene.titleCard.title} subtitle={scene.titleCard.subtitle} t={t} dur={dur} portrait={portrait} />}
       {scene.chapterTitle && <ChapterTitle label={scene.chapterLabel} title={scene.chapterTitle} t={t} portrait={portrait} />}
-      {scene.punch && <Punch text={scene.punch} t={t} dur={dur} fps={fps} portrait={portrait} />}
+      {scene.punch && <Punch text={scene.punch} t={t} dur={dur} fps={fps} portrait={portrait} at={scene.punchAt} />}
+      {scene.hook && portrait && <Hook text={scene.hook} t={t} fps={fps} />}
       <Captions scene={scene} t={t} portrait={portrait} />
       <Watermark portrait={portrait} />
+      {portrait && <Progress k={frame / Math.max(1, totalFrames(props))} />}
       <AbsoluteFill style={{ backgroundColor: '#000', opacity: black }} />
     </AbsoluteFill>
   );
