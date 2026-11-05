@@ -1,35 +1,19 @@
 import React from 'react';
-import { Composition } from 'remotion';
-import { Story3D, StoryProps, defaultStory } from './Story3D';
+import { Composition, Still } from 'remotion';
+import { Story3D, Thumbnail, FPS, totalFrames } from './Story3D';
+import { StoryProps } from './types';
+import sample from './sample.json';
 
-const FPS = 30;
-
-const totalFrames = (p: StoryProps) =>
-  Math.max(1, Math.round(p.scenes.reduce((s, sc) => s + sc.durationSec, 0) * FPS));
+const defaults = sample as unknown as StoryProps;
+const meta = ({ props }: { props: StoryProps }) => ({ durationInFrames: Math.max(1, totalFrames(props)) });
 
 export const RemotionRoot: React.FC = () => (
   <>
     {/* Long video 16:9 */}
-    <Composition
-      id="Story3D"
-      component={Story3D}
-      fps={FPS}
-      width={1920}
-      height={1080}
-      durationInFrames={totalFrames(defaultStory)}
-      defaultProps={defaultStory}
-      calculateMetadata={({ props }) => ({ durationInFrames: totalFrames(props) })}
-    />
+    <Composition id="Story3D" component={Story3D} fps={FPS} width={1920} height={1080} durationInFrames={totalFrames(defaults)} defaultProps={defaults} calculateMetadata={meta} />
     {/* Short 9:16 */}
-    <Composition
-      id="Story3DShort"
-      component={Story3D}
-      fps={FPS}
-      width={1080}
-      height={1920}
-      durationInFrames={totalFrames(defaultStory)}
-      defaultProps={defaultStory}
-      calculateMetadata={({ props }) => ({ durationInFrames: totalFrames(props) })}
-    />
+    <Composition id="Story3DShort" component={Story3D} fps={FPS} width={1080} height={1920} durationInFrames={totalFrames(defaults)} defaultProps={defaults} calculateMetadata={meta} />
+    {/* YouTube thumbnail */}
+    <Still id="Thumbnail" component={Thumbnail} width={1280} height={720} defaultProps={defaults} />
   </>
 );
