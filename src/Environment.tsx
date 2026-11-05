@@ -76,6 +76,7 @@ const PRESETS: Record<TimeOfDay, Preset> = {
   day: { top: '#3d78c2', horizon: '#cfe3f2', fog: '#b9cfe0', amb: 0.7, ambC: '#cfe0ff', key: '#fff4e0', keyI: 2.6, sun: [10, 20, 8] },
   dusk: { top: '#1d1b3d', horizon: '#ff7a4a', fog: '#7a4a52', amb: 0.4, ambC: '#9a86c0', key: '#ff9a5c', keyI: 2.0, sun: [14, 4, -18] },
   night: { top: '#03050d', horizon: '#121a33', fog: '#0a0f1f', amb: 0.25, ambC: '#5a6aa8', key: '#9fb8ff', keyI: 0.7, sun: [-8, 14, 6] },
+  storm: { top: '#1c2230', horizon: '#56606e', fog: '#3e4652', amb: 0.55, ambC: '#a6b2c4', key: '#c9d6e8', keyI: 1.3, sun: [-6, 16, 8] },
 };
 
 const Sky: React.FC<{ p: Preset }> = ({ p }) => {
@@ -585,6 +586,134 @@ const Void: React.FC<{ scene: Scene; t: number }> = ({ scene, t }) => {
   );
 };
 
+
+/* ---------- weather ---------- */
+
+const Rain: React.FC<{ t: number }> = ({ t }) => {
+  const count = 900;
+  const base = useMemo(() => {
+    const r = rand(77);
+    return Array.from({ length: count }, () => [(r() - 0.5) * 24, r() * 10, (r() - 0.5) * 24 + 2, 0.8 + r() * 0.4]);
+  }, []);
+  const geo = useMemo(() => new THREE.BufferGeometry(), []);
+  const arr = new Float32Array(count * 6);
+  base.forEach(([x, y0, z, sp], i) => {
+    const y = (((y0 - t * 11 * sp) % 10) + 10) % 10;
+    arr[i * 6] = x;
+    arr[i * 6 + 1] = y;
+    arr[i * 6 + 2] = z;
+    arr[i * 6 + 3] = x + 0.06;
+    arr[i * 6 + 4] = y + 0.42;
+    arr[i * 6 + 5] = z;
+  });
+  geo.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+  return (
+    <lineSegments geometry={geo}>
+      <lineBasicMaterial color="#cfdcf0" transparent opacity={0.45} depthWrite={false} />
+    </lineSegments>
+  );
+};
+
+const Snow: React.FC<{ t: number }> = ({ t }) => {
+  const count = 700;
+  const base = useMemo(() => {
+    const r = rand(91);
+    return Array.from({ length: count }, () => [(r() - 0.5) * 22, r() * 9, (r() - 0.5) * 22 + 2, r() * 6.28, 0.5 + r() * 0.5]);
+  }, []);
+  const geo = useMemo(() => new THREE.BufferGeometry(), []);
+  const arr = new Float32Array(count * 3);
+  base.forEach(([x, y0, z, ph, sp], i) => {
+    arr[i * 3] = x + Math.sin(t * 0.8 + ph) * 0.35;
+    arr[i * 3 + 1] = (((y0 - t * 0.7 * sp) % 9) + 9) % 9;
+    arr[i * 3 + 2] = z + Math.cos(t * 0.6 + ph) * 0.3;
+  });
+  geo.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+  return (
+    <points geometry={geo}>
+      <pointsMaterial color="#ffffff" size={0.07} transparent opacity={0.9} depthWrite={false} />
+    </points>
+  );
+};
+
+/* ---------- shore (harbour town by the sea) ---------- */
+
+const Water: React.FC<{ t: number; time: TimeOfDay }> = ({ t, time }) => {
+  const geo = useMemo(() => new THREE.PlaneGeometry(220, 120, 90, 50), []);
+  const pos = geo.attributes.position as THREE.BufferAttribute;
+  const storm = time === 'storm' ? 2.2 : 1;
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i);
+    const y = pos.getY(i);
+    pos.setZ(i, (Math.sin(x * 0.18 + t * 1.1) * 0.18 + Math.sin(y * 0.33 - t * 1.6) * 0.12) * storm);
+  }
+  pos.needsUpdate = true;
+  geo.computeVertexNormals();
+  const col = time === 'night' ? '#0d1a33' : time === 'storm' ? '#2c3a46' : time === 'dusk' ? '#3a3050' : '#1f4d6e';
+  return (
+    <mesh geometry={geo} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.35, -66]} receiveShadow>
+      <meshStandardMaterial color={col} roughness={0.15} metalness={0.55} flatShading />
+    </mesh>
+  );
+};
+
+const Shore: React.FC<{ t: number; time: TimeOfDay }> = ({ t, time }) => {
+  const posts = useMemo(() => Array.from({ length: 9 }, (_, i) => -6 - i * 2.2), []);
+  const houses = useMemo(() => {
+    const r = rand(23);
+    const cols = ['#c9b8a0', '#9fb2c2', '#d8c7a8', '#b98a6e', '#e0d6c4', '#8fa6a0'];
+    return Array.from({ length: 12 }, (_, i) => ({ x: (i < 6 ? -42 + i * 4.6 : 17 + (i - 6) * 4.6) + r() * 1.2, h: 2.2 + r() * 2.4, c: cols[i % cols.length], z: 2 + r() * 5 }));
+  }, []);
+  const night = time === 'night' || time === 'storm';
+  return (
+    <>
+      {/* sand */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 4]} receiveShadow>
+        <planeGeometry args={[220, 14]} />
+        <meshStandardMaterial color={time === 'night' ? '#5d564c' : '#c8b48e'} roughness={1} />
+      </mesh>
+      <mesh rotation={[-0.06, 0, 0]} position={[0, -0.18, -4.5]} receiveShadow>
+        <boxGeometry args={[220, 0.2, 4]} />
+        <meshStandardMaterial color="#9c8a6c" roughness={1} />
+      </mesh>
+      <Water t={t} time={time} />
+      {/* wooden pier */}
+      <Box p={[5, 0.35, -14]} s={[2.2, 0.12, 20]} c="#6b5038" />
+      {posts.map((z) => (
+        <React.Fragment key={z}>
+          <Box p={[4, -0.2, z]} s={[0.18, 1.3, 0.18]} c="#4a3626" />
+          <Box p={[6, -0.2, z]} s={[0.18, 1.3, 0.18]} c="#4a3626" />
+        </React.Fragment>
+      ))}
+      {/* small fishing boat rocking */}
+      <group position={[-6, -0.1 + Math.sin(t * 1.3) * 0.08, -10]} rotation={[Math.sin(t * 1.1) * 0.05, 0.4, Math.sin(t * 0.9) * 0.06]}>
+        <Box p={[0, 0.3, 0]} s={[1.6, 0.6, 4]} c="#e8e2d4" />
+        <Box p={[0, 0.62, 0]} s={[1.65, 0.08, 4.05]} c="#2f5d8a" />
+        <Box p={[0, 1.0, -0.6]} s={[1, 0.8, 1.2]} c="#d24a3a" />
+        <Box p={[0, 2.0, 0.6]} s={[0.08, 2.4, 0.08]} c="#555" />
+      </group>
+      {/* harbour houses behind */}
+      {houses.map((h, i) => (
+        <group key={i} position={[h.x, 0, h.z]}>
+          <Box p={[0, h.h / 2, 0]} s={[3, h.h, 2.6]} c={h.c} />
+          <mesh position={[0, h.h + 0.6, 0]} rotation={[0, Math.PI / 4, 0]} castShadow>
+            <coneGeometry args={[2.3, 1.2, 4]} />
+            <meshStandardMaterial color="#7a3b2e" flatShading />
+          </mesh>
+          <Box p={[0.6, h.h * 0.55, -1.31]} s={[0.6, 0.6, 0.03]} c="#000" e={night ? '#ffcf8a' : '#9ab'} ei={night ? 2.2 : 0.3} shadow={false} />
+        </group>
+      ))}
+      {/* street lamps */}
+      {[-11, 11].map((x) => (
+        <group key={x} position={[x, 0, 5]}>
+          <Box p={[0, 1.6, 0]} s={[0.1, 3.2, 0.1]} c="#2b2b2b" />
+          <Box p={[0, 3.25, 0]} s={[0.35, 0.25, 0.35]} c="#222" e="#ffd28a" ei={night ? 3 : 0.2} shadow={false} />
+          {night && <pointLight position={[0, 3, 0]} intensity={10} color="#ffcf8a" distance={9} />}
+        </group>
+      ))}
+    </>
+  );
+};
+
 /* ---------- main environment ---------- */
 
 const DEFAULT_TIME: Record<EnvName, TimeOfDay> = {
@@ -598,6 +727,7 @@ const DEFAULT_TIME: Record<EnvName, TimeOfDay> = {
   room: 'night',
   kitchen: 'dawn',
   summit: 'dawn',
+  shore: 'dawn',
   void: 'night',
 };
 
@@ -654,6 +784,9 @@ export const Environment: React.FC<{ scene: Scene; t: number }> = ({ scene, t })
       {scene.env === 'room' && <Room t={t} time={time} />}
       {scene.env === 'kitchen' && <Kitchen t={t} />}
       {scene.env === 'summit' && <Summit />}
+      {scene.env === 'shore' && <Shore t={t} time={time} />}
+      {scene.weather === 'rain' && <Rain t={t} />}
+      {scene.weather === 'snow' && <Snow t={t} />}
       {scene.env === 'void' && <Void scene={scene} t={t} />}
       <Dust t={t} color={time === 'night' ? '#9fb8ff' : '#ffe2b0'} seed={scene.env.length * 13} />
     </>
