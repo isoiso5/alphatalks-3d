@@ -96,10 +96,17 @@ def piano_note(freq, dur, vel=0.25):
     return np.nan_to_num(sig * env * vel)
 
 
-def make_piano(total_sec):
-    # Am - F - C - G (soft, cinematic, 64 bpm)
-    prog = [[57, 60, 64], [53, 57, 60], [48, 52, 55], [55, 59, 62]]
-    bass = [45, 41, 36, 43]
+MOODS = {
+    # chords (MIDI), bass, arpeggio velocity, melody on/off
+    "calm": ([[57, 60, 64], [53, 57, 60], [48, 52, 55], [55, 59, 62]], [45, 41, 36, 43], 0.10, True),   # Am F C G
+    "dark": ([[57, 60, 64], [57, 60, 65], [52, 55, 59], [52, 56, 59]], [33, 41, 40, 40], 0.075, False),  # Am Dm/A Em E
+    "hope": ([[48, 52, 55], [55, 59, 62], [57, 60, 64], [53, 57, 60]], [36, 43, 45, 41], 0.11, True),   # C G Am F
+    "rise": ([[53, 57, 60], [55, 59, 62], [57, 60, 64], [60, 64, 67]], [41, 43, 45, 48], 0.13, True),   # F G Am C
+}
+
+
+def make_piano(total_sec, mood_at=None):
+    # soft cinematic piano at 64 bpm; mood_at(t) picks the chord set for each bar
     beat = 60 / 64
     bar = beat * 4
     out = np.zeros(int((total_sec + 6) * SR))
@@ -107,6 +114,7 @@ def make_piano(total_sec):
     t0 = 0.0
     i = 0
     while t0 < total_sec:
+        prog, bass, vel, melody = MOODS.get(mood_at(t0) if mood_at else "calm", MOODS["calm"])
         chord = prog[i % 4]
         b = bass[i % 4]
         st = int(t0 * SR)
@@ -120,10 +128,10 @@ def make_piano(total_sec):
             if s2 >= len(out):
                 break
             note = chord[p] + 12
-            seg = piano_note(note_freq(note), beat * 2.5, 0.10 + 0.03 * rng.random())
+            seg = piano_note(note_freq(note), beat * 2.5, vel + 0.03 * rng.random())
             out[s2:s2 + len(seg)] += seg[: len(out) - s2]
         # occasional high melody note
-        if i % 2 == 1:
+        if melody and i % 2 == 1:
             s3 = int((t0 + beat * 2) * SR)
             if s3 < len(out):
                 seg = piano_note(note_freq(chord[2] + 24), beat * 4, 0.06)
@@ -165,6 +173,23 @@ def impact(dur=1.2):
     low = np.sin(2 * np.pi * 70 * t) * decay(t, 5)
     noise = np.random.default_rng(2).standard_normal(len(t)) * decay(t, 18) * 0.25
     return (low + noise) * 0.6
+
+
+def rain_bed(dur):
+    n = int(dur * SR)
+    noise = np.random.default_rng(5).standard_normal(n)
+    k = 6
+    sm = np.convolve(noise, np.ones(k) / k, mode="same")
+    return np.nan_to_num((noise - sm) * 0.12 + sm * 0.05)
+
+
+def thunder(dur=3.0):
+    t = np.arange(int(dur * SR)) / SR
+    noise = np.random.default_rng(9).standard_normal(len(t))
+    k = 400
+    low = np.convolve(noise, np.ones(k) / k, mode="same") * 18
+    env = (1 - decay(t, 40)) * decay(t, 1.2)
+    return np.nan_to_num(low * env * 0.8)
 
 
 def add(buf, sig, at, gain=1.0):
@@ -224,8 +249,31 @@ async def main():
         if sc.get("punch"):
             punch_at = sc.get("punchAt", max(1.2, sc["durationSec"] * 0.5))
             add(sfx, impact(), st + punch_at, 0.45)
+        if sc.get("weather") == "rain" or sc.get("time") == "storm":
+            add(sfx, rain_bed(frames[i] / FPS), st, 0.5)
+        if sc.get("time") == "storm":
+            seed = i
+            for a in (1.4 + (seed % 3) * 0.7, 4.8 + (seed % 5) * 0.5):
+                if a < frames[i] / FPS:
+                    add(sfx, thunder(), st + a + 0.25, 0.6)
         start += frames[i]
-    music = make_piano(len(voice) / SR)
+    # mood timeline: a scene's "mood" applies from that scene until the next mood change
+    marks, start, cur = [], 0, props.get("mood", "calm")
+    for i, sc in enumerate(scenes):
+        cur = sc.get("mood", cur)
+        marks.append((start / FPS, cur))
+        start += frames[i]
+
+    def mood_at(t):
+        m = marks[0][1] if marks else "calm"
+        for st, md in marks:
+            if st <= t:
+                m = md
+            else:
+                break
+        return m
+
+    music = make_piano(len(voice) / SR, mood_at)
     music = np.pad(music, (0, max(0, len(voice) - len(music))))[: len(voice)]
     # duck music under voice
     w = SR // 5
