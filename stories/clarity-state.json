@@ -1,0 +1,1565 @@
+{
+ "title": "The Clarity State \u2014 Alphatalks3000",
+ "characters": {
+  "ezra": {
+   "skin": "#b07a55",
+   "shirt": "#f1efe9",
+   "pants": "#22252c",
+   "hair": "short",
+   "hairColor": "#1b130d",
+   "sleeves": true
+  },
+  "ama": {
+   "skin": "#6e4128",
+   "shirt": "#7b3f5e",
+   "pants": "#3a2a33",
+   "hair": "bun",
+   "hairColor": "#d8d8d8",
+   "height": 0.9,
+   "sleeves": true
+  },
+  "lena": {
+   "skin": "#efcaa8",
+   "shirt": "#2fa37a",
+   "pants": "#1e2630",
+   "hair": "bun",
+   "hairColor": "#b5652b"
+  },
+  "sol": {
+   "skin": "#4a2c1c",
+   "shirt": "#16c2d5",
+   "pants": "#0f1a2a",
+   "hair": "bald",
+   "height": 1.07,
+   "sleeves": true
+  },
+  "ivy": {
+   "skin": "#d9a27a",
+   "shirt": "#e8d6b0",
+   "pants": "#4a2f5c",
+   "hair": "afro",
+   "hairColor": "#2a1a10"
+  },
+  "milo": {
+   "skin": "#f0cfb0",
+   "shirt": "#e9e6df",
+   "pants": "#2c2f36",
+   "hair": "cap",
+   "hairColor": "#6b4a2a"
+  }
+ },
+ "scenes": [
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "Midnight. An empty restaurant. Ezra lifts a spoon of his own soup, the soup that once made people cry, and he tastes nothing at all.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "cook",
+     "pos": [
+      0,
+      0.4
+     ],
+     "face": 180
+    }
+   ],
+   "time": "night",
+   "fade": true
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "Not salt. Not warmth. Nothing. Somewhere along the way, food had turned grey. And so had everything else.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "idle2",
+     "pos": [
+      0,
+      0.9
+     ],
+     "face": 0
+    }
+   ],
+   "time": "night",
+   "punch": "Everything turned grey."
+  },
+  {
+   "env": "void",
+   "durationSec": 7,
+   "caption": "",
+   "camera": "wide",
+   "titleCard": {
+    "title": "The Clarity State",
+    "subtitle": "Alphatalks3000 presents"
+   }
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "Welcome to Alpha Talks 3000. Tonight's story is about a feeling most people have forgotten exists. The clarity state.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "seated",
+     "pos": [
+      0,
+      0.55
+     ],
+     "face": 180
+    }
+   ],
+   "time": "night"
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "The state where food tastes ten times better. Where every breath feels deep. Where your mind is clean, ideas arrive on their own, and your results finally match your talent.",
+   "camera": "pull",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "seated",
+     "pos": [
+      0,
+      0.55
+     ],
+     "face": 180
+    }
+   ],
+   "time": "night"
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "And the strangest part? You do not have to add anything to reach it. You only have to stop the things that are covering it.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "idle",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "punch": "Clarity is already in you."
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "Ezra had been the best young chef in the city. Then success came, and with it, a life without edges.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "cook",
+     "pos": [
+      0,
+      0.4
+     ],
+     "face": 180
+    }
+   ],
+   "chapterLabel": "Chapter I",
+   "chapterTitle": "The Grey Years",
+   "color": "#9aa3ad"
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "He ate all day without ever being hungry. Tasting, snacking, sugar to stay awake, more sugar to keep going.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "work",
+     "pos": [
+      0.4,
+      0.5
+     ],
+     "face": 180
+    }
+   ],
+   "time": "day"
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "Every night ended with a bottle of wine, a phone in his hand, and four hours of broken sleep.",
+   "camera": "top",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "seated",
+     "pos": [
+      1.5,
+      0.5
+     ],
+     "face": 200
+    }
+   ],
+   "time": "night"
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "His body had not moved in years. The gym membership was still in his wallet, like a promise he had stopped believing.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "walktired",
+     "pos": [
+      -4,
+      1
+     ],
+     "to": [
+      2,
+      1
+     ]
+    }
+   ],
+   "time": "dusk"
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "And when the pressure built up, he let it out on the people around him. He shouted at his cooks. He shouted at himself. Every single day.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "punch",
+     "pos": [
+      -0.6,
+      0.6
+     ],
+     "face": 90
+    },
+    {
+     "who": "milo",
+     "action": "backoff",
+     "pos": [
+      1.2,
+      0.6
+     ],
+     "to": [
+      2.6,
+      1.4
+     ],
+     "face": -90
+    }
+   ],
+   "focus": 0,
+   "punch": "Harm always spreads."
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "Customers noticed before he did. The food was still good. But it had lost its soul. One by one, the tables went empty.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "idle2",
+     "pos": [
+      0,
+      0.9
+     ],
+     "face": 0
+    }
+   ],
+   "time": "night"
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "Then one rainy morning, his grandmother Ama walked into the kitchen. The woman who had taught him how to cook when he was six years old.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "ama",
+     "action": "walkslow",
+     "pos": [
+      2.6,
+      2.5
+     ],
+     "to": [
+      0.9,
+      1
+     ]
+    },
+    {
+     "who": "ezra",
+     "action": "idle",
+     "pos": [
+      -0.8,
+      0.6
+     ],
+     "face": 60
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "She tasted his soup, put the spoon down, and said: this soup is not bad. It is foggy. Just like you.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "ama",
+     "action": "interact",
+     "pos": [
+      0.9,
+      0.9
+     ],
+     "face": -70
+    },
+    {
+     "who": "ezra",
+     "action": "idle2",
+     "pos": [
+      -0.8,
+      0.6
+     ],
+     "face": 70
+    }
+   ],
+   "time": "dawn",
+   "focus": 0,
+   "punch": "It is foggy. Just like you."
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "She gave him forty days and three rules. Eat nothing until noon. Move your body every single day. And stop every harm. The wine. The shouting. The cruel voice in your head.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "ama",
+     "action": "idle",
+     "pos": [
+      0.9,
+      0.9
+     ],
+     "face": -70
+    },
+    {
+     "who": "ezra",
+     "action": "idle",
+     "pos": [
+      -0.8,
+      0.6
+     ],
+     "face": 70
+    }
+   ],
+   "time": "dawn",
+   "focus": 1
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "Not to lose weight, she said. To get your senses back. A chef without senses is just a man with knives.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "ama",
+     "action": "interact",
+     "pos": [
+      0.9,
+      0.9
+     ],
+     "face": -70
+    },
+    {
+     "who": "ezra",
+     "action": "idle2",
+     "pos": [
+      -0.8,
+      0.6
+     ],
+     "face": 70
+    }
+   ],
+   "time": "dawn",
+   "focus": 0
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "Day one was a war. By ten in the morning his hands were shaking and his mind was screaming for sugar.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "seated",
+     "pos": [
+      0,
+      0.55
+     ],
+     "face": 180
+    }
+   ],
+   "time": "dawn",
+   "chapterLabel": "Chapter II",
+   "chapterTitle": "Taste",
+   "color": "#f2994a"
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "Day three was worse. But Ama told him something he never forgot. That is not hunger talking. That is habit leaving your body.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "ama",
+     "action": "idle",
+     "pos": [
+      0.9,
+      0.9
+     ],
+     "face": -70
+    },
+    {
+     "who": "ezra",
+     "action": "seated",
+     "pos": [
+      -0.4,
+      0.55
+     ],
+     "face": 120
+    }
+   ],
+   "time": "dawn",
+   "focus": 1,
+   "punch": "That is habit leaving."
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "On day nine, at exactly twelve o'clock, he broke his fast with the simplest thing in the kitchen. A slice of bread, olive oil, and a pinch of salt.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "use",
+     "pos": [
+      0,
+      0.4
+     ],
+     "face": 180
+    }
+   ],
+   "time": "day"
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "And he stopped. The bread was warm and sweet. The oil was green and peppery. The salt sparkled on his tongue. He tasted every single thing, as if for the first time.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "idle2",
+     "pos": [
+      0,
+      0.9
+     ],
+     "face": 0
+    }
+   ],
+   "time": "day"
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "That is the first wonder of the clarity state. When you stop eating all day, hunger comes back. And hunger turns the simplest food into a feast.",
+   "camera": "pull",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "cheer",
+     "pos": [
+      0,
+      0.9
+     ],
+     "face": 0
+    }
+   ],
+   "time": "day",
+   "punch": "Hunger is the best chef."
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "Ezra laughed alone in his kitchen. For the first time in years, food had colour again.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "cook",
+     "pos": [
+      0,
+      0.4
+     ],
+     "face": 180
+    }
+   ],
+   "time": "day"
+  },
+  {
+   "env": "road",
+   "durationSec": 4,
+   "caption": "Every morning before sunrise, Ezra walked. Then he jogged. And on the hill road outside the city, he kept passing the same runner.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "run",
+     "pos": [
+      0.8,
+      8
+     ],
+     "to": [
+      0.8,
+      -8
+     ]
+    },
+    {
+     "who": "lena",
+     "action": "run",
+     "pos": [
+      -0.8,
+      5
+     ],
+     "to": [
+      -0.8,
+      -9
+     ]
+    }
+   ],
+   "time": "dawn",
+   "chapterLabel": "Chapter III",
+   "chapterTitle": "Breath",
+   "color": "#56c2a6"
+  },
+  {
+   "env": "road",
+   "durationSec": 4,
+   "caption": "Her name was Lena. Ten years ago she smoked a pack a day and could not climb a staircase without stopping.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "lena",
+     "action": "idle",
+     "pos": [
+      -0.6,
+      0
+     ],
+     "face": 40
+    },
+    {
+     "who": "ezra",
+     "action": "idle2",
+     "pos": [
+      0.8,
+      0.2
+     ],
+     "face": -50
+    }
+   ],
+   "time": "dawn",
+   "focus": 0
+  },
+  {
+   "env": "road",
+   "durationSec": 4,
+   "caption": "She looked at Ezra gasping for air and said: you are breathing like someone who is running away. Breathe like someone who is arriving.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "lena",
+     "action": "interact",
+     "pos": [
+      -0.6,
+      0
+     ],
+     "face": 40
+    },
+    {
+     "who": "ezra",
+     "action": "idle",
+     "pos": [
+      0.8,
+      0.2
+     ],
+     "face": -50
+    }
+   ],
+   "time": "dawn",
+   "focus": 0,
+   "punch": "Breathe like you are arriving."
+  },
+  {
+   "env": "road",
+   "durationSec": 4,
+   "caption": "In through the nose. Slow. Deep into the belly. Out even slower. Step after step, his chest opened like a window after a long winter.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "run",
+     "pos": [
+      0.8,
+      8
+     ],
+     "to": [
+      0.8,
+      -8
+     ],
+     "speed": 0.85
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "summit",
+   "durationSec": 4,
+   "caption": "On day twenty, they ran to the top of the hill together. The air was cold and clean, and every breath felt ten times deeper than it ever had.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "lena",
+     "action": "walk",
+     "pos": [
+      -0.8,
+      3
+     ],
+     "to": [
+      -0.8,
+      0.6
+     ]
+    },
+    {
+     "who": "ezra",
+     "action": "walk",
+     "pos": [
+      0.8,
+      3.4
+     ],
+     "to": [
+      0.8,
+      0.8
+     ]
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "summit",
+   "durationSec": 4,
+   "caption": "That is the second wonder. A body that moves every day, free from poison, breathes the way it was designed to breathe. And a calm breath means a calm mind.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "idle",
+     "pos": [
+      0,
+      0.5
+     ],
+     "face": 180
+    }
+   ],
+   "time": "dawn",
+   "punch": "A calm breath. A calm mind."
+  },
+  {
+   "env": "summit",
+   "durationSec": 4,
+   "caption": "Lena smiled. She had quit smoking not by fighting the cigarette, but by falling in love with the feeling of breathing.",
+   "camera": "pull",
+   "cast": [
+    {
+     "who": "lena",
+     "action": "cheer",
+     "pos": [
+      -0.8,
+      0.6
+     ],
+     "face": 0
+    },
+    {
+     "who": "ezra",
+     "action": "idle2",
+     "pos": [
+      0.8,
+      0.8
+     ],
+     "face": -20
+    }
+   ],
+   "time": "dawn",
+   "focus": 0
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "On a rest day, Lena took him to watch her brother Sol train. Sol was a goalkeeper, and everyone said he could see the future.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "sol",
+     "action": "crouch",
+     "pos": [
+      0,
+      15
+     ],
+     "face": 90
+    }
+   ],
+   "focus": 0,
+   "chapterLabel": "Chapter IV",
+   "chapterTitle": "Awareness",
+   "color": "#16c2d5"
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "Strikers took shot after shot. Sol was already moving before the ball was kicked. Left. Right. Dive. Save.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "sol",
+     "action": "dodge",
+     "pos": [
+      0,
+      15
+     ],
+     "face": 90
+    }
+   ],
+   "focus": 0
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "Ezra asked him how. Sol shrugged. When my mind is clean, the game slows down. I see the hips, the eyes, the breath of the striker. I just notice more.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "sol",
+     "action": "idle",
+     "pos": [
+      -0.6,
+      15
+     ],
+     "face": 40
+    },
+    {
+     "who": "ezra",
+     "action": "idle2",
+     "pos": [
+      0.8,
+      15.2
+     ],
+     "face": -50
+    }
+   ],
+   "focus": 0,
+   "punch": "A clean mind sees more."
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "Sol fasted in the morning, trained twice a day, and once a year he did the hardest thing of all. He cut out every person who pulled him back into chaos.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "sol",
+     "action": "jump",
+     "pos": [
+      0,
+      15
+     ],
+     "face": 90
+    }
+   ],
+   "focus": 0
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "That evening, Ezra walked home through the city. And he noticed things he had walked past for years.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "walkslow",
+     "pos": [
+      0,
+      2
+     ],
+     "to": [
+      0,
+      -10
+     ]
+    }
+   ],
+   "time": "dusk"
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "The smell of rain on warm stone. The laughter from an open window. The colour of the sky between the buildings. The world had been there all along. He had simply been too foggy to see it.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "idle",
+     "pos": [
+      0,
+      -2
+     ],
+     "face": 0
+    }
+   ],
+   "time": "dusk",
+   "punch": "The world was always there."
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "The next morning, he noticed something else. The tired eyes of Milo, his youngest cook. The fear in his shoulders every time Ezra walked in.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "milo",
+     "action": "work",
+     "pos": [
+      0.8,
+      0.5
+     ],
+     "face": 180
+    },
+    {
+     "who": "ezra",
+     "action": "idle2",
+     "pos": [
+      -1,
+      1.2
+     ],
+     "face": 60
+    }
+   ],
+   "time": "dawn",
+   "focus": 1
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "Ezra put down his knife and said two words he had not said in years. I'm sorry. And for the first time, his kitchen went quiet in a good way.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "interact",
+     "pos": [
+      -0.4,
+      0.8
+     ],
+     "face": 90
+    },
+    {
+     "who": "milo",
+     "action": "idle2",
+     "pos": [
+      0.8,
+      0.8
+     ],
+     "face": -90
+    }
+   ],
+   "time": "dawn",
+   "focus": 0,
+   "punch": "Stop the harm. Start the peace."
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "That is the third wonder. When you stop harming yourself and others, your awareness becomes clean. You stop reacting. You start seeing.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "meditate",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "pillars": 0
+  },
+  {
+   "env": "stage",
+   "durationSec": 4,
+   "caption": "On day thirty, Ezra was invited to a small concert. At the piano sat Ivy, a songwriter who had not written a single song in three years.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "ivy",
+     "action": "seated",
+     "pos": [
+      0,
+      0.5
+     ],
+     "face": 180
+    }
+   ],
+   "chapterLabel": "Chapter V",
+   "chapterTitle": "Creativity",
+   "color": "#c792ea"
+  },
+  {
+   "env": "stage",
+   "durationSec": 4,
+   "caption": "She told the audience the truth. For three years I tried to force it. Coffee, late nights, people who drained me. The harder I pushed, the emptier it got.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "ivy",
+     "action": "idle2",
+     "pos": [
+      1.4,
+      1.2
+     ],
+     "face": 0
+    }
+   ]
+  },
+  {
+   "env": "stage",
+   "durationSec": 4,
+   "caption": "Then I stopped forcing. I fasted in the mornings. I walked for an hour every afternoon. I stopped answering the people who made me feel small.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "ivy",
+     "action": "walkslow",
+     "pos": [
+      -3,
+      1.8
+     ],
+     "to": [
+      2.5,
+      1.8
+     ]
+    }
+   ]
+  },
+  {
+   "env": "stage",
+   "durationSec": 4,
+   "caption": "And the songs came back. Not at the piano. On walks. In the shower. In the quiet of an empty stomach. Ideas need space, and I had finally given them some.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "ivy",
+     "action": "work",
+     "pos": [
+      0,
+      0.75
+     ],
+     "face": 180
+    }
+   ],
+   "camAngle": 180,
+   "punch": "Ideas need space."
+  },
+  {
+   "env": "stage",
+   "durationSec": 4,
+   "caption": "She played her new song, and Ezra felt something move inside his chest that he had not felt since he was a boy in his grandmother's kitchen.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "ivy",
+     "action": "work",
+     "pos": [
+      0,
+      0.75
+     ],
+     "face": 180
+    }
+   ],
+   "camAngle": 200
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "The next morning, before noon, with nothing in his stomach and nothing in his head but silence, the ideas started arriving.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "seated",
+     "pos": [
+      0,
+      0.55
+     ],
+     "face": 180
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "A soup made from roasted onions and smoke. A bread with burnt honey and sea salt. A dessert that tasted like the first day of summer.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "cook",
+     "pos": [
+      0,
+      0.4
+     ],
+     "face": 180
+    }
+   ],
+   "time": "day"
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "That is the fourth wonder. Creativity is not something you chase. It is what flows when you stop blocking it.",
+   "camera": "pull",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "cheer",
+     "pos": [
+      0,
+      0.9
+     ],
+     "face": 0
+    }
+   ],
+   "time": "day",
+   "punch": "Stop blocking it."
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "On day forty, Ezra reopened his restaurant with a new menu. He called it Clarity.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "cook",
+     "pos": [
+      -0.6,
+      0.4
+     ],
+     "face": 180
+    },
+    {
+     "who": "milo",
+     "action": "work",
+     "pos": [
+      0.9,
+      0.5
+     ],
+     "face": 180
+    }
+   ],
+   "time": "dusk",
+   "chapterLabel": "Chapter VI",
+   "chapterTitle": "Results",
+   "color": "#f5c451"
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "His cooks were not afraid anymore. They laughed. They tried things. Milo created his first dish, and Ezra put it on the menu.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "milo",
+     "action": "cheer",
+     "pos": [
+      0.9,
+      0.9
+     ],
+     "face": 0
+    },
+    {
+     "who": "ezra",
+     "action": "idle",
+     "pos": [
+      -0.6,
+      0.9
+     ],
+     "face": 40
+    }
+   ],
+   "time": "dusk",
+   "focus": 0
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "Word spread through the city. The tables filled up again. Then there was a waiting list. Then a waiting list for the waiting list.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "lena",
+     "action": "walk",
+     "pos": [
+      -1,
+      4
+     ],
+     "to": [
+      -1,
+      -4
+     ]
+    },
+    {
+     "who": "sol",
+     "action": "walk",
+     "pos": [
+      0.4,
+      5
+     ],
+     "to": [
+      0.4,
+      -3
+     ]
+    },
+    {
+     "who": "ivy",
+     "action": "walk",
+     "pos": [
+      1.6,
+      4.5
+     ],
+     "to": [
+      1.6,
+      -3.5
+     ]
+    }
+   ],
+   "time": "dusk"
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "But the real result was not the money or the reviews. It was Ezra himself. He slept deeply. He woke up early without an alarm. He was calm under pressure.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "cook",
+     "pos": [
+      0,
+      0.4
+     ],
+     "face": 180
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "He trained every day, not to punish his body, but because movement had become the best part of his morning.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "pushups",
+     "pos": [
+      0,
+      0
+     ],
+     "face": 90
+    }
+   ],
+   "time": "dawn"
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "That is the fifth wonder. Results are not the reward for working harder in the fog. They are what naturally happens when you work from a clear state.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "idle",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "pillars": 0,
+   "punch": "Clarity creates results."
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "So what is the clarity state, really? It is not a secret. It is not a pill. It is what remains when you remove the fog.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "idle2",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "pillars": 0,
+   "chapterLabel": "Chapter VII",
+   "chapterTitle": "The Clarity State",
+   "color": "#ffd166"
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Pillar one. Consistent fasting. Give your body hours without food, and it gives you back hunger, energy, and a taste for life.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "seated",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "pillars": 1,
+   "punch": "Pillar one. The fast."
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Pillar two. Consistent workouts. Move every single day, and your breath deepens, your sleep heals, and your mind finds its rhythm.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "pushups",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 90
+    }
+   ],
+   "pillars": 2,
+   "punch": "Pillar two. The work."
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Pillar three. Stay away from harm. Against others, and against yourself. The poison you drink, the words you shout, the voice that tells you that you are not enough.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "meditate",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "pillars": 3,
+   "punch": "Pillar three. The shield."
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Taste. Breath. Awareness. Creativity. Results. Five wonders. Three pillars. One state. And it is available to anyone willing to stay consistent.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "idle",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    },
+    {
+     "who": "lena",
+     "action": "idle2",
+     "pos": [
+      -2.2,
+      2.8
+     ],
+     "face": 30
+    },
+    {
+     "who": "ivy",
+     "action": "idle",
+     "pos": [
+      2.2,
+      2.8
+     ],
+     "face": -30
+    }
+   ],
+   "pillars": 3,
+   "punch": "Five wonders. Three pillars."
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "On the last night of the first week, after the final guest had left, Ama came back into the kitchen.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "ama",
+     "action": "walkslow",
+     "pos": [
+      2.6,
+      2.5
+     ],
+     "to": [
+      0.9,
+      1
+     ]
+    },
+    {
+     "who": "ezra",
+     "action": "idle",
+     "pos": [
+      -0.8,
+      0.6
+     ],
+     "face": 60
+    }
+   ],
+   "time": "night",
+   "chapterLabel": "Chapter VIII",
+   "chapterTitle": "The Taste of You",
+   "color": "#ffcf6b"
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "Ezra made her the same soup. The one she had called foggy forty days before. His hands were steady. His mind was quiet.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "cook",
+     "pos": [
+      -0.2,
+      0.4
+     ],
+     "face": 180
+    }
+   ],
+   "time": "night"
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "She tasted it slowly. Closed her eyes. And then she smiled. Now, she said, it tastes like you again.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "ama",
+     "action": "use",
+     "pos": [
+      0.9,
+      0.9
+     ],
+     "face": -70
+    },
+    {
+     "who": "ezra",
+     "action": "idle2",
+     "pos": [
+      -0.8,
+      0.6
+     ],
+     "face": 70
+    }
+   ],
+   "time": "night",
+   "focus": 0,
+   "punch": "Now it tastes like you."
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "Ezra did not say anything. He just tasted it too. Salt. Smoke. Warmth. Memory. Everything.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "idle",
+     "pos": [
+      -0.8,
+      0.6
+     ],
+     "face": 70
+    },
+    {
+     "who": "ama",
+     "action": "idle",
+     "pos": [
+      0.9,
+      0.9
+     ],
+     "face": -70
+    }
+   ],
+   "time": "night",
+   "focus": 0
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Lena found it in her breath. Sol in a clean mind. Ivy in the space for ideas. And Ezra found it in the soup that had lost its soul.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "lena",
+     "action": "idle",
+     "pos": [
+      -2.4,
+      1.4
+     ],
+     "face": 20
+    },
+    {
+     "who": "sol",
+     "action": "idle2",
+     "pos": [
+      -0.8,
+      2.2
+     ],
+     "face": 10
+    },
+    {
+     "who": "ivy",
+     "action": "idle",
+     "pos": [
+      0.8,
+      2.2
+     ],
+     "face": -10
+    },
+    {
+     "who": "ezra",
+     "action": "idle2",
+     "pos": [
+      2.4,
+      1.4
+     ],
+     "face": -20
+    }
+   ],
+   "pillars": 3,
+   "focus": 3
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Your clarity state is waiting under the fog. Start tomorrow morning. One fast. One workout. One harm you finally let go of.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "idle",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "pillars": 3,
+   "punch": "Remove the fog."
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Then taste your food. Take a breath. Look around you. And notice how alive you really are.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "meditate",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "pillars": 3
+  },
+  {
+   "env": "void",
+   "durationSec": 10,
+   "caption": "This is Alpha Talks 3000. Fast. Train. Protect. And life will taste like life again.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "ezra",
+     "action": "idle",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    },
+    {
+     "who": "ama",
+     "action": "idle2",
+     "pos": [
+      -1.8,
+      2.8
+     ],
+     "face": 30
+    }
+   ],
+   "pillars": 3,
+   "titleCard": {
+    "title": "Fast. Train. Protect.",
+    "subtitle": "Alphatalks3000"
+   }
+  }
+ ],
+ "thumbnail": {
+  "text": "THE CLARITY STATE",
+  "sub": "Life tastes 10x better",
+  "scene": 20,
+  "at": 3
+ }
+}
