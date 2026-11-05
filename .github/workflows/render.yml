@@ -33,10 +33,13 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install tools
+        timeout-minutes: 10
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends ffmpeg
-          pip install edge-tts numpy
+          pip install edge-tts numpy imageio-ffmpeg
+          mkdir -p "$HOME/bin"
+          ln -sf "$(python -c 'import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())')" "$HOME/bin/ffmpeg"
+          echo "$HOME/bin" >> "$GITHUB_PATH"
+          "$HOME/bin/ffmpeg" -version | head -1
       - name: Save props
         env:
           PROPS: ${{ github.event.inputs.props }}
@@ -76,16 +79,18 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: prepared
-      - name: Install system libraries
+      - name: Install system libraries (best effort)
+        timeout-minutes: 8
+        continue-on-error: true
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libnss3 libgbm-dev fonts-dejavu
-          sudo apt-get install -y --no-install-recommends libasound2t64 || sudo apt-get install -y --no-install-recommends libasound2
+          timeout 300 sudo apt-get install -y --no-install-recommends libnss3 libgbm1 fonts-dejavu || true
       - name: Install dependencies
+        timeout-minutes: 15
         run: |
           npm install --no-audit --no-fund
           npx remotion browser ensure
       - name: Download 3D characters (KayKit, CC0)
+        timeout-minutes: 5
         run: bash scripts/fetch-models.sh
       - name: Render chunk ${{ matrix.chunk.i }} (frames ${{ matrix.chunk.range }})
         env:
@@ -118,11 +123,18 @@ jobs:
           pattern: chunk-*
           path: chunks
           merge-multiple: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - name: Install tools
+        timeout-minutes: 15
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends ffmpeg libnss3 libgbm-dev fonts-dejavu
-          sudo apt-get install -y --no-install-recommends libasound2t64 || sudo apt-get install -y --no-install-recommends libasound2
+          pip install imageio-ffmpeg
+          mkdir -p "$HOME/bin"
+          ln -sf "$(python -c 'import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())')" "$HOME/bin/ffmpeg"
+          echo "$HOME/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/bin:$PATH"
+          ffmpeg -version | head -1
           npm install --no-audit --no-fund
           npx remotion browser ensure
           bash scripts/fetch-models.sh
