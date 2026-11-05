@@ -29,7 +29,7 @@ async def tts(text, path):
     last = None
     for attempt in range(6):
         try:
-            return await tts_once(text, path)
+            return await asyncio.wait_for(tts_once(text, path), timeout=90)
         except Exception as e:  # network hiccups / NoAudioReceived
             last = e
             print(f"  tts retry {attempt + 1}: {e}", flush=True)
