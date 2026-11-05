@@ -1,0 +1,29 @@
+{
+  "title": "The Lighthouse Keeper — Alphatalks3000",
+  "scenes": [
+    { "type": "lighthouse", "durationSec": 8, "color": "#f5b942", "chapterTitle": "The Lighthouse Keeper",
+      "caption": "On a cold island at the edge of the North Sea lived a man named Elias. Every night he kept one light burning, so the ships would find their way home." },
+    { "type": "path", "durationSec": 8, "color": "#8a6cff",
+      "caption": "But Elias himself was lost. Late-night snacks, no movement, and a short temper that pushed away everyone who tried to help him." },
+    { "type": "sunrise", "durationSec": 8, "color": "#f5b942", "chapterTitle": "Chapter 1 — The Fast",
+      "caption": "One morning, an old sailor left him a note. It said: before you guide others, learn to guide yourself. Start with one empty morning." },
+    { "type": "sunrise", "durationSec": 8, "color": "#ffcf70",
+      "caption": "So Elias fasted. Sixteen hours, from dinner to noon. The first days were hard, but every time he wanted to quit, he looked at the light and waited." },
+    { "type": "orbit", "durationSec": 8, "color": "#ffd27a",
+      "caption": "Within weeks, his mind was clearer than it had been in years. Not because fasting is magic, but because he kept the same window, every single day." },
+    { "type": "workout", "durationSec": 8, "color": "#4fa3ff", "chapterTitle": "Chapter 2 — The Climb",
+      "caption": "The lighthouse had one hundred and twelve steps. At first, Elias climbed them once and stopped to breathe. So he made a rule: climb them every day." },
+    { "type": "workout", "durationSec": 8, "color": "#62b6ff",
+      "caption": "Then twice a day. Then he added squats at the top and push-ups at the bottom. The workout was never perfect. It was simply never skipped." },
+    { "type": "path", "durationSec": 8, "color": "#4fa3ff",
+      "caption": "Consistency beat intensity. A small workout done daily built a body that a big workout done once a month never could." },
+    { "type": "shield", "durationSec": 8, "color": "#7cffb2", "chapterTitle": "Chapter 3 — The Shield",
+      "caption": "The last lesson was the hardest. Elias had to stop the harm. No more drinking to forget, and no more angry words thrown at the people around him." },
+    { "type": "shield", "durationSec": 8, "color": "#5cf0a0",
+      "caption": "When anger came, he walked the stairs instead of shouting. When cravings came, he wrote them down and let them pass. Protect yourself, and you protect others too." },
+    { "type": "lighthouse", "durationSec": 8, "color": "#f5b942",
+      "caption": "One stormy night, a fishing boat lost its engine near the rocks. Elias ran down all one hundred and twelve steps without stopping, and pulled the crew to safety." },
+    { "type": "orbit", "durationSec": 9, "color": "#e8c15a", "chapterTitle": "The System",
+      "caption": "Fast with a fixed window. Train a little, every day. Stay away from harm against yourself and others. That is the system. This is Alpha Talks 3000, and the light is yours to keep." }
+  ]
+}
