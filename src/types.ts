@@ -10,6 +10,8 @@ export type EnvName =
   | 'kitchen'
   | 'summit'
   | 'shore'
+  | 'forest'
+  | 'cosmos'
   | 'void';
 
 export type TimeOfDay = 'dawn' | 'day' | 'dusk' | 'night' | 'storm';
@@ -24,7 +26,28 @@ export type CamMode =
   | 'side'
   | 'orbit'
   | 'track'
-  | 'top';
+  | 'top'
+  | 'spin'
+  | 'drone'
+  | 'dolly'
+  | 'dutch'
+  | 'hero';
+
+export type FxName =
+  | 'sparks'
+  | 'embers'
+  | 'fireflies'
+  | 'petals'
+  | 'confetti'
+  | 'fireworks'
+  | 'stars'
+  | 'godrays'
+  | 'aura'
+  | 'speed'
+  | 'shockwave';
+
+// a camera cut inside one scene (montage)
+export type Shot = { at: number; camera: CamMode; camAngle?: number; zoom?: number; focus?: number };
 
 export type HairStyle = 'short' | 'bun' | 'afro' | 'beanie' | 'cap' | 'bald';
 
@@ -82,6 +105,12 @@ export type Scene = {
   weather?: 'rain' | 'snow'; // falling rain / snow particles
   tone?: 'cold' | 'warm'; // colour grade: cold = the old life, warm = the new life
   mood?: 'calm' | 'dark' | 'hope' | 'rise'; // soundtrack mood from this scene on
+  music?: string; // switch melody theme from this scene on
+  fx?: FxName[]; // particle / light effects
+  shots?: Shot[]; // extra camera cuts inside the scene
+  slowmo?: number; // animation speed (0.35 = slow motion)
+  flash?: boolean; // white flash cut into this scene
+  shake?: number; // camera shake strength (0.5 = strong)
 };
 
 export type StoryProps = {
