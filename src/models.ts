@@ -186,6 +186,58 @@ export const buildCharacter = (
     if (headBone) headBone.attach(hair);
   }
 
+  // Face (eyes, brows, nose, mouth, ears, optional beard) — follows the head bone
+  if (headOk) {
+    const face = new THREE.Group();
+    const fx = hs.x, fy = hs.y, fz = hs.z;
+    const front = hc.z + fz * 0.5;
+    const white = new THREE.MeshStandardMaterial({ color: '#f4efe8', roughness: 0.35 });
+    const iris = new THREE.MeshStandardMaterial({ color: spec.eyeColor ?? '#3a2616', roughness: 0.25 });
+    const pupil = new THREE.MeshStandardMaterial({ color: '#050505', roughness: 0.15, metalness: 0.1 });
+    const browMat = std(spec.hairColor ?? '#15110e', 0.9);
+    const skinDark = std(new THREE.Color(spec.skin).multiplyScalar(0.82).getStyle(), 0.6);
+    const lip = std(new THREE.Color(spec.skin).lerp(new THREE.Color('#7a2e2e'), 0.45).getStyle(), 0.5);
+    const eyeY = hc.y + fy * 0.06;
+    for (const side of [-1, 1]) {
+      const ex = hc.x + side * fx * 0.2;
+      const eye = new THREE.Mesh(new THREE.SphereGeometry(fx * 0.105, 20, 14), white);
+      eye.scale.set(1, 0.8, 0.55);
+      eye.position.set(ex, eyeY, front - fz * 0.02);
+      const ir = new THREE.Mesh(new THREE.SphereGeometry(fx * 0.06, 16, 12), iris);
+      ir.scale.set(1, 1, 0.4);
+      ir.position.set(ex, eyeY, front + fz * 0.035);
+      const pu = new THREE.Mesh(new THREE.SphereGeometry(fx * 0.03, 12, 10), pupil);
+      pu.scale.set(1, 1, 0.4);
+      pu.position.set(ex, eyeY, front + fz * 0.05);
+      const brow = new THREE.Mesh(new THREE.BoxGeometry(fx * 0.22, fy * 0.035, fz * 0.06), browMat);
+      brow.position.set(ex, eyeY + fy * 0.13, front + fz * 0.01);
+      brow.rotation.z = side * -0.12;
+      const ear = new THREE.Mesh(new THREE.SphereGeometry(fx * 0.11, 14, 10), skinDark);
+      ear.scale.set(0.45, 1, 0.75);
+      ear.position.set(hc.x + side * fx * 0.5, eyeY - fy * 0.02, hc.z);
+      face.add(eye, ir, pu, brow, ear);
+    }
+    const nose = new THREE.Mesh(new THREE.ConeGeometry(fx * 0.07, fz * 0.2, 12), skinDark);
+    nose.rotation.x = Math.PI / 2;
+    nose.position.set(hc.x, eyeY - fy * 0.12, front + fz * 0.06);
+    const mouth = new THREE.Mesh(new THREE.TorusGeometry(fx * 0.11, fx * 0.022, 8, 20, Math.PI), lip);
+    mouth.rotation.z = Math.PI;
+    mouth.position.set(hc.x, eyeY - fy * 0.24, front - fz * 0.01);
+    face.add(nose, mouth);
+    if (spec.beard) {
+      const beard = new THREE.Mesh(
+        new THREE.SphereGeometry(fx * 0.5, 24, 14, 0, Math.PI * 2, Math.PI * 0.55, Math.PI * 0.45),
+        browMat,
+      );
+      beard.scale.set(1, 0.9, 0.8);
+      beard.position.set(hc.x, eyeY - fy * 0.08, hc.z + fz * 0.08);
+      face.add(beard);
+    }
+    face.traverse((o) => { (o as THREE.Mesh).castShadow = false; });
+    root.add(face);
+    if (headBone) headBone.attach(face);
+  }
+
   const attachToHand = (names: string[], mesh: THREE.Mesh) => {
     const bone = findBone(root, names);
     if (!bone) return;
