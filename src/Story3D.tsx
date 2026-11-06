@@ -7,6 +7,7 @@ import { loadFont as loadCinzel } from '@remotion/google-fonts/Cinzel';
 import { loadFont as loadMontserrat } from '@remotion/google-fonts/Montserrat';
 import { Actor, actorPosition } from './Actor';
 import { Environment } from './Environment';
+import { FxLayer } from './Fx';
 import { Library, useLibrary } from './models';
 import { CamMode, Scene, StoryProps } from './types';
 
@@ -27,15 +28,31 @@ const ease = (k: number) => Easing.inOut(Easing.cubic)(THREE.MathUtils.clamp(k, 
 const CameraRig: React.FC<{ scene: Scene; t: number; aspect: number }> = ({ scene, t, aspect }) => {
   const { camera } = useThree();
   useLayoutEffect(() => {
-    const dur = Math.max(1, scene.durationSec);
-    const k = ease(t / dur);
+    const sceneDur = Math.max(1, scene.durationSec);
+    const at = (scene.slowmo ?? 1) * t;
+    // montage: pick the active shot
+    let shot: { at: number; camera: CamMode; camAngle?: number; zoom?: number; focus?: number } = {
+      at: 0, camera: scene.camera ?? 'wide', camAngle: scene.camAngle, zoom: scene.zoom, focus: scene.focus,
+    };
+    let shotEnd = sceneDur;
+    const shots = [...(scene.shots ?? [])].sort((a, b) => a.at - b.at);
+    for (let i = 0; i < shots.length; i++) {
+      if (t >= shots[i].at) {
+        shot = shots[i];
+        shotEnd = i + 1 < shots.length ? shots[i + 1].at : sceneDur;
+      } else if (i === 0) {
+        shotEnd = shots[0].at;
+      }
+    }
+    const dur = Math.max(0.5, shotEnd - shot.at);
+    const k = ease((t - shot.at) / dur);
     const cast = scene.cast ?? [];
-    const fm = cast[scene.focus ?? 0];
-    const [fx, fy, fz] = fm ? actorPosition(fm, t, dur) : [0, 0, 0];
+    const fm = cast[shot.focus ?? 0];
+    const [fx, fy, fz] = fm ? actorPosition(fm, at, sceneDur * (scene.slowmo ?? 1)) : [0, 0, 0];
     const F = new THREE.Vector3(fx, fy + 1.05, fz);
-    const mode: CamMode = scene.camera ?? 'wide';
+    const mode: CamMode = shot.camera;
     const portrait = aspect < 1;
-    const zoom = scene.zoom ?? (portrait ? (cast.length > 1 ? 1.4 : 0.95) : 1);
+    const zoom = shot.zoom ?? (portrait ? (cast.length > 1 ? 1.4 : 0.95) : 1);
     let off = new THREE.Vector3(0, 2, 8);
     let look = F.clone();
     switch (mode) {
@@ -73,16 +90,42 @@ const CameraRig: React.FC<{ scene: Scene; t: number; aspect: number }> = ({ scen
       case 'top':
         off.set(0, 9 - 2 * k, 3.5);
         break;
+      case 'spin': {
+        const a = k * Math.PI * 2;
+        off.set(Math.sin(a) * 4.5, 1.1 + 0.6 * Math.sin(k * Math.PI), Math.cos(a) * 4.5);
+        break;
+      }
+      case 'drone':
+        off.set(-6 + 12 * k, 7 - 2 * k, 9 - 3 * k);
+        break;
+      case 'dolly': {
+        const e = 1 - Math.pow(1 - THREE.MathUtils.clamp((t - shot.at) / Math.min(1.4, dur), 0, 1), 3);
+        off.set(0.4, 0.5, 9 - 6.6 * e);
+        look = F.clone().add(new THREE.Vector3(0, 0.35, 0));
+        break;
+      }
+      case 'dutch':
+        off.set(2.2 - k, 0.9, 4.2);
+        break;
+      case 'hero':
+        off.set(-1.2 + 2.4 * k, -0.85, 3.4);
+        look = F.clone().add(new THREE.Vector3(0, 0.7, 0));
+        break;
     }
     off.multiplyScalar(zoom);
-    if (scene.camAngle) off.applyAxisAngle(new THREE.Vector3(0, 1, 0), (scene.camAngle * Math.PI) / 180);
+    if (shot.camAngle) off.applyAxisAngle(new THREE.Vector3(0, 1, 0), (shot.camAngle * Math.PI) / 180);
     // subtle handheld breathing
     const bx = Math.sin(t * 0.7) * 0.04;
     const by = Math.sin(t * 0.9 + 1) * 0.03;
-    camera.position.set(F.x + off.x + bx, Math.max(0.25, F.y + off.y + by), F.z + off.z);
+    const sh = scene.shake ?? 0;
+    const sx = sh ? (Math.sin(t * 37.1) + Math.sin(t * 23.3)) * 0.04 * sh : 0;
+    const sy = sh ? (Math.sin(t * 31.7) + Math.sin(t * 19.9)) * 0.04 * sh : 0;
+    camera.position.set(F.x + off.x + bx + sx, Math.max(0.25, F.y + off.y + by + sy), F.z + off.z);
+    camera.up.set(0, 1, 0);
     camera.lookAt(look);
+    if (mode === 'dutch') camera.rotateZ(0.22);
     const pc = camera as THREE.PerspectiveCamera;
-    pc.fov = mode === 'close' ? 30 : 38;
+    pc.fov = mode === 'close' || mode === 'dolly' ? 30 : mode === 'hero' ? 46 : mode === 'drone' ? 44 : 38;
     pc.near = 0.05;
     pc.far = 400;
     pc.updateProjectionMatrix();
@@ -101,10 +144,12 @@ const EXPOSURE: Record<string, number> = {
   stadium: 1.35,
   stage: 1.5,
   city: 2.3,
-  gym: 1.6,
+  gym: 1.85,
   summit: 1.35,
   shore: 1.75,
   void: 1.7,
+  forest: 1.9,
+  cosmos: 2.3,
 };
 
 export const SceneView: React.FC<{ scene: Scene; t: number; lib: Library; characters: StoryProps['characters']; width: number; height: number; sceneKey: string }> = ({
@@ -126,10 +171,17 @@ export const SceneView: React.FC<{ scene: Scene; t: number; lib: Library; charac
     <CameraRig scene={scene} t={t} aspect={width / height} />
     <group key={sceneKey}>
       <Environment scene={scene} t={t} />
+      <FxLayer
+        fx={scene.fx}
+        t={t * (scene.slowmo ?? 1)}
+        center={scene.cast && scene.cast[0] ? actorPosition(scene.cast[0], t * (scene.slowmo ?? 1), scene.durationSec * (scene.slowmo ?? 1)) : [0, 0, 0]}
+        color={scene.color}
+      />
       {(scene.cast ?? []).map((m, i) => {
         const spec = characters[m.who];
         if (!spec) return null;
-        return <Actor key={`${sceneKey}-${i}`} lib={lib} spec={spec} member={m} t={t} sceneDur={scene.durationSec} />;
+        const sm = scene.slowmo ?? 1;
+        return <Actor key={`${sceneKey}-${i}`} lib={lib} spec={spec} member={m} t={t * sm} sceneDur={scene.durationSec * sm} />;
       })}
     </group>
   </ThreeCanvas>
@@ -361,6 +413,21 @@ const Lightning: React.FC<{ t: number; seed: number }> = ({ t, seed }) => {
   return o > 0 ? <AbsoluteFill style={{ background: '#dfe8ff', opacity: o, mixBlendMode: 'screen' }} /> : null;
 };
 
+const CutFlash: React.FC<{ scene: Scene; t: number }> = ({ scene, t }) => {
+  // white flash at the start of a flash scene, quick light flicker on montage cuts, and a hit on the punch line
+  let o = 0;
+  if (scene.flash) o = Math.max(o, interpolate(t, [0, 0.05, 0.45], [1, 0.9, 0], { extrapolateRight: 'clamp' }));
+  (scene.shots ?? []).forEach((s) => {
+    const d = t - s.at;
+    if (d >= 0 && d < 0.18) o = Math.max(o, 0.35 * (1 - d / 0.18));
+  });
+  if (scene.punch && scene.flash) {
+    const d = t - (scene.punchAt ?? Math.max(1.2, scene.durationSec * 0.5));
+    if (d >= 0 && d < 0.3) o = Math.max(o, 0.5 * (1 - d / 0.3));
+  }
+  return o > 0 ? <AbsoluteFill style={{ background: '#fff8e6', opacity: o }} /> : null;
+};
+
 /* ---------------- main composition ---------------- */
 
 export const locateScene = (props: StoryProps, frame: number) => {
@@ -400,6 +467,7 @@ export const Story3D: React.FC<StoryProps> = (props) => {
       </AbsoluteFill>
       <Grade frame={frame} portrait={portrait} bars tone={scene.tone} />
       {scene.time === 'storm' && <Lightning t={t} seed={index} />}
+      <CutFlash scene={scene} t={t} />
       {scene.titleCard && <TitleCard title={scene.titleCard.title} subtitle={scene.titleCard.subtitle} t={t} dur={dur} portrait={portrait} />}
       {scene.chapterTitle && <ChapterTitle label={scene.chapterLabel} title={scene.chapterTitle} t={t} portrait={portrait} />}
       {scene.punch && <Punch text={scene.punch} t={t} dur={dur} fps={fps} portrait={portrait} at={scene.punchAt} />}
