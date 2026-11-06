@@ -105,46 +105,202 @@ MOODS = {
 }
 
 
-def make_piano(total_sec, mood_at=None):
-    # soft cinematic piano at 64 bpm; mood_at(t) picks the chord set for each bar
-    beat = 60 / 64
-    bar = beat * 4
-    out = np.zeros(int((total_sec + 6) * SR))
+def pad_note(freq, dur, vel=0.05):
+    # soft string pad: detuned sines with a slow swell, gentle release
+    n = int(dur * SR)
+    t = np.arange(n, dtype=np.float64) / SR
+    att = np.clip(t / (dur * 0.35), 0, 1)
+    rel = np.clip((dur - t) / (dur * 0.3), 0, 1)
+    env = np.sin(att * np.pi / 2) * rel
+    sig = np.zeros(n)
+    for det, a in [(-0.004, 0.5), (0.0, 0.7), (0.005, 0.5), (1.0, 0.18)]:
+        f = freq * (2 if det == 1.0 else 1 + det)
+        sig += a * np.sin(2 * np.pi * f * t + 0.3 * np.sin(2 * np.pi * 5.1 * t))
+    return np.nan_to_num(sig * env * vel)
+
+
+# Melody themes. Each theme: tempo, beats per bar, arpeggio pattern (chord-tone index per half-beat),
+# per-mood progressions (chords, bass, arp velocity, melody on/off), an optional string pad,
+# and a 4-bar melody phrase: (beat, tone, beats) where tone indexes the chord tones
+# [root, third, fifth, root+12, third+12, fifth+12] played two octaves up; a float adds semitones.
+THEMES = {
+    # the original soft piano (Am F C G)
+    "dawn": {
+        "bpm": 64, "beats": 4, "pattern": [0, 1, 2, 1, 2, 1, 0, 2], "pad": False,
+        "moods": MOODS,
+        "phrase": [[], [(2, 2, 4)], [], [(2, 2, 4)]],
+    },
+    # 3/4 waltz on the water, D minor, rocking arpeggio
+    "tide": {
+        "bpm": 72, "beats": 3, "pattern": [0, 2, 3, 2, 1, 2], "pad": True,
+        "moods": {
+            "calm": ([[50, 53, 57], [46, 50, 53], [53, 57, 60], [48, 52, 55]], [38, 34, 41, 36], 0.09, True),   # Dm Bb F C
+            "dark": ([[50, 53, 57], [46, 50, 53], [45, 49, 52], [45, 49, 52]], [38, 34, 33, 33], 0.07, False),  # Dm Bb A A
+            "hope": ([[46, 50, 53], [53, 57, 60], [48, 52, 55], [50, 53, 57]], [34, 41, 36, 38], 0.10, True),   # Bb F C Dm
+            "rise": ([[46, 50, 53], [48, 52, 55], [53, 57, 60], [53, 57, 60]], [34, 36, 41, 41], 0.12, True),   # Bb C F F
+        },
+        "phrase": [[(0, 2, 2), (2, 1, 1)], [(0, 0, 3)], [(0, 1, 1), (1, 2, 1), (2, 3, 1)], [(0, 2, 3)]],
+    },
+    # warm and open, E major with the lifted IV (Lydian colour), slow and glowing
+    "ember": {
+        "bpm": 58, "beats": 4, "pattern": [0, 2, 3, 4, 3, 2, 1, 2], "pad": True,
+        "moods": {
+            "calm": ([[52, 56, 59], [57, 61, 64], [49, 52, 56], [57, 61, 64]], [40, 45, 37, 45], 0.09, True),   # E A C#m A
+            "dark": ([[49, 52, 56], [45, 49, 52], [52, 56, 59], [47, 51, 54]], [37, 33, 40, 35], 0.07, False),  # C#m A E B
+            "hope": ([[52, 56, 59], [47, 51, 54], [49, 52, 56], [57, 61, 64]], [40, 35, 37, 45], 0.10, True),   # E B C#m A
+            "rise": ([[57, 61, 64], [59, 63, 66], [52, 56, 59], [52, 56, 59]], [45, 47, 40, 40], 0.12, True),   # A B E E
+        },
+        "phrase": [[(0, 2, 2), (2, 3, 2)], [(0, 1, 4)], [(0, 2, 1), (1, 1, 1), (2, 0, 2)], [(1, 1, 3)]],
+    },
+    # quiet night piano, G minor, falling melody that answers itself
+    "nocturne": {
+        "bpm": 60, "beats": 4, "pattern": [0, 2, 4, 2, 3, 2, 4, 2], "pad": False,
+        "moods": {
+            "calm": ([[55, 58, 62], [51, 55, 58], [46, 50, 53], [53, 57, 60]], [43, 39, 34, 41], 0.085, True),  # Gm Eb Bb F
+            "dark": ([[55, 58, 62], [51, 55, 58], [50, 54, 57], [50, 54, 57]], [31, 39, 38, 38], 0.065, True),  # Gm Eb D D
+            "hope": ([[46, 50, 53], [53, 57, 60], [51, 55, 58], [53, 57, 60]], [34, 41, 39, 41], 0.10, True),   # Bb F Eb F
+            "rise": ([[51, 55, 58], [53, 57, 60], [46, 50, 53], [55, 58, 62]], [39, 41, 34, 43], 0.12, True),   # Eb F Bb Gm
+        },
+        "phrase": [[(0, 4, 1.5), (1.5, 3, 0.5), (2, 2, 2)], [(0, 1, 2), (2, 2, 2)],
+                   [(0, 3, 1), (1, 2, 1), (2, 1, 1), (3, 2, 1)], [(0, 0, 4)]],
+    },
+    # building anthem, C major, steady pulse and a climbing hook (for comeback stories)
+    "anthem": {
+        "bpm": 70, "beats": 4, "pattern": [0, 2, 3, 2, 0, 2, 3, 2], "pad": True,
+        "moods": {
+            "calm": ([[48, 52, 55], [45, 48, 52], [53, 57, 60], [55, 59, 62]], [36, 33, 41, 43], 0.09, True),   # C Am F G
+            "dark": ([[45, 48, 52], [53, 57, 60], [52, 55, 59], [52, 56, 59]], [33, 41, 40, 40], 0.07, False),  # Am F Em E
+            "hope": ([[53, 57, 60], [48, 52, 55], [55, 59, 62], [45, 48, 52]], [41, 36, 43, 33], 0.11, True),   # F C G Am
+            "rise": ([[53, 57, 60], [55, 59, 62], [52, 55, 59], [45, 48, 52]], [41, 43, 40, 45], 0.13, True),   # F G Em Am
+        },
+        "phrase": [[(0, 0, 1), (1, 1, 1), (2, 2, 2)], [(0, 3, 2), (2, 2, 2)],
+                   [(0, 1, 1), (1, 2, 1), (2, 3, 1), (3, 4, 1)], [(0, 3, 4)]],
+    },
+    # bright and hopeful, F major in 6/8, flowing (for journeys and new beginnings)
+    "horizon": {
+        "bpm": 66, "beats": 6, "pattern": [0, 1, 2, 3, 2, 1], "pad": True,
+        "moods": {
+            "calm": ([[53, 57, 60], [50, 53, 57], [46, 50, 53], [48, 52, 55]], [41, 38, 34, 36], 0.09, True),   # F Dm Bb C
+            "dark": ([[50, 53, 57], [46, 50, 53], [45, 48, 52], [45, 49, 52]], [38, 34, 33, 33], 0.07, False),  # Dm Bb Am A
+            "hope": ([[46, 50, 53], [53, 57, 60], [48, 52, 55], [53, 57, 60]], [34, 41, 36, 41], 0.10, True),   # Bb F C F
+            "rise": ([[46, 50, 53], [48, 52, 55], [50, 53, 57], [53, 57, 60]], [34, 36, 38, 41], 0.12, True),   # Bb C Dm F
+        },
+        "phrase": [[(0, 2, 3), (3, 3, 3)], [(0, 1, 6)], [(0, 2, 2), (2, 3, 2), (4, 4, 2)], [(0, 3, 6)]],
+    },
+    # tense, heartbeat-like, B minor with sparse low notes (for struggle and battles)
+    "pulse": {
+        "bpm": 76, "beats": 4, "pattern": [0, 0, 2, 0, 3, 0, 2, 0], "pad": True,
+        "moods": {
+            "calm": ([[47, 50, 54], [43, 47, 50], [50, 54, 57], [45, 49, 52]], [35, 31, 38, 33], 0.08, True),   # Bm G D A
+            "dark": ([[47, 50, 54], [43, 47, 50], [42, 46, 49], [42, 46, 49]], [35, 31, 30, 30], 0.07, True),   # Bm G F# F#
+            "hope": ([[43, 47, 50], [50, 54, 57], [45, 49, 52], [47, 50, 54]], [31, 38, 33, 35], 0.10, True),   # G D A Bm
+            "rise": ([[43, 47, 50], [45, 49, 52], [50, 54, 57], [50, 54, 57]], [31, 33, 38, 38], 0.12, True),   # G A D D
+        },
+        "phrase": [[(0, 3, 1), (1, 2, 1), (2, 3, 2)], [(0, 4, 3)], [(0, 3, 1), (1, 2, 1), (2, 1, 2)], [(0, 0, 4)]],
+    },
+}
+NEW_THEMES = ["tide", "ember", "nocturne", "anthem", "horizon", "pulse"]
+
+
+def pick_theme(props):
+    name = props.get("music")
+    if name in THEMES:
+        return name
+    # no theme set: pick a new one from the title so each video sounds different
+    key = sum(ord(c) for c in props.get("title", ""))
+    return NEW_THEMES[key % len(NEW_THEMES)]
+
+
+def make_piano(total_sec, mood_at=None, theme="dawn"):
+    th = THEMES.get(theme, THEMES["dawn"])
+    beat = 60 / th["bpm"]
+    bar = beat * th["beats"]
+    pattern = th["pattern"]
+    step = bar / len(pattern)
+    out = np.zeros(int((total_sec + 8) * SR))
     rng = np.random.default_rng(3)
-    t0 = 0.0
-    i = 0
+
+    def put(seg, at):
+        s = int(at * SR)
+        if 0 <= s < len(out):
+            out[s:s + len(seg)] += seg[: len(out) - s]
+
+    t0, i = 0.0, 0
     while t0 < total_sec:
-        prog, bass, vel, melody = MOODS.get(mood_at(t0) if mood_at else "calm", MOODS["calm"])
+        prog, bass, vel, melody = th["moods"].get(mood_at(t0) if mood_at else "calm", th["moods"]["calm"])
         chord = prog[i % 4]
-        b = bass[i % 4]
-        st = int(t0 * SR)
-        seg = piano_note(note_freq(b), bar * 1.5, 0.22)
-        out[st:st + len(seg)] += seg[: len(out) - st]
-        # arpeggio
-        pattern = [0, 1, 2, 1, 2, 1, 0, 2]
+        tones = chord + [n + 12 for n in chord]
+        put(piano_note(note_freq(bass[i % 4]), bar * 1.5, 0.22), t0)
+        if th["pad"]:
+            for n in chord:
+                put(pad_note(note_freq(n), bar * 1.25, 0.0008), t0)
         for k, p in enumerate(pattern):
-            ns = t0 + k * beat / 2
-            s2 = int(ns * SR)
-            if s2 >= len(out):
-                break
-            note = chord[p] + 12
-            seg = piano_note(note_freq(note), beat * 2.5, vel + 0.03 * rng.random())
-            out[s2:s2 + len(seg)] += seg[: len(out) - s2]
-        # occasional high melody note
-        if melody and i % 2 == 1:
-            s3 = int((t0 + beat * 2) * SR)
-            if s3 < len(out):
-                seg = piano_note(note_freq(chord[2] + 24), beat * 4, 0.06)
-                out[s3:s3 + len(seg)] += seg[: len(out) - s3]
+            put(piano_note(note_freq(tones[p] + 12), step * 5, vel + 0.03 * rng.random()), t0 + k * step)
+        if melody:
+            # play the phrase from the second time through each 8-bar section, so the theme breathes
+            if theme == "dawn" or (i // 4) % 2 == 1:
+                for b, tone, dur in th["phrase"][i % 4]:
+                    ti = int(tone)
+                    n = tones[min(ti, 5)] + 24 + round((tone - ti) * 10)
+                    put(piano_note(note_freq(n), beat * dur + beat, 0.075 if theme != "dawn" else 0.06), t0 + b * beat)
         t0 += bar
         i += 1
-    # simple reverb (feedback delays)
-    for d, g in [(0.031, 0.35), (0.047, 0.3), (0.071, 0.25), (0.113, 0.2)]:
+    for d, g in [(0.031, 0.35), (0.047, 0.3), (0.071, 0.25), (0.113, 0.2), (0.173, 0.12)]:
         k = int(d * SR)
         rev = np.zeros_like(out)
         rev[k:] = out[:-k] * g
         out += rev
     return out[: int(total_sec * SR)]
+
+
+def build_score(props, scenes, frames, total_sec, mood_at):
+    """2-3 melodies per video. A scene's "music" field switches theme from that scene on.
+    Without scene fields, props["music"] (a name or a list) is spread over chapter starts;
+    with nothing set, 3 themes are picked from the title and placed at chapter starts near 0, 1/3, 2/3."""
+    starts, t = [], 0.0
+    for i in range(len(scenes)):
+        starts.append(t)
+        t += frames[i] / FPS
+    marks = [(starts[i], sc["music"]) for i, sc in enumerate(scenes) if sc.get("music") in THEMES]
+    if not marks:
+        m = props.get("music")
+        if isinstance(m, str) and m in THEMES:
+            themes = [m]
+        elif isinstance(m, list) and [x for x in m if x in THEMES]:
+            themes = [x for x in m if x in THEMES][:3]
+        else:
+            key = sum(ord(c) for c in props.get("title", ""))
+            k = key % len(NEW_THEMES)
+            n = 3 if total_sec > 240 else 2
+            themes = [NEW_THEMES[(k + j * 2) % len(NEW_THEMES)] for j in range(n)]
+        chap = [starts[i] for i, sc in enumerate(scenes) if sc.get("chapterTitle")] or starts
+        marks = [(0.0, themes[0])]
+        for j in range(1, len(themes)):
+            target = total_sec * j / len(themes)
+            at = min(chap, key=lambda x: abs(x - target))
+            if at > marks[-1][0] + 20:
+                marks.append((at, themes[j]))
+    if marks[0][0] > 0:
+        marks[0] = (0.0, marks[0][1])
+    props["music"] = [m for _, m in marks]
+    print("music score:", [(round(a), m) for a, m in marks])
+    out = np.zeros(int(total_sec * SR))
+    xf = 3.0
+    for j, (a, theme) in enumerate(marks):
+        b = marks[j + 1][0] if j + 1 < len(marks) else total_sec
+        s0 = max(0.0, a - xf / 2)
+        s1 = min(total_sec, b + xf / 2)
+        seg = make_piano(s1 - s0, lambda tt, s0=s0: mood_at(s0 + tt), theme)
+        n = len(seg)
+        env = np.ones(n)
+        f = int(xf * SR)
+        if j > 0:
+            env[:f] = np.linspace(0, 1, min(f, n))[: min(f, n)]
+        if j + 1 < len(marks):
+            env[-f:] *= np.linspace(1, 0, f)[-min(f, n):]
+        st = int(s0 * SR)
+        out[st:st + n] += (seg * env)[: len(out) - st]
+    return out
 
 
 def whoosh(dur=0.9):
@@ -273,7 +429,7 @@ async def main():
                 break
         return m
 
-    music = make_piano(len(voice) / SR, mood_at)
+    music = build_score(props, scenes, frames, len(voice) / SR, mood_at)
     music = np.pad(music, (0, max(0, len(voice) - len(music))))[: len(voice)]
     # duck music under voice
     w = SR // 5
