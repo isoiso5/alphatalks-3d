@@ -1,0 +1,1780 @@
+{
+ "title": "The Man From Year Ten \u2014 Alphatalks3000",
+ "mood": "dark",
+ "characters": {
+  "dev": {
+   "skin": "#b07a55",
+   "shirt": "#3d4452",
+   "pants": "#1e222b",
+   "hair": "short",
+   "hairColor": "#17110c",
+   "sleeves": true,
+   "eyeColor": "#2b1a0f"
+  },
+  "future": {
+   "skin": "#b07a55",
+   "shirt": "#e9e2d0",
+   "pants": "#2a2620",
+   "hair": "short",
+   "hairColor": "#6e6e6e",
+   "beard": true,
+   "eyeColor": "#2b1a0f",
+   "height": 1.02
+  },
+  "amara": {
+   "skin": "#7a4e33",
+   "shirt": "#2f7d6d",
+   "pants": "#252a33",
+   "hair": "bun",
+   "hairColor": "#120b07",
+   "eyeColor": "#24150b"
+  },
+  "kid": {
+   "skin": "#b07a55",
+   "shirt": "#f2b134",
+   "pants": "#2a3550",
+   "hair": "afro",
+   "hairColor": "#17110c",
+   "height": 0.68
+  },
+  "boss": {
+   "skin": "#e3bfa0",
+   "shirt": "#2b2f3a",
+   "pants": "#1a1c22",
+   "hair": "short",
+   "hairColor": "#4a3a2a",
+   "sleeves": true
+  },
+  "rico": {
+   "skin": "#c49572",
+   "shirt": "#8a2c2c",
+   "pants": "#1d1d1d",
+   "hair": "cap",
+   "hairColor": "#111",
+   "beard": true
+  }
+ },
+ "scenes": [
+  {
+   "env": "cosmos",
+   "durationSec": 4,
+   "caption": "Imagine you fall asleep one night, and you wake up somewhere you have never been. No ground. No sky. Just stars.",
+   "camera": "drone",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "lie",
+     "pos": [
+      0,
+      0
+     ],
+     "y": 0.05
+    }
+   ],
+   "fade": true,
+   "fx": [
+    "stars"
+   ],
+   "mood": "dark",
+   "music": "nocturne",
+   "shots": [
+    {
+     "at": 4.5,
+     "camera": "spin",
+     "zoom": 0.9
+    }
+   ]
+  },
+  {
+   "env": "cosmos",
+   "durationSec": 4,
+   "caption": "And standing in front of you is a man with your face. Older. Stronger. Calm in a way you have never been.",
+   "camera": "dolly",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "wakeup",
+     "pos": [
+      -0.9,
+      0.3
+     ],
+     "face": 60
+    },
+    {
+     "who": "future",
+     "action": "idle",
+     "pos": [
+      1.0,
+      0.3
+     ],
+     "face": -60
+    }
+   ],
+   "focus": 1,
+   "fx": [
+    "aura",
+    "stars"
+   ],
+   "color": "#f5c451",
+   "shots": [
+    {
+     "at": 3.6,
+     "camera": "close",
+     "focus": 0
+    },
+    {
+     "at": 6.5,
+     "camera": "hero",
+     "focus": 1
+    }
+   ],
+   "punch": "It's you. Ten years from now.",
+   "punchAt": 7.0,
+   "flash": true
+  },
+  {
+   "env": "cosmos",
+   "durationSec": 4,
+   "caption": "He says one sentence. I came back because you're about to waste the next ten years. And I'm the only one who knows how to stop it.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "future",
+     "action": "idle2",
+     "pos": [
+      0.4,
+      0.3
+     ],
+     "face": -20
+    }
+   ],
+   "fx": [
+    "aura",
+    "stars"
+   ],
+   "color": "#f5c451",
+   "shots": [
+    {
+     "at": 4.0,
+     "camera": "dutch",
+     "focus": 0
+    }
+   ]
+  },
+  {
+   "env": "void",
+   "durationSec": 7,
+   "caption": "",
+   "camera": "wide",
+   "titleCard": {
+    "title": "The Man From Year Ten",
+    "subtitle": "Alphatalks3000 presents"
+   },
+   "fx": [
+    "stars",
+    "sparks"
+   ],
+   "flash": true
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "Welcome to Alpha Talks 3000. Tonight's story is about Dev. And about the version of you that is waiting on the other side of your choices. Stay with it. The ending is for you.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "walktired",
+     "pos": [
+      0,
+      6
+     ],
+     "to": [
+      0,
+      1
+     ]
+    }
+   ],
+   "time": "night",
+   "weather": "rain",
+   "tone": "cold",
+   "shots": [
+    {
+     "at": 5.5,
+     "camera": "drone"
+    },
+    {
+     "at": 10,
+     "camera": "low"
+    }
+   ]
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "Dev was thirty two. He worked nights at a warehouse, slept through the mornings, and spent the afternoons on his phone.",
+   "camera": "top",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "lie",
+     "pos": [
+      0,
+      0.3
+     ],
+     "y": 0.5
+    }
+   ],
+   "time": "night",
+   "tone": "cold",
+   "chapterLabel": "Chapter I",
+   "chapterTitle": "The Loop",
+   "color": "#8aa0c8",
+   "shots": [
+    {
+     "at": 4.5,
+     "camera": "dutch"
+    }
+   ]
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "He ate when he was bored. Energy drinks at three in the morning. Fast food at noon. Something sweet before bed. Every single day.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "cook",
+     "pos": [
+      0,
+      0.4
+     ],
+     "face": 180
+    }
+   ],
+   "time": "night",
+   "tone": "cold",
+   "shots": [
+    {
+     "at": 2.6,
+     "camera": "close",
+     "camAngle": 30
+    },
+    {
+     "at": 5.2,
+     "camera": "top"
+    },
+    {
+     "at": 7.8,
+     "camera": "side"
+    }
+   ]
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "On weekends there was Rico. Rico always had a plan. A party. A bottle. Something that made Saturday disappear and Sunday hurt.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "rico",
+     "action": "wave",
+     "pos": [
+      -1,
+      0.8
+     ],
+     "face": 40
+    },
+    {
+     "who": "dev",
+     "action": "idle2",
+     "pos": [
+      1,
+      0.8
+     ],
+     "face": -40
+    }
+   ],
+   "time": "night",
+   "tone": "cold",
+   "fx": [
+    "embers"
+   ],
+   "color": "#ff6a2a",
+   "shots": [
+    {
+     "at": 4.6,
+     "camera": "dutch",
+     "focus": 1
+    }
+   ]
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "He had a gym membership. He paid for it every month for three years. He went four times. The card was still in his wallet, like a promise he kept breaking.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "idle2",
+     "pos": [
+      0,
+      0.5
+     ],
+     "face": 180
+    }
+   ],
+   "time": "night",
+   "tone": "cold",
+   "shots": [
+    {
+     "at": 5.0,
+     "camera": "dutch"
+    }
+   ]
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "The worst part wasn't the weight he gained, or the money he wasted. It was the voice. Every morning it said the same thing. Tomorrow. You'll start tomorrow.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "seated",
+     "pos": [
+      0,
+      0.4
+     ],
+     "face": 180
+    }
+   ],
+   "time": "dawn",
+   "tone": "cold",
+   "punch": "Tomorrow.",
+   "punchAt": 9.6
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "And then there was Amara. His girlfriend. Six years together. She used to laugh at everything he said. Now she mostly waited for him to look up.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "amara",
+     "action": "seated",
+     "pos": [
+      -1,
+      0.4
+     ],
+     "face": 40
+    },
+    {
+     "who": "dev",
+     "action": "seated",
+     "pos": [
+      1,
+      0.4
+     ],
+     "face": -140
+    }
+   ],
+   "time": "dusk",
+   "tone": "cold",
+   "shots": [
+    {
+     "at": 4.8,
+     "camera": "close",
+     "focus": 0
+    },
+    {
+     "at": 8.2,
+     "camera": "close",
+     "focus": 1,
+     "camAngle": -30
+    }
+   ]
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "One night she said it quietly. Dev, I don't need you to be perfect. I need you to be here. And he said, I'm right here. Without looking up.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "amara",
+     "action": "idle2",
+     "pos": [
+      -0.9,
+      0.5
+     ],
+     "face": 60
+    },
+    {
+     "who": "dev",
+     "action": "seated",
+     "pos": [
+      0.9,
+      0.4
+     ],
+     "face": -140
+    }
+   ],
+   "time": "night",
+   "tone": "cold",
+   "punch": "Without looking up.",
+   "punchAt": 9.0
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "That was the night he fell asleep and woke up among the stars.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "liedown",
+     "pos": [
+      0,
+      0.3
+     ],
+     "y": 0.5
+    }
+   ],
+   "time": "night",
+   "tone": "cold",
+   "fx": [
+    "stars"
+   ]
+  },
+  {
+   "env": "cosmos",
+   "durationSec": 4,
+   "caption": "Who are you, Dev asked. You already know, said the older man. I'm what happens if you change three things. Just three.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "idle2",
+     "pos": [
+      -0.9,
+      0.3
+     ],
+     "face": 60
+    },
+    {
+     "who": "future",
+     "action": "idle",
+     "pos": [
+      0.9,
+      0.3
+     ],
+     "face": -60
+    }
+   ],
+   "fx": [
+    "aura",
+    "stars"
+   ],
+   "color": "#f5c451",
+   "chapterLabel": "Chapter II",
+   "chapterTitle": "The Deal",
+   "music": "horizon",
+   "mood": "hope",
+   "shots": [
+    {
+     "at": 5.8,
+     "camera": "close",
+     "focus": 1
+    }
+   ]
+  },
+  {
+   "env": "cosmos",
+   "durationSec": 4,
+   "caption": "And what happens if I don't? The older man didn't answer. He just turned around. And the stars behind him went dark.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "future",
+     "action": "idle",
+     "pos": [
+      0,
+      0.3
+     ],
+     "face": 180
+    }
+   ],
+   "fx": [
+    "stars"
+   ],
+   "tone": "cold",
+   "mood": "dark",
+   "shake": 0.3,
+   "punch": "The stars went dark.",
+   "punchAt": 6.0
+  },
+  {
+   "env": "cosmos",
+   "durationSec": 4,
+   "caption": "Okay, said Dev. Show me. And the platform under his feet began to fall.",
+   "camera": "spin",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "idle",
+     "pos": [
+      -0.6,
+      0.3
+     ],
+     "face": 30
+    },
+    {
+     "who": "future",
+     "action": "idle2",
+     "pos": [
+      0.6,
+      0.3
+     ],
+     "face": -30
+    }
+   ],
+   "fx": [
+    "stars",
+    "speed"
+   ],
+   "shake": 0.6,
+   "flash": true,
+   "mood": "rise",
+   "punch": "Show me.",
+   "punchAt": 1.6
+  },
+  {
+   "env": "forest",
+   "durationSec": 4,
+   "caption": "He landed in a forest at night. Silent. Glowing. The air was so clean it felt like drinking cold water.",
+   "camera": "drone",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "getup",
+     "pos": [
+      0,
+      0.5
+     ],
+     "face": 180
+    }
+   ],
+   "time": "night",
+   "fx": [
+    "fireflies"
+   ],
+   "chapterLabel": "World I",
+   "chapterTitle": "The Fast",
+   "color": "#9dffcf",
+   "flash": true,
+   "mood": "calm",
+   "shots": [
+    {
+     "at": 5.0,
+     "camera": "hero"
+    }
+   ]
+  },
+  {
+   "env": "forest",
+   "durationSec": 4,
+   "caption": "This is the first world, said his future self. Every animal here eats, and then it stops. It rests. It lets the body clean itself. Only humans eat all day long.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "future",
+     "action": "walkslow",
+     "pos": [
+      -2,
+      1.5
+     ],
+     "to": [
+      1,
+      0.5
+     ]
+    },
+    {
+     "who": "dev",
+     "action": "walkslow",
+     "pos": [
+      -3,
+      2.4
+     ],
+     "to": [
+      0,
+      1.4
+     ]
+    }
+   ],
+   "time": "night",
+   "fx": [
+    "fireflies"
+   ],
+   "shots": [
+    {
+     "at": 6.0,
+     "camera": "side"
+    },
+    {
+     "at": 10.5,
+     "camera": "close"
+    }
+   ]
+  },
+  {
+   "env": "forest",
+   "durationSec": 4,
+   "caption": "Your hunger isn't hunger, Dev. It's habit. Give your body a window to eat, and a long night to heal. Sixteen hours. That's where the energy comes from.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "future",
+     "action": "idle",
+     "pos": [
+      0,
+      0.5
+     ],
+     "face": 180
+    }
+   ],
+   "time": "night",
+   "fx": [
+    "fireflies",
+    "godrays"
+   ],
+   "punch": "FAST.",
+   "punchAt": 11.5,
+   "flash": true
+  },
+  {
+   "env": "forest",
+   "durationSec": 4,
+   "caption": "The first week will feel like a fight. By the third week, your mind will feel like this forest. Quiet. Awake. Clear.",
+   "camera": "spin",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "meditate",
+     "pos": [
+      0,
+      0.5
+     ],
+     "face": 180
+    }
+   ],
+   "time": "night",
+   "fx": [
+    "fireflies",
+    "aura"
+   ],
+   "color": "#9dffcf",
+   "tone": "warm",
+   "punch": "Quiet. Awake. Clear."
+  },
+  {
+   "env": "forest",
+   "durationSec": 4,
+   "caption": "Dev asked, what if I'm too weak for it? His future self laughed. You fasted for nine hours last night while you slept. You're not too weak. You're just not used to choosing it.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "idle2",
+     "pos": [
+      -0.8,
+      0.5
+     ],
+     "face": 50
+    },
+    {
+     "who": "future",
+     "action": "idle",
+     "pos": [
+      0.8,
+      0.5
+     ],
+     "face": -50
+    }
+   ],
+   "time": "night",
+   "fx": [
+    "fireflies"
+   ],
+   "shots": [
+    {
+     "at": 5.2,
+     "camera": "close",
+     "focus": 1
+    }
+   ],
+   "punch": "Choose it."
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "Then the forest was gone. He was standing in an empty stadium under white lights. And somebody was already running.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "future",
+     "action": "sprint",
+     "pos": [
+      -6,
+      1
+     ],
+     "to": [
+      6,
+      1
+     ]
+    }
+   ],
+   "time": "night",
+   "fx": [
+    "speed"
+   ],
+   "chapterLabel": "World II",
+   "chapterTitle": "The Train",
+   "color": "#ffd45e",
+   "flash": true,
+   "music": "anthem",
+   "mood": "rise",
+   "shots": [
+    {
+     "at": 4.0,
+     "camera": "low"
+    },
+    {
+     "at": 7.0,
+     "camera": "hero"
+    }
+   ]
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "It was him. Ten years older and faster than he had ever been. Your body is not getting old, his future self said. It is getting ignored.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "future",
+     "action": "idle",
+     "pos": [
+      0.6,
+      0.4
+     ],
+     "face": -30
+    },
+    {
+     "who": "dev",
+     "action": "walktired",
+     "pos": [
+      -3,
+      1.4
+     ],
+     "to": [
+      -0.6,
+      0.5
+     ]
+    }
+   ],
+   "time": "night",
+   "punch": "Not old. Ignored.",
+   "punchAt": 9.4,
+   "shots": [
+    {
+     "at": 5.5,
+     "camera": "close",
+     "focus": 0
+    }
+   ]
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "Push ups in the morning. A walk at lunch. Weights three times a week. Nobody becomes strong in one day. You become strong in one day, repeated.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "pushups",
+     "pos": [
+      0,
+      0.5
+     ],
+     "face": 90
+    }
+   ],
+   "time": "night",
+   "fx": [
+    "sparks"
+   ],
+   "color": "#ffb347",
+   "shots": [
+    {
+     "at": 3.2,
+     "camera": "side"
+    },
+    {
+     "at": 6.2,
+     "camera": "top"
+    },
+    {
+     "at": 9.0,
+     "camera": "close"
+    }
+   ]
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "Dev hit the bag. Once. Twice. And for the first time in years, he felt his own power coming back up through his arms.",
+   "camera": "dolly",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "punch",
+     "pos": [
+      0,
+      0.5
+     ],
+     "face": 90,
+     "gloves": "#c0392b",
+     "speed": 1.0
+    }
+   ],
+   "time": "night",
+   "fx": [
+    "sparks",
+    "shockwave"
+   ],
+   "color": "#ffd45e",
+   "slowmo": 0.45,
+   "shake": 0.35,
+   "shots": [
+    {
+     "at": 3.8,
+     "camera": "hero"
+    },
+    {
+     "at": 7.2,
+     "camera": "spin"
+    }
+   ],
+   "punch": "One day, repeated.",
+   "punchAt": 8.6,
+   "flash": true
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "He started running. Slow at first. Then faster. And his future self ran next to him, matching every step.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "run",
+     "pos": [
+      -7,
+      1.4
+     ],
+     "to": [
+      7,
+      1.4
+     ]
+    },
+    {
+     "who": "future",
+     "action": "run",
+     "pos": [
+      -7.6,
+      0.4
+     ],
+     "to": [
+      6.4,
+      0.4
+     ]
+    }
+   ],
+   "time": "night",
+   "fx": [
+    "speed"
+   ],
+   "shots": [
+    {
+     "at": 4.2,
+     "camera": "side"
+    },
+    {
+     "at": 7.6,
+     "camera": "hero"
+    }
+   ],
+   "punch": "TRAIN.",
+   "punchAt": 8.4,
+   "flash": true
+  },
+  {
+   "env": "stadium",
+   "durationSec": 4,
+   "caption": "When they stopped, Dev was bent over, breathing hard. His future self put a hand on his shoulder. That feeling you hate right now? That is the feeling of you coming back.",
+   "camera": "low",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "crouch",
+     "pos": [
+      0,
+      0.5
+     ],
+     "face": 180
+    },
+    {
+     "who": "future",
+     "action": "idle",
+     "pos": [
+      1,
+      0.4
+     ],
+     "face": -60
+    }
+   ],
+   "time": "night",
+   "tone": "warm",
+   "fx": [
+    "godrays"
+   ],
+   "shots": [
+    {
+     "at": 5.8,
+     "camera": "close",
+     "focus": 1
+    }
+   ],
+   "punch": "That's you coming back."
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "The third world looked like home. His street, at night. And outside the bar on the corner, Rico was waiting.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "rico",
+     "action": "wave",
+     "pos": [
+      1.4,
+      0.5
+     ],
+     "face": -40
+    },
+    {
+     "who": "dev",
+     "action": "walkslow",
+     "pos": [
+      -3,
+      3
+     ],
+     "to": [
+      -0.8,
+      1
+     ]
+    }
+   ],
+   "time": "night",
+   "tone": "cold",
+   "chapterLabel": "World III",
+   "chapterTitle": "The Protect",
+   "color": "#ff7a7a",
+   "mood": "dark",
+   "flash": true,
+   "shots": [
+    {
+     "at": 5.0,
+     "camera": "dutch",
+     "focus": 0
+    }
+   ]
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "This is the hardest world, his future self said. Here, the harm doesn't look like harm. It looks like a friend. It looks like a fun night. It looks like just one more.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "future",
+     "action": "idle",
+     "pos": [
+      -1.2,
+      1.6
+     ],
+     "face": 40
+    },
+    {
+     "who": "rico",
+     "action": "idle2",
+     "pos": [
+      1.4,
+      0.5
+     ],
+     "face": -40
+    }
+   ],
+   "time": "night",
+   "tone": "cold",
+   "fx": [
+    "embers"
+   ],
+   "shots": [
+    {
+     "at": 6.5,
+     "camera": "close",
+     "focus": 1,
+     "camAngle": 20
+    }
+   ]
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "Protect your body from the poison. Protect your mind from the people who keep you small. And never become the harm in somebody else's life.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "idle",
+     "pos": [
+      0,
+      0.8
+     ],
+     "face": 180
+    }
+   ],
+   "time": "night",
+   "fx": [
+    "aura"
+   ],
+   "color": "#ff7a7a",
+   "punch": "PROTECT.",
+   "punchAt": 10.0,
+   "flash": true
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "Dev looked at Rico. Then he looked at the bar. And for the first time, he said no. Not angry. Just done.",
+   "camera": "dolly",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "backoff",
+     "pos": [
+      0,
+      0.8
+     ],
+     "face": 180
+    },
+    {
+     "who": "rico",
+     "action": "idle2",
+     "pos": [
+      1.4,
+      0.2
+     ],
+     "face": -40
+    }
+   ],
+   "time": "night",
+   "slowmo": 0.55,
+   "shots": [
+    {
+     "at": 4.0,
+     "camera": "close",
+     "focus": 1
+    },
+    {
+     "at": 6.8,
+     "camera": "hero"
+    }
+   ],
+   "punch": "Not angry. Just done.",
+   "punchAt": 6.8
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "Then the last thing. His future self showed him Amara. Sitting alone. Waiting for a man who was always somewhere else.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "amara",
+     "action": "seated",
+     "pos": [
+      0,
+      0.4
+     ],
+     "face": 180
+    }
+   ],
+   "time": "night",
+   "tone": "cold",
+   "weather": "rain"
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "Protecting yourself also means protecting the people who love you. From your absence. From your phone. From the version of you that never shows up.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "amara",
+     "action": "seated",
+     "pos": [
+      0,
+      0.4
+     ],
+     "face": 180
+    }
+   ],
+   "time": "night",
+   "tone": "cold",
+   "punch": "Protect them from your absence."
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "Dev sat down next to her, even though she couldn't see him. I'm sorry, he whispered. I'm going to come home. For real this time.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "amara",
+     "action": "seated",
+     "pos": [
+      -0.6,
+      0.4
+     ],
+     "face": 180
+    },
+    {
+     "who": "dev",
+     "action": "seated",
+     "pos": [
+      0.6,
+      0.4
+     ],
+     "face": 180
+    }
+   ],
+   "time": "night",
+   "tone": "cold",
+   "weather": "rain",
+   "slowmo": 0.7,
+   "punch": "I'm coming home."
+  },
+  {
+   "env": "cosmos",
+   "durationSec": 4,
+   "caption": "Back among the stars, his future self looked tired. I can't stay, he said. I only exist if you choose me. Every morning. Again and again.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "future",
+     "action": "idle",
+     "pos": [
+      0.8,
+      0.3
+     ],
+     "face": -40
+    },
+    {
+     "who": "dev",
+     "action": "idle2",
+     "pos": [
+      -0.8,
+      0.3
+     ],
+     "face": 40
+    }
+   ],
+   "fx": [
+    "stars",
+    "aura"
+   ],
+   "color": "#f5c451",
+   "chapterLabel": "Chapter VI",
+   "chapterTitle": "The Return",
+   "mood": "calm",
+   "shots": [
+    {
+     "at": 5.6,
+     "camera": "close",
+     "focus": 0
+    }
+   ]
+  },
+  {
+   "env": "cosmos",
+   "durationSec": 4,
+   "caption": "And then he began to fade. Light, from the feet up. Until only his voice was left. Fast. Train. Protect. I'll be waiting.",
+   "camera": "spin",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "idle",
+     "pos": [
+      0,
+      0.3
+     ],
+     "face": 180
+    }
+   ],
+   "fx": [
+    "stars",
+    "sparks",
+    "godrays"
+   ],
+   "slowmo": 0.6,
+   "punch": "I'll be waiting.",
+   "punchAt": 8.4,
+   "flash": true
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "Dev woke up at five in the morning. His phone was on the floor. For the first time in years, he didn't pick it up.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "wakeup",
+     "pos": [
+      0,
+      0.3
+     ],
+     "y": 0.5
+    }
+   ],
+   "time": "dawn",
+   "tone": "warm",
+   "flash": true,
+   "music": "horizon",
+   "mood": "hope",
+   "punch": "He didn't pick it up.",
+   "punchAt": 7.6
+  },
+  {
+   "env": "road",
+   "durationSec": 4,
+   "caption": "Day one, he walked for twenty minutes before the sun came up. It was boring. It was cold. He did it anyway.",
+   "camera": "track",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "walk",
+     "pos": [
+      -4,
+      1
+     ],
+     "to": [
+      4,
+      1
+     ]
+    }
+   ],
+   "time": "dawn",
+   "chapterLabel": "Chapter VII",
+   "chapterTitle": "The Year",
+   "color": "#ffd45e",
+   "shots": [
+    {
+     "at": 4.6,
+     "camera": "drone"
+    }
+   ]
+  },
+  {
+   "env": "kitchen",
+   "durationSec": 4,
+   "caption": "He ate at noon. He ate again at seven. And then he closed the kitchen. The cravings screamed for nine days. On day ten, they whispered.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "cook",
+     "pos": [
+      0,
+      0.4
+     ],
+     "face": 180
+    }
+   ],
+   "time": "day",
+   "tone": "warm",
+   "shots": [
+    {
+     "at": 4.4,
+     "camera": "top"
+    },
+    {
+     "at": 8.0,
+     "camera": "close"
+    }
+   ],
+   "punch": "Day ten, they whispered."
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+   "caption": "Week three, five push ups became fifteen. Month two, he could run a mile without stopping. Month four, he stopped counting.",
+   "camera": "wide",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "pushups",
+     "pos": [
+      -1.2,
+      0.5
+     ],
+     "face": 90
+    },
+    {
+     "who": "dev",
+     "action": "run",
+     "pos": [
+      2.2,
+      1.2
+     ],
+     "to": [
+      2.2,
+      -1
+     ]
+    }
+   ],
+   "time": "day",
+   "fx": [
+    "sparks"
+   ],
+   "shots": [
+    {
+     "at": 3.0,
+     "camera": "side",
+     "focus": 0
+    },
+    {
+     "at": 5.8,
+     "camera": "track",
+     "focus": 1
+    },
+    {
+     "at": 8.6,
+     "camera": "hero",
+     "focus": 1
+    }
+   ]
+  },
+  {
+   "env": "city",
+   "durationSec": 4,
+   "caption": "Rico called every Friday. Every Friday Dev said, not this week. After a while, Rico stopped calling. It hurt. And it was the right thing.",
+   "camera": "side",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "walk",
+     "pos": [
+      -3,
+      1
+     ],
+     "to": [
+      3,
+      1
+     ]
+    }
+   ],
+   "time": "dusk",
+   "tone": "warm",
+   "punch": "It hurt. It was right."
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "And every night, the phone went in a drawer. He cooked with Amara. He asked about her day and actually listened to the answer.",
+   "camera": "orbit",
+   "cast": [
+    {
+     "who": "amara",
+     "action": "idle2",
+     "pos": [
+      -0.8,
+      0.5
+     ],
+     "face": 50
+    },
+    {
+     "who": "dev",
+     "action": "idle",
+     "pos": [
+      0.8,
+      0.5
+     ],
+     "face": -50
+    }
+   ],
+   "time": "dusk",
+   "tone": "warm",
+   "fx": [
+    "fireflies"
+   ]
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "One night she laughed at something he said. The old laugh. The one he hadn't heard in years. And he realised that was the real reward.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "amara",
+     "action": "cheer",
+     "pos": [
+      -0.7,
+      0.5
+     ],
+     "face": 40
+    },
+    {
+     "who": "dev",
+     "action": "idle2",
+     "pos": [
+      0.7,
+      0.5
+     ],
+     "face": -40
+    }
+   ],
+   "tone": "warm",
+   "fx": [
+    "petals"
+   ],
+   "punch": "The old laugh.",
+   "punchAt": 5.0
+  },
+  {
+   "env": "stage",
+   "durationSec": 4,
+   "caption": "At the end of the year, Amara dragged him to a small concert in the park. He danced. Badly. Happily. Without checking his phone once.",
+   "camera": "spin",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "cheer",
+     "pos": [
+      0.6,
+      0.5
+     ],
+     "face": -30
+    },
+    {
+     "who": "amara",
+     "action": "cheer",
+     "pos": [
+      -0.6,
+      0.5
+     ],
+     "face": 30
+    }
+   ],
+   "tone": "warm",
+   "fx": [
+    "confetti"
+   ],
+   "mood": "rise",
+   "shots": [
+    {
+     "at": 5.0,
+     "camera": "hero",
+     "focus": 1
+    }
+   ],
+   "punch": "Badly. Happily."
+  },
+  {
+   "env": "road",
+   "durationSec": 4,
+   "caption": "He was not a new man. He was the same man, finally pointed in the right direction. And every morning, he chose the future again.",
+   "camera": "drone",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "run",
+     "pos": [
+      -4,
+      1
+     ],
+     "to": [
+      4,
+      1
+     ]
+    }
+   ],
+   "time": "dawn",
+   "tone": "warm",
+   "fx": [
+    "godrays"
+   ]
+  },
+  {
+   "env": "summit",
+   "durationSec": 4,
+   "caption": "Ten years later, a man with grey in his beard climbed a mountain at sunrise. Strong. Clear. Calm in a way he had never been.",
+   "camera": "drone",
+   "cast": [
+    {
+     "who": "future",
+     "action": "walk",
+     "pos": [
+      -3,
+      2
+     ],
+     "to": [
+      0,
+      0
+     ]
+    }
+   ],
+   "time": "dawn",
+   "tone": "warm",
+   "chapterLabel": "Chapter VIII",
+   "chapterTitle": "Year Ten",
+   "color": "#ffd45e",
+   "music": "anthem",
+   "mood": "rise",
+   "fx": [
+    "godrays"
+   ],
+   "flash": true,
+   "shots": [
+    {
+     "at": 5.4,
+     "camera": "hero"
+    }
+   ]
+  },
+  {
+   "env": "summit",
+   "durationSec": 4,
+   "caption": "Behind him, a little boy was climbing too. His son. Slower. Stubborn. Refusing to be carried.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "future",
+     "action": "idle",
+     "pos": [
+      0.6,
+      0
+     ],
+     "face": -150
+    },
+    {
+     "who": "kid",
+     "action": "walk",
+     "pos": [
+      -2.6,
+      2.2
+     ],
+     "to": [
+      -0.6,
+      0.6
+     ]
+    }
+   ],
+   "time": "dawn",
+   "tone": "warm",
+   "shots": [
+    {
+     "at": 4.2,
+     "camera": "close",
+     "focus": 1
+    }
+   ]
+  },
+  {
+   "env": "summit",
+   "durationSec": 4,
+   "caption": "At the top, the boy asked him, Dad, how did you get so strong? And he smiled, because he remembered a night among the stars.",
+   "camera": "close",
+   "cast": [
+    {
+     "who": "future",
+     "action": "idle2",
+     "pos": [
+      0.6,
+      0
+     ],
+     "face": -60
+    },
+    {
+     "who": "kid",
+     "action": "idle",
+     "pos": [
+      -0.6,
+      0.3
+     ],
+     "face": 60
+    }
+   ],
+   "time": "dawn",
+   "tone": "warm",
+   "fx": [
+    "godrays"
+   ],
+   "shots": [
+    {
+     "at": 4.6,
+     "camera": "close",
+     "focus": 1
+    },
+    {
+     "at": 7.2,
+     "camera": "spin"
+    }
+   ]
+  },
+  {
+   "env": "summit",
+   "durationSec": 4,
+   "caption": "I made a deal with the man I wanted to become. And I kept it. Every single morning.",
+   "camera": "hero",
+   "cast": [
+    {
+     "who": "future",
+     "action": "cheer",
+     "pos": [
+      0.4,
+      0
+     ],
+     "face": 180
+    },
+    {
+     "who": "kid",
+     "action": "cheer",
+     "pos": [
+      -0.8,
+      0.3
+     ],
+     "face": 160
+    }
+   ],
+   "time": "dawn",
+   "tone": "warm",
+   "fx": [
+    "fireworks",
+    "confetti"
+   ],
+   "slowmo": 0.6,
+   "punch": "I kept it. Every morning.",
+   "punchAt": 3.6,
+   "flash": true,
+   "shots": [
+    {
+     "at": 3.6,
+     "camera": "drone"
+    }
+   ]
+  },
+  {
+   "env": "cosmos",
+   "durationSec": 4,
+   "caption": "Here is the truth. The future version of you is already out there. Stronger. Clearer. Waiting. But he only exists if you choose him.",
+   "camera": "spin",
+   "cast": [
+    {
+     "who": "future",
+     "action": "idle",
+     "pos": [
+      0,
+      0.3
+     ],
+     "face": 180
+    }
+   ],
+   "fx": [
+    "stars",
+    "aura"
+   ],
+   "color": "#f5c451",
+   "mood": "calm",
+   "punch": "He only exists if you choose him."
+  },
+  {
+   "env": "void",
+   "durationSec": 4,
+   "caption": "Fast, so your body can heal. Train, so your strength comes back. Protect, so the harm never gets back in.",
+   "camera": "crane",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "idle",
+     "pos": [
+      0,
+      2.2
+     ],
+     "face": 180
+    }
+   ],
+   "pillars": 3,
+   "fx": [
+    "sparks"
+   ],
+   "punch": "Fast. Train. Protect."
+  },
+  {
+   "env": "void",
+   "durationSec": 10,
+   "caption": "This is Alpha Talks 3000. If this story hit you, send it to the person who needs to meet their future self. And start tomorrow morning.",
+   "camera": "push",
+   "cast": [
+    {
+     "who": "dev",
+     "action": "idle",
+     "pos": [
+      -0.8,
+      2.2
+     ],
+     "face": 20
+    },
+    {
+     "who": "future",
+     "action": "idle2",
+     "pos": [
+      0.8,
+      2.2
+     ],
+     "face": -20
+    }
+   ],
+   "pillars": 3,
+   "fx": [
+    "stars",
+    "sparks"
+   ],
+   "titleCard": {
+    "title": "Fast. Train. Protect.",
+    "subtitle": "Alphatalks3000"
+   }
+  }
+ ],
+ "thumbnail": {
+  "text": "HE MET HIMSELF 10 YEARS LATER",
+  "sub": "And got one warning",
+  "scene": 1,
+  "at": 7.5
+ }
+}
