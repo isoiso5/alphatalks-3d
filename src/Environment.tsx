@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import * as THREE from 'three';
 import { EnvName, Scene, TimeOfDay } from './types';
 import { getBallTexture } from './models';
+import { Stars } from './Fx';
 
 /* ---------- helpers ---------- */
 
@@ -90,7 +91,7 @@ const Sky: React.FC<{ p: Preset }> = ({ p }) => {
         vertexShader:
           'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }',
         fragmentShader:
-          'uniform vec3 top; uniform vec3 bottom; varying vec3 vP; void main(){ float h = clamp(vP.y*1.6+0.08,0.0,1.0); gl_FragColor = vec4(mix(bottom, top, pow(h,0.7)),1.0); #include <tonemapping_fragment>\n#include <colorspace_fragment>\n }',
+          'uniform vec3 top; uniform vec3 bottom; varying vec3 vP; void main(){ float h = clamp(vP.y*1.6+0.08,0.0,1.0); gl_FragColor = vec4(mix(bottom, top, pow(h,0.7)),1.0);\n#include <tonemapping_fragment>\n#include <colorspace_fragment>\n }',
       }),
     [p.top, p.horizon],
   );
@@ -714,6 +715,122 @@ const Shore: React.FC<{ t: number; time: TimeOfDay }> = ({ t, time }) => {
   );
 };
 
+
+/* ---------- forest: tall trees, mist, moonlight ---------- */
+
+const Forest: React.FC<{ t: number; time: TimeOfDay }> = ({ t, time }) => {
+  const trees = useMemo(() => {
+    const r = rand(29);
+    const out: { x: number; z: number; h: number; s: number }[] = [];
+    for (let i = 0; i < 70; i++) {
+      const x = (r() - 0.5) * 50;
+      const z = -4 - r() * 40;
+      if (Math.abs(x) < 2.2 && z > -10) continue;
+      out.push({ x, z, h: 6 + r() * 9, s: 0.8 + r() * 0.8 });
+    }
+    for (let i = 0; i < 16; i++) out.push({ x: (i % 2 ? 1 : -1) * (4 + r() * 6), z: -2 + r() * 8, h: 7 + r() * 6, s: 0.9 + r() * 0.6 });
+    return out;
+  }, []);
+  const night = time === 'night';
+  return (
+    <>
+      <Floor c={night ? '#16241a' : '#2f4a2a'} r={0.95} />
+      {trees.map((tr, i) => (
+        <group key={i} position={[tr.x, 0, tr.z]} rotation={[0, Math.sin(t * 0.4 + i) * 0.01, 0]}>
+          <mesh position={[0, tr.h * 0.25, 0]} castShadow>
+            <cylinderGeometry args={[0.14 * tr.s, 0.24 * tr.s, tr.h * 0.5, 7]} />
+            <meshStandardMaterial color="#3a2a1d" roughness={0.95} />
+          </mesh>
+          {[0, 1, 2].map((j) => (
+            <mesh key={j} position={[0, tr.h * (0.45 + j * 0.17), 0]} castShadow>
+              <coneGeometry args={[tr.s * (1.7 - j * 0.42), tr.h * 0.36, 8]} />
+              <meshStandardMaterial color={night ? ['#1b3a26', '#21452d', '#285236'][j] : ['#2f6b3a', '#3a7d45', '#468f50'][j]} flatShading />
+            </mesh>
+          ))}
+        </group>
+      ))}
+      {Array.from({ length: 10 }).map((_, i) => (
+        <mesh key={`m${i}`} position={[(i - 5) * 5 + Math.sin(t * 0.2 + i) * 1.5, 0.6, -6 - (i % 4) * 6]} rotation={[-Math.PI / 2, 0, 0]}>
+          <circleGeometry args={[4.5, 24]} />
+          <meshBasicMaterial color={night ? '#6f8fb8' : '#e8efe0'} transparent opacity={0.09} depthWrite={false} />
+        </mesh>
+      ))}
+      {[[-1.6, 1.4], [2.1, -0.6], [-2.8, -2.4], [1.2, 2.6]].map(([x, z], i) => (
+        <group key={`g${i}`} position={[x, 0, z]}>
+          <mesh position={[0, 0.12, 0]}>
+            <sphereGeometry args={[0.12, 12, 8]} />
+            <meshStandardMaterial color="#a8ffd8" emissive="#5fffc0" emissiveIntensity={1.8} />
+          </mesh>
+          <Glow position={[0, 0.2, 0]} color="#5fffc0" size={1.2} opacity={0.6} />
+        </group>
+      ))}
+      {night && <Stars t={t} count={900} />}
+      {night && (
+        <>
+          <mesh position={[-18, 26, -60]}>
+            <sphereGeometry args={[4, 32, 16]} />
+            <meshBasicMaterial color="#eef3ff" fog={false} />
+          </mesh>
+          <Glow position={[-18, 26, -59]} color="#bcd0ff" size={30} opacity={0.55} />
+          <spotLight position={[-6, 14, -4]} angle={0.45} penumbra={1} intensity={140} color="#bcd0ff" castShadow />
+        </>
+      )}
+    </>
+  );
+};
+
+/* ---------- cosmos: floating platform among stars, planets, nebula ---------- */
+
+const Cosmos: React.FC<{ scene: Scene; t: number }> = ({ scene, t }) => {
+  const rocks = useMemo(() => {
+    const r = rand(61);
+    return Array.from({ length: 26 }, () => ({ x: (r() - 0.5) * 40, y: r() * 14 - 3, z: -6 - r() * 30, s: 0.3 + r() * 1.2, sp: 0.1 + r() * 0.3 }));
+  }, []);
+  const accent = scene.color ?? '#f5c451';
+  return (
+    <>
+      <Stars t={t} count={2400} />
+      {[['#6a3cff', -30, 18, -80, 40], ['#ff3c8a', 26, 8, -90, 34], ['#2ad4ff', 0, 30, -100, 50]].map(([c, x, y, z, s], i) => (
+        <Glow key={i} position={[x as number, y as number, z as number]} color={c as string} size={s as number} opacity={0.35} />
+      ))}
+      <mesh position={[22, 12, -60]} rotation={[0.3, t * 0.05, 0.2]}>
+        <sphereGeometry args={[7, 48, 24]} />
+        <meshStandardMaterial color="#c98a4b" roughness={0.8} />
+      </mesh>
+      <mesh position={[22, 12, -60]} rotation={[1.2, 0, 0.3]}>
+        <ringGeometry args={[9, 13, 64]} />
+        <meshBasicMaterial color="#e8c48a" transparent opacity={0.45} side={THREE.DoubleSide} />
+      </mesh>
+      <mesh position={[-26, 20, -70]}>
+        <sphereGeometry args={[4, 32, 16]} />
+        <meshStandardMaterial color="#5a7dff" emissive="#22306a" emissiveIntensity={0.6} />
+      </mesh>
+      <mesh position={[0, -0.25, 0]} receiveShadow>
+        <cylinderGeometry args={[4.5, 3.2, 0.5, 48]} />
+        <meshStandardMaterial color="#1b1d26" metalness={0.7} roughness={0.25} />
+      </mesh>
+      <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, t * 0.2]}>
+        <ringGeometry args={[4.2, 4.45, 96]} />
+        <meshBasicMaterial color={accent} transparent opacity={0.9} />
+      </mesh>
+      <mesh position={[0, -1.6, 0]} rotation={[0, t * 0.3, 0]}>
+        <coneGeometry args={[3, 3, 7]} />
+        <meshStandardMaterial color="#2a2c38" flatShading />
+      </mesh>
+      {rocks.map((r, i) => (
+        <mesh key={i} position={[r.x, r.y + Math.sin(t * r.sp + i) * 0.6, r.z]} rotation={[t * r.sp, t * r.sp * 0.7, 0]}>
+          <dodecahedronGeometry args={[r.s, 0]} />
+          <meshStandardMaterial color="#4a4d5c" flatShading />
+        </mesh>
+      ))}
+      <spotLight position={[0, 10, 4]} angle={0.6} penumbra={0.8} intensity={260} color="#dfe6ff" castShadow />
+      <pointLight position={[0, 0.5, 0]} intensity={18} color={accent} distance={10} />
+      <pointLight position={[0, 3, 5]} intensity={30} color="#b8c6ff" distance={14} />
+      <Glow position={[0, 0.2, 0]} color={accent} size={9} opacity={0.35} />
+    </>
+  );
+};
+
 /* ---------- main environment ---------- */
 
 const DEFAULT_TIME: Record<EnvName, TimeOfDay> = {
@@ -728,6 +845,8 @@ const DEFAULT_TIME: Record<EnvName, TimeOfDay> = {
   kitchen: 'dawn',
   summit: 'dawn',
   shore: 'dawn',
+  forest: 'night',
+  cosmos: 'night',
   void: 'night',
 };
 
@@ -736,15 +855,15 @@ export const sceneTime = (scene: Scene): TimeOfDay => scene.time ?? DEFAULT_TIME
 export const Environment: React.FC<{ scene: Scene; t: number }> = ({ scene, t }) => {
   const time = sceneTime(scene);
   const p = PRESETS[time];
-  const indoor = ['studio', 'stage', 'gym', 'room', 'kitchen', 'court', 'void'].includes(scene.env);
+  const indoor = ['studio', 'stage', 'gym', 'room', 'kitchen', 'court', 'void', 'cosmos'].includes(scene.env);
   const fogNear = indoor ? 12 : 18;
   const fogFar = indoor ? 45 : 110;
   const sunVisible = !indoor && (time === 'dawn' || time === 'dusk');
   return (
     <>
       <color attach="background" args={[p.fog]} />
-      <fog attach="fog" args={[scene.env === 'void' ? '#05060a' : p.fog, fogNear, fogFar]} />
-      {scene.env !== 'void' && <Sky p={p} />}
+      <fog attach="fog" args={[scene.env === 'void' || scene.env === 'cosmos' ? '#05060a' : p.fog, scene.env === 'cosmos' ? 60 : fogNear, scene.env === 'cosmos' ? 300 : fogFar]} />
+      {scene.env !== 'void' && scene.env !== 'cosmos' && <Sky p={p} />}
       <ambientLight intensity={p.amb * 2.2} color={p.ambC} />
       <hemisphereLight args={[p.horizon, '#2a2018', 1.4]} />
       {/* soft front fill so faces never fall into black */}
@@ -788,6 +907,8 @@ export const Environment: React.FC<{ scene: Scene; t: number }> = ({ scene, t })
       {scene.weather === 'rain' && <Rain t={t} />}
       {scene.weather === 'snow' && <Snow t={t} />}
       {scene.env === 'void' && <Void scene={scene} t={t} />}
+      {scene.env === 'forest' && <Forest t={t} time={time} />}
+      {scene.env === 'cosmos' && <Cosmos scene={scene} t={t} />}
       <Dust t={t} color={time === 'night' ? '#9fb8ff' : '#ffe2b0'} seed={scene.env.length * 13} />
     </>
   );
