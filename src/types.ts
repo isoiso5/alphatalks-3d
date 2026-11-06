@@ -36,6 +36,8 @@ export type CharacterSpec = {
   hairColor?: string;
   sleeves?: boolean; // true = arms in shirt colour (hoodie / long sleeves)
   height?: number; // 1 = 1.75m
+  eyeColor?: string;
+  beard?: boolean;
 };
 
 export type CastMember = {
