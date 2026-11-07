@@ -1,0 +1,312 @@
+{
+ "title": "365 Days — Motivation and Disciplinr Stories",
+ "ttsRate": "+3%",
+"characters": {
+  "elias": {
+   "skin": "#c68a64",
+    "shirt": "#2b3445",
+    "pants": "#1c1f26",
+   "hair": "short",
+    "hairColor": "#1a120c",
+    "sleeves": true
+  }
+ },
+ "scenes": [
+  {
+   "env": "room",
+   "durationSec": 5,
+   "caption": "At 27, Elias had failed at everything he tried. Three businesses, dead. A relationship, gone. One room, a mattress on the floor, and a notebook full of ideas he never finished.",
+    "camera": "top",
+    "cast": [
+    {
+      "who": "elias",
+        "action": "lie",
+      "pos": [
+      -2
+      -2
+      ],
+      y": 0.42,
+      "face": 180
+    }
+   ],
+   "time": "night",
+    "fade": true,
+    "zoom": 0.75,
+    "hook": "He stopped negotiating with himself for 365 days"
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "Elias wasn't lazy. That's what nobody tells you about people who fail repeatedly. He worked in bursts. Two weeks of obsession, then a crash, then three weeks of nothing.",
+    camera": "close",
+    "cast": [
+    {
+      "who": "elias",
+        "action": "seated",
+      "pos": [
+      -2
+      -2
+      ],
+      y": 0.42,
+      "face": 180
+    }
+   ],
+   "time": "night",
+   "punch": "Two weeks of fire. Three weeks of ash."
+  },
+  {
+   "env": "void",
+   "durationSec": 7,
+   "camera": "wide",
+   "caption": "",
+   "titleCard": {
+    "title": "The Year Elias Stopped Negotiating",
+    "subtitle": "A Motivation and Disciplinr Story"
+   }
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+    caption": "Every cycle ended the same. A project abandoned at seventy percent. A gym membership unused by February.",
+   "camera": "push",
+   "cast": [
+   {
+       "who": "elias",
+      "action":"idle",
+        "pos": [
+      0
+          0.5
+       ],
+      "face": 90
+   }
+   ],
+   "lead": 0.15,
+    "tail": 0.35,
+   "zoom": 0.6,
+   "punch": "70% done. Then nothing.",
+   "punchAt": 2.5
+  },
+  {
+   "env": "room",
+   "durationSec": 5,
+   "caption": "He kept telling himself the same lie. Once I find the right thing, I won't have to force myself. The problem was never passion. The problem was that he negotiated with himself every single morning. And every morning, his tired, comfortable self won.",
+   "camera": "close",
+   "cast": [
+   {
+      "who": "elias",
+        "action": "seated",
+      "pos": [
+      -2
+      -2
+      ],
+      y": 0.42,
+      "face": 180
+    }
+   ],
+   "time": "night",
+   "zoom": 0.8,
+   "punch": "Every morning, his comfortable self won."
+  },
+  {
+   "env": "void",
+   "durationSec": 5,
+   "caption": "Then one night he read one sentence that changed everything. Motivation is a feeling. Discipline is a decision.",
+   "camera": "orbit",
+   "cast": [
+   {
+       "who": "elias",
+      "action":"meditate",
+      "pos": [
+      0
+      0
+     ],
+      "face": 180
+   }
+  ],
+   "punch": "Motivation is a feeling. Discipline is a decision.",
+   "punchAt": 1.2,
+   "pillars": 3
+  },
+ {
+   "env": "room",
+   "durationSec": 5,
+    caption": "Feelings are weather. You cannot build a life on weather. So Elias made one decision. Not ten. One. Get out of bed at five a.m. Every day. For three hundred and sixty five days. No negotiation.",
+    "camera": "push",
+    "cast": [
+   {
+      "who": "elias",
+      "action":"seated",
+      "pos": [
+      0
+      0
+     ],
+     "face": 180
+   }
+   ],
+   "time": "night",
+   "punch": "One decision. 365 days.",
+   "punchAt": 1.5
+  },
+  {
+   "env": "room",
+   "durationSec": 4,
+   "caption": "Day one was easy. Day one is always easy. Day four, his body fought back. Day nine, he wanted to quit.",
+   "camera": "wide",
+   "cast": [
+   {
+       "who": "elias",
+      "action":"lie",
+         "pos": [
+      -2
+      -2
+     ],
+    y": 0.42,
+      "face": 180
+   }
+   ],
+   "time": "night",
+   "zoom": 0.7
+  },
+  {
+   "env": "room",
+   "durationSec": 5,
+   "caption": "Day fourteen, he sat on the edge of the bed at four fifty eight and had a full conversation with himself about why today didn't count. He got up anyway.",
+   "camera": "close",
+    "cast": [
+   {
+       "who": "elias",
+      "action":"seated",
+      "pos": [
+      0
+      0.4
+     ],
+      "face": 180
+   }
+   ],
+   "time": "dawn",
+   "punch": "He got up anyway.",
+   "punchAt": 2.8
+  },
+  {
+   "env": "gym",
+   "durationSec": 4,
+    caption": "Week three, he stopped dreading the alarm. Week six, he noticed something strange. He was finishing things again.",
+   "camera": "track",
+   "cast": [
+   {
+         "who": "elias",
+          "action": "pushups",
+             "pos": [
+          -0.8
+          0.5
+         ],
+          "face": 90
+    }
+   ],
+   "lead": 0.15,
+    "tail": 0.35,
+   "camAngle": 60,
+   "punch": "Week six. Finishing again.",
+   "punchAt": 2.2
+  },
+  {
+   "env": "road",
+   "durationSec": 5,
+   "caption": "Week ten, someone at work asked how he'd suddenly gotten so reliable. He didn't know how to answer. It didn't feel sudden. It felt like slow, invisible work under the surface.",
+   "camera": "track",
+    "cast": [
+   {
+       "who": "elias",
+      "action": "walkslow",
+      "pos": [
+      -5
+      1
+     ],
+      "to": [
+      5
+      1
+     ]
+   }
+   ],
+   "time": "dawn",
+   "lead": 0.15,
+   "tail": 0.35
+  },
+ {
+   "env": "city",
+   "durationSec": 5,
+    caption": "Month four, he rebuilt the business he'd abandoned at seventy percent, and finished it. Month six, it made its first real money. Month nine, more than his old job ever paid him.",
+   "camera": "crane",
+    "cast": [
+   {
+       "who": "elias",
+      "action":"run",
+      "pos": [
+      -5
+      1
+     ],
+      "to": [
+      5
+      1
+     ]
+   }
+   ],
+   "lead": 0.15,
+   "tail": 0.35,
+   "punch": "Month nine. He beat his old salary.",
+   "punchAt": 3.2
+  },
+  {
+    env": "summit",
+   "durationSec": 6,
+    caption": "People ask Elias for his secret. There was no secret. No perfect app, no moment where it became effortless. There was a decision, made once, and honored three hundred and sixty five times.",
+   "camera": "crane",
+   "cast": [
+   {
+         "who": "elias",
+          "action": "meditate",
+            "pos": [
+            0
+            0
+           ],
+            "face": 180
+          }
+   ],
+   "time": "dawn",
+   "lead": 0.15,
+   "tail": 0.35,
+   "punch": "One decision. Honored 365 times.",
+   "punchAt": 2.5
+  },
+  {
+   "env": "void",
+   "durationSec": 7,
+   "caption": "Motivation is what you feel when the work is already done. It's not the fuel. It's the reward. You don't need to feel ready. You need to stop negotiating. Set one alarm tonight. Make one decision. Subscribe if you're choosing the first one.",
+   "camera": "push",
+   "cast": [
+   {
+       "who": "elias",
+      "action":"idle",
+        "pos": [
+      0
+      2.2
+     ],
+      "face": 180
+   }
+   ],
+    lead": 0.3,
+    "tail": 0.8,
+   "pillars": 3,
+   "titleCard": {
+    "title": "Set one alarm tonight.",
+    "subtitle": "Motivation and Disciplinr Stories"
+   }
+  }
+ ],
+ "thumbnail": {
+  "text": "365 DAYS",
+  "sub": "No negotiation. No excuses.",
+  "scene": 9,
+  "at": 1.5
+ }
+}
