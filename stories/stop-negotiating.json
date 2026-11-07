@@ -1,53 +1,53 @@
 {
- "title": "365 Days — Motivation and Disciplinr Stories",
+ "title": "365 Days - Motivation and Disciplinr Stories",
  "ttsRate": "+3%",
-"characters": {
+ "characters": {
   "elias": {
    "skin": "#c68a64",
-    "shirt": "#2b3445",
-    "pants": "#1c1f26",
+   "shirt": "#2b3445",
+   "pants": "#1c1f26",
    "hair": "short",
-    "hairColor": "#1a120c",
-    "sleeves": true
+   "hairColor": "#1a120c",
+   "sleeves": true
   }
  },
  "scenes": [
-  {
+ {
    "env": "room",
    "durationSec": 5,
    "caption": "At 27, Elias had failed at everything he tried. Three businesses, dead. A relationship, gone. One room, a mattress on the floor, and a notebook full of ideas he never finished.",
-    "camera": "top",
-    "cast": [
+   "camera": "top",
+   "cast": [
     {
-      "who": "elias",
-        "action": "lie",
+     "who": "elias",
+      "action": "lie",
       "pos": [
+      -2,
       -2
-      -2
-      ],
-      y": 0.42,
-      "face": 180
+     ],
+      "y": 0.42,
+     "face": 180
     }
    ],
    "time": "night",
-    "fade": true,
-    "zoom": 0.75,
-    "hook": "He stopped negotiating with himself for 365 days"
+   "fade": true,
+   "zoom": 0.75,
+    hook": "He stopped negotiating with himself for 365 days"
   },
-  {
+ {
    "env": "room",
    "durationSec": 4,
    "caption": "Elias wasn't lazy. That's what nobody tells you about people who fail repeatedly. He worked in bursts. Two weeks of obsession, then a crash, then three weeks of nothing.",
-    camera": "close",
+   "camera": "close",
     "cast": [
     {
       "who": "elias",
-        "action": "seated",
-      "pos": [
+      "action":"seated",
+     "pos": [
+      -2,
       -2
-      -2
-      ],
-      y": 0.42,
+     ],
+      "y": 0.42,
       "face": 180
     }
    ],
@@ -74,19 +74,19 @@
        "who": "elias",
       "action":"idle",
         "pos": [
-      0
-          0.5
-       ],
+      0,
+      0.55
+     ],
       "face": 90
-   }
+    }
    ],
    "lead": 0.15,
     "tail": 0.35,
    "zoom": 0.6,
-   "punch": "70% done. Then nothing.",
+    "punch": "70% done. Then nothing.",
    "punchAt": 2.5
   },
-  {
+ {
    "env": "room",
    "durationSec": 5,
    "caption": "He kept telling himself the same lie. Once I find the right thing, I won't have to force myself. The problem was never passion. The problem was that he negotiated with himself every single morning. And every morning, his tired, comfortable self won.",
@@ -101,28 +101,28 @@
       ],
       y": 0.42,
       "face": 180
-    }
+   }
    ],
    "time": "night",
    "zoom": 0.8,
    "punch": "Every morning, his comfortable self won."
   },
-  {
+ {
    "env": "void",
    "durationSec": 5,
    "caption": "Then one night he read one sentence that changed everything. Motivation is a feeling. Discipline is a decision.",
    "camera": "orbit",
    "cast": [
    {
-       "who": "elias",
-      "action":"meditate",
+      "who": "elias",
+      "action": "meditate",
       "pos": [
       0
       0
      ],
       "face": 180
    }
-  ],
+   ],
    "punch": "Motivation is a feeling. Discipline is a decision.",
    "punchAt": 1.2,
    "pillars": 3
@@ -130,9 +130,9 @@
  {
    "env": "room",
    "durationSec": 5,
-    caption": "Feelings are weather. You cannot build a life on weather. So Elias made one decision. Not ten. One. Get out of bed at five a.m. Every day. For three hundred and sixty five days. No negotiation.",
-    "camera": "push",
-    "cast": [
+   "caption": "Feelings are weather. You cannot build a life on weather. So Elias made one decision. Not ten. One. Get out of bed at five a.m. Every day. For three hundred and sixty five days. No negotiation.",
+   "camera": "push",
+   "cast": [
    {
       "who": "elias",
       "action":"seated",
@@ -155,8 +155,8 @@
    "cast": [
    {
        "who": "elias",
-      "action":"lie",
-         "pos": [
+      "action": "lie",
+        "pos": [
       -2
       -2
      ],
@@ -189,19 +189,19 @@
   },
   {
    "env": "gym",
-   "durationSec": 4,
-    caption": "Week three, he stopped dreading the alarm. Week six, he noticed something strange. He was finishing things again.",
+  "durationSec": 4,
+   "caption": "Week three, he stopped dreading the alarm. Week six, he noticed something strange. He was finishing things again.",
    "camera": "track",
    "cast": [
    {
-         "who": "elias",
-          "action": "pushups",
-             "pos": [
-          -0.8
-          0.5
-         ],
-          "face": 90
-    }
+       "who": "elias",
+      "action":"pushups",
+        "pos": [
+      -0.8
+      0.5
+     ],
+      "face": 90
+   }
    ],
    "lead": 0.15,
     "tail": 0.35,
@@ -232,12 +232,12 @@
    "lead": 0.15,
    "tail": 0.35
   },
- {
+  {
    "env": "city",
    "durationSec": 5,
-    caption": "Month four, he rebuilt the business he'd abandoned at seventy percent, and finished it. Month six, it made its first real money. Month nine, more than his old job ever paid him.",
+   "caption": "Month four, he rebuilt the business he'd abandoned at seventy percent, and finished it. Month six, it made its first real money. Month nine, more than his old job ever paid him.",
    "camera": "crane",
-    "cast": [
+   "cast": [
    {
        "who": "elias",
       "action":"run",
@@ -257,20 +257,20 @@
    "punchAt": 3.2
   },
   {
-    env": "summit",
-   "durationSec": 6,
-    caption": "People ask Elias for his secret. There was no secret. No perfect app, no moment where it became effortless. There was a decision, made once, and honored three hundred and sixty five times.",
+   "env": "summit",
+  "durationSec": 6,
+   "caption": "People ask Elias for his secret. There was no secret. No perfect app, no moment where it became effortless. There was a decision, made once, and honored three hundred and sixty five times.",
    "camera": "crane",
    "cast": [
    {
-         "who": "elias",
-          "action": "meditate",
-            "pos": [
-            0
-            0
-           ],
-            "face": 180
-          }
+       "who": "elias",
+      "action":"meditate",
+      "pos": [
+      0
+      0
+     ],
+      "face": 180
+   }
    ],
    "time": "dawn",
    "lead": 0.15,
@@ -294,9 +294,9 @@
       "face": 180
    }
    ],
-    lead": 0.3,
+   "lead": 0.3,
     "tail": 0.8,
-   "pillars": 3,
+    pillars": 3,
    "titleCard": {
     "title": "Set one alarm tonight.",
     "subtitle": "Motivation and Disciplinr Stories"
