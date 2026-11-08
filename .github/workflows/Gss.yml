@@ -16,7 +16,35 @@ jobs:
       - name: Create Video
         run: |
           ffmpeg -f lavfi -i color=c=black:s=1080x1920:d=20 \
-          -vf "drawtext=text='TRADITION IS NOT TRUTH':fontcolor=white:fontsize=80:x=(w-text_w)/2:y=(h-text_h)/2" \
+          -vf "drawtext=text='TRADITION IS NOT TRUTH
+
+Every generation inherits rules.
+
+Habits become traditions.
+
+Traditions become norms.
+
+Norms become laws.
+
+Over time, people forget why these rules existed.
+
+A belief repeated for centuries
+is not automatically true.
+
+Reality does not change
+because humans agree on a story.
+
+Many things we call normal
+are simply inherited assumptions.
+
+Question what is real.
+
+Think for yourself.
+
+Truth does not need tradition.
+
+Tradition does not create truth.
+':fontcolor=white:fontsize=80:x=(w-text_w)/2:y=(h-text_h)/2" \
           -c:v libx264 -pix_fmt yuv420p output.mp4
 
       - name: Upload Video
