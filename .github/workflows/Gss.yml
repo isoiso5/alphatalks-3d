@@ -28,8 +28,7 @@ jobs:
           are simply inherited assumptions.
           Question what is real.
           Think for yourself.Truth does not need tradition.
-          Tradition does not create truth.
-':fontcolor=white:fontsize=80:x=(w-text_w)/2:y=(h-text_h)/2" \
+          Tradition does not create truth':fontcolor=white:fontsize=80:x=(w-text_w)/2:y=(h-text_h)/2" \
           -c:v libx264 -pix_fmt yuv420p output.mp4
 
       - name: Upload Video
