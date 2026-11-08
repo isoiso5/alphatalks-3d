@@ -1,0 +1,22 @@
+name: Render Video
+
+on:
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create subtitles
+        run: |
+          mkdir output
+          cp script.txt output/
+
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: render-files
+          path: output
